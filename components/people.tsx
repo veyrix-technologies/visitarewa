@@ -73,7 +73,7 @@ export default function ArewaTalent() {
   const activePerson = people[currentIndex];
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-zinc-900 text-white font-sans border-t border-white/10">
+    <div className="relative w-full h-screen overflow-hidden bg-zinc-900 text-white font-sans">
       {/* Background Image Layer */}
       <AnimatePresence mode="popLayout">
         <motion.div
@@ -94,13 +94,6 @@ export default function ArewaTalent() {
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent" />
         </motion.div>
       </AnimatePresence>
-
-      {/* Decorative Text */}
-      <div className="absolute top-12 right-12 z-20 hidden md:block">
-        <h2 className="text-8xl font-black text-white/5 tracking-widest rotate-90 origin-top-right">
-          TALENT
-        </h2>
-      </div>
 
       {/* Main Content Layer */}
       <div className="absolute inset-0 z-10 flex flex-col justify-center px-8 md:px-20">

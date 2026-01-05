@@ -13,46 +13,8 @@ import {
   Share2,
   Check,
 } from "lucide-react";
-
-// 1. Data Configuration (Arewa Theme)
-const destinations = [
-  {
-    id: 1,
-    location: "Abuja, Nigeria",
-    title: "ABUJA",
-    description:
-      "The capital city known for its stunning architecture and the monolithic Zuma Rock, the 'Gateway to Abuja' that rises majestically 725 meters above the surrounding countryside.",
-    image: "/images/abj.jpg", // Zuma Rock / Abuja landscape vibe
-    rating: 5,
-  },
-  {
-    id: 2,
-    location: "Bauchi, Nigeria",
-    title: "YANKARI",
-    description:
-      "A premier wildlife retreat featuring the Wikki Warm Springs and roaming elephants. It is Nigeria's richest wildlife oasis and a haven for eco-tourism in the West African savanna.",
-    image: "/images/yankari.jpg",
-    rating: 5,
-  },
-  {
-    id: 3,
-    location: "Kaduna, Nigeria",
-    title: "KAJURU",
-    description:
-      "A stunning medieval-style castle perched on a hill in Kaduna. This architectural masterpiece offers a fairytale escape with breathtaking views of the surrounding savannah.",
-    image: "/images/kajuru.jpg", // Castle vibe for Kajuru
-    rating: 4,
-  },
-  {
-    id: 4,
-    location: "Taraba, Nigeria",
-    title: "MAMBILLA",
-    description:
-      "The gem of Taraba, known for its cool climate, lush green rolling hills, and vast tea plantations. It offers some of the most scenic highland views in West Africa.",
-    image: "/images/mambilla.jpg", // Green highland/Tea plantation vibe
-    rating: 5,
-  },
-];
+import { destinations } from "@/lib/data";
+import Link from "next/link";
 
 export default function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -149,7 +111,13 @@ export default function HeroSection() {
       {/* Navigation Bar */}
       <nav className="absolute top-0 left-0 w-full z-50 flex justify-between items-center p-8">
         <div className="flex items-center gap-2">
-          <Image src={"/logo.svg"} className="w-25" alt="Visit Arewa Logo" width={100} height={40} />
+          <Image
+            src={"/logo.svg"}
+            className="w-25"
+            alt="Visit Arewa Logo"
+            width={100}
+            height={40}
+          />
         </div>
 
         <div className="hidden md:flex gap-8 text-sm font-medium text-gray-200">
@@ -308,17 +276,18 @@ export default function HeroSection() {
                 </h1>
 
                 <p className="max-w-md text-gray-200 text-sm md:text-base leading-relaxed line-clamp-3">
-                  {activeDest.description}
+                  {activeDest.shortDescription}
                 </p>
 
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={handleNext}
-                  className="mt-8 px-8 py-3 bg-green-600 hover:bg-green-500 rounded-full flex items-center gap-3 w-fit transition-colors shadow-lg shadow-green-900/50"
-                >
-                  Explore <ArrowRight size={18} />
-                </motion.button>
+                <Link href={`/destinations/${destinations[currentIndex].slug}`}>
+                  <button className="bg-green-500 hover:bg-green-400 text-black px-8 py-4 mt-8 rounded-full font-bold flex items-center gap-2 transition-all group">
+                    Explore
+                    <ArrowRight
+                      size={18}
+                      className="group-hover:translate-x-1 transition-transform"
+                    />
+                  </button>
+                </Link>
               </motion.div>
             </AnimatePresence>
           </div>

@@ -3,42 +3,17 @@
 import React, { useRef, useState, lazy, Suspense } from "react";
 import Image from "next/image";
 import { motion, useScroll, AnimatePresence } from "framer-motion";
-import { Calendar, MapPin, ArrowUpRight, Play, X } from "lucide-react";
-
-const events = [
-  {
-    id: 1,
-    title: "Grand Durbar Festival",
-    date: "March 20, 2026 (Eid-al-Fitr)",
-    location: "Kano Palace Grounds",
-    video: "https://www.youtube.com/watch?v=FepSLXg1Eiw",
-    category: "CULTURE",
-  },
-  {
-    id: 2,
-    title: "Argungu Fishing Fest",
-    date: "Feb 25 - Mar 1, 2026",
-    location: "Matan Fada River, Kebbi",
-    video: "https://www.youtube.com/watch?v=oKsRcD0fJCU",
-    category: "HERITAGE",
-  },
-  {
-    id: 3,
-    title: "Dambe Warriors League",
-    date: "Every Sunday @ 4:00 PM",
-    location: "Gombe Stadium / Kano Pillars",
-    video: "https://www.youtube.com/watch?v=DPaTu8C3Xi8",
-    category: "SPORT",
-  },
-  {
-    id: 4,
-    title: "Kaduna Arts (KABAFEST)",
-    date: "Sept 16 - 19, 2026",
-    location: "Kaduna City Hall",
-    video: "https://www.youtube.com/watch?v=_R9pZ8oWRv0",
-    category: "ART",
-  },
-];
+import {
+  Calendar,
+  MapPin,
+  ArrowUpRight,
+  Play,
+  X,
+  ArrowRight,
+} from "lucide-react";
+import { events } from "@/lib/data";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 // Helper to extract YouTube ID
 const getYouTubeId = (url: string) => {
@@ -49,6 +24,7 @@ const getYouTubeId = (url: string) => {
 };
 
 export default function ArewaEvents() {
+  const navigator = useRouter();
   const targetRef = useRef(null);
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null); // State for the active video link
 
@@ -78,6 +54,9 @@ export default function ArewaEvents() {
               key={event.id}
               event={event}
               index={index}
+              onClick={() => {
+                navigator.push(`/events/${event.slug}`);
+              }}
               onWatch={() => setSelectedVideo(event.video)} // Pass function to open modal
             />
           ))}
@@ -110,7 +89,13 @@ export default function ArewaEvents() {
               className="w-full max-w-5xl aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-black"
               onClick={(e) => e.stopPropagation()}
             >
-              <Suspense fallback={<div className="w-full h-full bg-black/50 flex items-center justify-center"><div className="animate-spin">Loading...</div></div>}>
+              <Suspense
+                fallback={
+                  <div className="w-full h-full bg-black/50 flex items-center justify-center">
+                    <div className="animate-spin">Loading...</div>
+                  </div>
+                }
+              >
                 <iframe
                   loading="lazy"
                   className="w-full h-full"
@@ -133,7 +118,7 @@ export default function ArewaEvents() {
 // ------------------------------------------------------------------
 // Sub-component: The Card
 // ------------------------------------------------------------------
-function EventCard({ event, index, onWatch }: any) {
+function EventCard({ event, index, onWatch, onClick }: any) {
   const videoId = getYouTubeId(event.video);
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 
@@ -148,7 +133,7 @@ function EventCard({ event, index, onWatch }: any) {
       {/* BACKGROUND THUMBNAIL IMAGE (High Performance) */}
       <div className="absolute inset-0 h-full w-full overflow-hidden pointer-events-none">
         <Image
-          src={thumbnailUrl}
+          src={event.image}
           alt={event.title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
@@ -159,7 +144,7 @@ function EventCard({ event, index, onWatch }: any) {
       </div>
 
       {/* Content Layer */}
-      <div className="absolute inset-0 p-6 flex flex-col justify-end z-10">
+      <div className="absolute inset-0 p-6 flex flex-col justify-end z-10" onClick={onClick}>
         <div className="absolute top-6 left-6 bg-green-500 text-black text-xs font-bold px-3 py-1 rounded-full shadow-lg">
           {event.category}
         </div>
@@ -173,9 +158,17 @@ function EventCard({ event, index, onWatch }: any) {
           {event.title}
         </h3>
 
-        <div className="flex items-center gap-2 text-gray-300 text-sm mb-4">
-          <MapPin size={16} />
-          <span>{event.location}</span>
+        {/* Find this part in your existing code and wrap the button */}
+        <div className="flex items-center justify-between pt-4 border-t border-white/5">
+          <div className="flex items-center gap-2 text-gray-500 text-sm">
+            <MapPin size={16} />
+            <span>{event.location}</span>
+          </div>
+
+          {/* NEW LINK WRAPPER */}
+          <button className="text-white font-semibold text-sm hover:text-green-400 flex items-center gap-1 transition-colors">
+            Details <ArrowRight size={16} />
+          </button>
         </div>
 
         {/* BUTTON: Triggers the Modal */}

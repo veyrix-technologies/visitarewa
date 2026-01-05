@@ -105,7 +105,7 @@ export default function ArewaCuisine() {
         </div>
 
         {/* RIGHT: The Menu Selection */}
-        <div className="relative h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl shadow-green-900/20">
+        <div className="relative h-[500px] w-full  rounded-2xl overflow-hidden shadow-2xl shadow-green-900/20">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeDish.id}
@@ -113,7 +113,7 @@ export default function ArewaCuisine() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 1.1, opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className="absolute inset-0"
+              className="absolute inset-0 "
             >
               <Image
                 src={activeDish.image}
@@ -125,7 +125,7 @@ export default function ArewaCuisine() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
 
               {/* Floating Badge */}
-              <div className="absolute bottom-8 left-8 bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 rounded-full flex gap-4">
+              <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 rounded-full flex gap-4">
                 {activeDish.stats.map((stat, i) => (
                   <span
                     key={i}
