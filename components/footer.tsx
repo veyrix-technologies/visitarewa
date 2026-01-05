@@ -33,10 +33,10 @@ export default function Footer() {
               Showcasing the beauty, talent, and heritage of Northern Nigeria to
               the world. A digital archive of our stories.
             </p>
-            <div className="flex items-center gap-2 text-xs text-green-500 font-mono uppercase tracking-widest mt-4 font-bold">
+            {/* <div className="flex items-center gap-2 text-xs text-green-500 font-mono uppercase tracking-widest mt-4 font-bold">
               <MapPin size={12} />
               <span>Made in Gombe</span>
-            </div>
+            </div> */}
           </div>
 
           {/* EXPLORE LINKS */}
