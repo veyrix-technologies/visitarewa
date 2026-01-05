@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, User, Video, Mic, Briefcase } from "lucide-react";
 
@@ -83,10 +84,12 @@ export default function ArewaTalent() {
           transition={{ duration: 1, ease: "easeOut" }}
           className="absolute inset-0 z-0"
         >
-          <img
+          <Image
             src={activePerson.image}
             alt={activePerson.name}
             className="w-full h-full object-cover grayscale-[30%] hover:grayscale-0 transition-all duration-1000"
+            fill
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent" />
         </motion.div>
@@ -167,10 +170,12 @@ export default function ArewaTalent() {
                   className="relative w-[240px] h-[360px] flex-shrink-0 rounded-lg overflow-hidden cursor-pointer grayscale hover:grayscale-0 transition-all duration-500 border border-white/10"
                   onClick={handleNext}
                 >
-                  <img
+                  <Image
                     src={item.image}
                     alt={item.name}
                     className="w-full h-full object-cover"
+                    fill
+                    sizes="240px"
                   />
                   <div className="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-black/90 to-transparent">
                     <p className="text-xs text-green-400 font-bold mb-1">

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import {
   Instagram,
   Twitter,
@@ -26,7 +27,7 @@ export default function Footer() {
           {/* BRAND */}
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-              <img src="/logo-g.svg" className="w-24" alt="Visit Arewa Logo" />
+              <Image src="/logo-g.svg" className="w-24" alt="Visit Arewa Logo" width={96} height={40} />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
               Showcasing the beauty, talent, and heritage of Northern Nigeria to

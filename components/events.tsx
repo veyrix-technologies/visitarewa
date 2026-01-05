@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, lazy, Suspense } from "react";
+import Image from "next/image";
 import { motion, useScroll, AnimatePresence } from "framer-motion";
 import { Calendar, MapPin, ArrowUpRight, Play, X } from "lucide-react";
 
@@ -91,7 +92,7 @@ export default function ArewaEvents() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 md:p-10"
-            onClick={() => setSelectedVideo(null)} // Close when clicking background
+            onClick={() => setSelectedVideo(null)}
           >
             {/* Close Button */}
             <button
@@ -101,23 +102,26 @@ export default function ArewaEvents() {
               <X size={32} />
             </button>
 
-            {/* Video Container */}
+            {/* Video Container with Lazy Loading */}
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               className="w-full max-w-5xl aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-black"
-              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking video
+              onClick={(e) => e.stopPropagation()}
             >
-              <iframe
-                className="w-full h-full"
-                src={`https://www.youtube.com/embed/${getYouTubeId(
-                  selectedVideo
-                )}?autoplay=1&rel=0`}
-                title="Event Video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
+              <Suspense fallback={<div className="w-full h-full bg-black/50 flex items-center justify-center"><div className="animate-spin">Loading...</div></div>}>
+                <iframe
+                  loading="lazy"
+                  className="w-full h-full"
+                  src={`https://www.youtube.com/embed/${getYouTubeId(
+                    selectedVideo
+                  )}?autoplay=1&rel=0`}
+                  title="Event Video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </Suspense>
             </motion.div>
           </motion.div>
         )}
@@ -131,6 +135,7 @@ export default function ArewaEvents() {
 // ------------------------------------------------------------------
 function EventCard({ event, index, onWatch }: any) {
   const videoId = getYouTubeId(event.video);
+  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 
   return (
     <motion.div
@@ -140,18 +145,17 @@ function EventCard({ event, index, onWatch }: any) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group relative h-[450px] w-full bg-zinc-900 rounded-2xl overflow-hidden cursor-pointer border border-white/5 hover:border-green-500/50 transition-all duration-300"
     >
-      {/* BACKGROUND VIDEO PREVIEW (Muted, Looping, Zoomed) */}
+      {/* BACKGROUND THUMBNAIL IMAGE (High Performance) */}
       <div className="absolute inset-0 h-full w-full overflow-hidden pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300%] h-[150%]">
-          <iframe
-            className="w-full h-full opacity-60 group-hover:opacity-40 transition-opacity duration-500"
-            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoId}&playsinline=1&modestbranding=1&rel=0`}
-            title={event.title}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            style={{ border: "none" }}
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+        <Image
+          src={thumbnailUrl}
+          alt={event.title}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          quality={75}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent group-hover:via-black/30 transition-all duration-500" />
       </div>
 
       {/* Content Layer */}

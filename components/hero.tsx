@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
@@ -134,10 +135,12 @@ export default function HeroSection() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="absolute inset-0 z-0"
         >
-          <img
+          <Image
             src={activeDest.image}
             alt={activeDest.title}
             className="w-full h-full object-cover brightness-75"
+            fill
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
         </motion.div>
@@ -146,7 +149,7 @@ export default function HeroSection() {
       {/* Navigation Bar */}
       <nav className="absolute top-0 left-0 w-full z-50 flex justify-between items-center p-8">
         <div className="flex items-center gap-2">
-          <img src={"/logo.svg"} className="w-25" alt="Visit Arewa Logo" />
+          <Image src={"/logo.svg"} className="w-25" alt="Visit Arewa Logo" width={100} height={40} />
         </div>
 
         <div className="hidden md:flex gap-8 text-sm font-medium text-gray-200">
@@ -333,10 +336,12 @@ export default function HeroSection() {
                 className="relative w-[200px] h-[280px] flex-shrink-0 rounded-2xl overflow-hidden cursor-pointer group shadow-2xl"
                 onClick={handleNext}
               >
-                <img
+                <Image
                   src={item.image}
                   alt={item.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  fill
+                  sizes="200px"
                 />
                 <div className="absolute inset-0 bg-black/20 hover:bg-transparent transition-colors" />
 

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Utensils, Flame, Leaf, Droplet } from "lucide-react";
 
@@ -60,10 +61,12 @@ export default function ArewaCuisine() {
               transition={{ duration: 0.5 }}
               className="absolute inset-0"
             >
-              <img
+              <Image
                 src={activeDish.image}
                 alt={activeDish.name}
                 className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
 
