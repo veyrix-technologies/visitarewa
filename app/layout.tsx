@@ -45,6 +45,10 @@ export const metadata: Metadata = {
     description:
       "The definitive guide to Northern Nigeria's heritage and beauty.",
   },
+
+  verification: {
+    google: "s2loh9IkY006mUI7jaDsApM_M1cwja0J3AgtBrUDaEA",
+  },
 };
 export default function RootLayout({
   children,
