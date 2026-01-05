@@ -51,41 +51,6 @@ export default function ArewaCuisine() {
     <section className="bg-zinc-950 text-white py-24 px-6 md:px-20 border-t border-white/10">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center h-full">
         {/* LEFT: The Image Display */}
-        <div className="relative h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl shadow-green-900/20">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeDish.id}
-              initial={{ scale: 1.1, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 1.1, opacity: 0 }}
-              transition={{ duration: 0.5 }}
-              className="absolute inset-0"
-            >
-              <Image
-                src={activeDish.image}
-                alt={activeDish.name}
-                className="w-full h-full object-cover"
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-
-              {/* Floating Badge */}
-              <div className="absolute bottom-8 left-8 bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 rounded-full flex gap-4">
-                {activeDish.stats.map((stat, i) => (
-                  <span
-                    key={i}
-                    className="text-xs font-bold uppercase tracking-wider text-green-400 border-r border-white/20 last:border-0 pr-4 last:pr-0"
-                  >
-                    {stat}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        {/* RIGHT: The Menu Selection */}
         <div className="flex flex-col justify-center">
           <div className="mb-10">
             <span className="text-green-500 font-bold tracking-widest text-sm uppercase">
@@ -137,6 +102,41 @@ export default function ArewaCuisine() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* RIGHT: The Menu Selection */}
+        <div className="relative h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl shadow-green-900/20">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeDish.id}
+              initial={{ scale: 1.1, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 1.1, opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="absolute inset-0"
+            >
+              <Image
+                src={activeDish.image}
+                alt={activeDish.name}
+                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+
+              {/* Floating Badge */}
+              <div className="absolute bottom-8 left-8 bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 rounded-full flex gap-4">
+                {activeDish.stats.map((stat, i) => (
+                  <span
+                    key={i}
+                    className="text-xs font-bold uppercase tracking-wider text-green-400 border-r border-white/20 last:border-0 pr-4 last:pr-0"
+                  >
+                    {stat}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>
