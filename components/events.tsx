@@ -57,12 +57,12 @@ export default function ArewaEvents() {
       className="bg-black text-white py-24 overflow-hidden border-t border-white/10"
     >
       {/* Header */}
-      <div className="container mx-auto px-6 md:px-20 mb-16 flex flex-col md:flex-row justify-between items-end">
+      <div className="container mx-auto px-6 md:px-20 mb-16 flex flex-col md:flex-row justify-between items-start">
         <div>
           <span className="text-green-500 font-bold tracking-widest text-sm uppercase mb-2 block">
             Mark Your Calendar
           </span>
-          <h2 className="text-4xl md:text-6xl font-bold">Upcoming Events</h2>
+          <h2 className="text-4xl md:text-6xl  font-serif">Upcoming Events</h2>
         </div>
         <button className="hidden md:flex items-center gap-2 border-b border-green-500 pb-1 hover:text-green-500 transition-colors mt-6 md:mt-0">
           View Full Calendar <ArrowUpRight size={18} />

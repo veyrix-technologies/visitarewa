@@ -99,7 +99,7 @@ export default function Footer() {
 
           {/* NEWSLETTER */}
           <div>
-            <h4 className="font-bold text-white mb-6 text-sm uppercase tracking-wider opacity-80">
+            <h4 className="font-bold text-green-500 mb-6 text-sm uppercase tracking-wider opacity-80">
               Join the Tribe
             </h4>
             <div className="flex flex-col gap-4">
@@ -108,7 +108,7 @@ export default function Footer() {
                 placeholder="Your email address"
                 className="w-full bg-white/5 border border-white/10 rounded-lg focus:border-green-500 focus:bg-white/10 transition-all py-3 px-4 text-sm focus:outline-none"
               />
-              <button className="bg-green-500 hover:bg-green-500 text-black text-sm font-bold py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-all shadow-lg shadow-green-900/20">
+              <button className="bg-green-500 hover:bg-green-400 cursor-pointer text-black text-sm font-bold py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-all shadow-lg shadow-green-900/20">
                 Subscribe <ArrowUpRight size={16} />
               </button>
             </div>
@@ -118,7 +118,7 @@ export default function Footer() {
         {/* BOTTOM BAR */}
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600 relative z-30">
           <p>
-            &copy; 2026 Arewa Showcase. Built by{" "}
+            &copy; 2026 Arewa Showcase. Made by{" "}
             <a
               href="https://veyrixtech.com/"
               className="text-green-500 hover:text-green-500 font-bold transition-colors"

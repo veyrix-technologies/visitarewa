@@ -2,7 +2,16 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Search, Menu, MapPin, Bookmark, X } from "lucide-react";
+import {
+  ArrowRight,
+  Search,
+  Menu,
+  MapPin,
+  Bookmark,
+  X,
+  Share2,
+  Check,
+} from "lucide-react";
 
 // 1. Data Configuration (Arewa Theme)
 const destinations = [
@@ -47,6 +56,7 @@ const destinations = [
 export default function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [copied, setCopied] = useState(false); // Add state for visual feedback
 
   // -- NEW SEARCH STATE --
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -290,7 +300,7 @@ export default function HeroSection() {
                   </span>
                 </div>
 
-                <h1 className="text-5xl md:text-8xl font-black tracking-tighter uppercase leading-none mb-4">
+                <h1 className="text-5xl md:text-8xl font-bold font-serif tracking-tighter uppercase leading-none mb-4">
                   {activeDest.title}
                 </h1>
 
@@ -329,9 +339,48 @@ export default function HeroSection() {
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-black/20 hover:bg-transparent transition-colors" />
-                <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 rounded-full">
-                  <Bookmark size={14} className="text-white" />
-                </div>
+
+                <button
+                  type="button" // Explicitly define type to prevent form submission issues
+                  onClick={(e) => {
+                    // 1. STOP BUBBLING: Prevents opening the modal/link
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    console.log("Share button clicked!"); // Check your console F12
+
+                    const shareData = {
+                      title: "Visit Arewa",
+                      text: `Check this out: ${item.title}`, // Dynamic title
+                      url: window.location.href,
+                    };
+
+                    // 2. TRY NATIVE SHARE (Mobile)
+                    if (navigator.share) {
+                      navigator
+                        .share(shareData)
+                        .catch((err) => console.log("Share dismissed", err));
+                    }
+                    // 3. FALLBACK: COPY TO CLIPBOARD (Desktop)
+                    else {
+                      navigator.clipboard.writeText(window.location.href);
+                      setCopied(true); // Show "Copied" icon
+                      setTimeout(() => setCopied(false), 2000); // Reset after 2s
+                      alert("Link copied to clipboard!"); // Optional alert
+                    }
+                  }}
+                  // Z-INDEX FIX: z-50 and relative ensures it sits ON TOP of everything
+                  className="absolute top-4 right-4 z-70 bg-black/40 backdrop-blur-md p-2 rounded-full hover:bg-green-500 hover:text-black hover:scale-110 transition-all duration-300 border border-white/10 group/icon cursor-pointer"
+                >
+                  {copied ? (
+                    <Check size={14} className="text-green-400" />
+                  ) : (
+                    <Share2
+                      size={14}
+                      className="text-white group-hover/icon:text-black"
+                    />
+                  )}
+                </button>
                 <div className="absolute bottom-4 left-4">
                   <h3 className="text-lg font-bold">{item.location}</h3>
                   <div className="flex gap-1 text-white text-xs">
