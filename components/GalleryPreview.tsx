@@ -51,7 +51,7 @@ export default function GalleryPreview({ images }: GalleryPreviewProps) {
               className="object-cover group-hover:scale-110 transition-transform duration-300"
             />
             {/* Hover Overlay */}
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
               <p className="text-white text-sm font-semibold">View Image</p>
             </div>
           </motion.div>

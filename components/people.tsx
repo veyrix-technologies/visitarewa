@@ -2,57 +2,35 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, User, Video, Mic, Briefcase } from "lucide-react";
+import { people as peopleData } from "@/lib/data";
 
-// 1. Data: Real Arewa Talent
-const people = [
-  {
-    id: 1,
-    name: "Aliko Dangote",
-    role: "TITAN OF INDUSTRY",
-    description:
-      "The wealthiest Black person in the world and a proud son of Kano. He transformed a small trading firm into a pan-African conglomerate, proving that Arewa enterprise can build global empires.",
-    image: "/images/dangote.jpg",
-    icon: <Briefcase size={16} />,
-  },
-  {
-    id: 2,
-    name: "Ali Nuhu",
-    role: "THE KING OF KANNYWOOD",
-    description:
-      "Known as 'Sarki,' he is the most decorated actor in Northern Nigeria. With over 500 films, he bridged the gap between Kannywood and Nollywood, bringing Hausa storytelling to the global stage.",
-    image: "/images/ali.jpg",
-    icon: <Video size={16} />,
-  },
-  {
-    id: 3,
-    name: "DJ Abba",
-    role: "AREWA POP PIONEER",
-    description:
-      "A multi-talented rapper, producer, and performer. He is the face of the modern Northern sound, blending fierce Hausa lyricism with high-energy beats that resonate from Kaduna to Lagos.",
-    image: "/images/ab.jpg",
-    icon: <Mic size={16} />,
-  },
-  {
-    id: 4,
-    name: "Maryam Bukar",
-    role: "POET & STORYTELLER",
-    description:
-      "Professionally known as 'Alhanislam,' she is a world-renowned spoken word artist. Her powerful verses weave together heritage, faith, and the African experience, delivering the Northern narrative to global stages with emotional depth.",
-    image: "/images/maryam.jpeg",
-    icon: <Mic size={16} />,
-  },
-  {
-    id: 5,
-    name: "Rahama Sadau",
-    role: "GLOBAL ICON",
-    description:
-      "Actress, producer, and entrepreneur. From the North to Bollywood and beyond, she has defied boundaries to become a household name, showcasing the elegance, grit, and versatility of the Northern woman.",
-    image: "/images/rahama.jpg",
-    icon: <User size={16} />,
-  },
-];
+// Add icons to people data
+const people = peopleData.map((person) => {
+  let icon;
+  switch (person.slug) {
+    case "aliko-dangote":
+      icon = <Briefcase size={16} />;
+      break;
+    case "ali-nuhu":
+      icon = <Video size={16} />;
+      break;
+    case "dj-abba":
+      icon = <Mic size={16} />;
+      break;
+    case "maryam-bukar":
+      icon = <Mic size={16} />;
+      break;
+    case "rahama-sadau":
+      icon = <User size={16} />;
+      break;
+    default:
+      icon = null;
+  }
+  return { ...person, icon };
+});
 
 export default function ArewaTalent() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -117,7 +95,7 @@ export default function ArewaTalent() {
                 </div>
 
                 {/* Role Title */}
-                <div className="flex items-center gap-3 text-gray-400 mb-2 font-mono text-sm">
+                <div className="flex items-center gap-3 text-gray-400 mb-4 font-mono text-sm">
                   {activePerson.icon}
                   <span className="uppercase">{activePerson.role}</span>
                 </div>
@@ -129,21 +107,29 @@ export default function ArewaTalent() {
 
                 {/* Description */}
                 <p className="max-w-xl text-gray-300 text-lg leading-relaxed border-l-4 border-green-500/50 pl-6">
-                  {activePerson.description}
+                  {activePerson.shortDescription}
                 </p>
 
-                {/* MOBILE BUTTON (Visible only on small screens) */}
-                <button
-                  onClick={handleNext}
-                  className="mt-10 group flex lg:hidden items-center gap-4 text-white hover:text-green-400 transition-colors"
-                >
-                  <div className="p-4 rounded-full border border-white/20 group-hover:border-green-500 transition-colors">
-                    <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-                  </div>
-                  <span className="font-bold tracking-widest text-sm">
-                    NEXT TALENT
-                  </span>
-                </button>
+                {/* MOBILE BUTTONS (Visible only on small screens) */}
+                <div className="mt-10 flex lg:hidden gap-4 flex-wrap">
+                  <Link
+                    href={`/people/${activePerson.slug}`}
+                    className="  text-white font-bold mt-5"
+                  >
+                    View Full Profile
+                  </Link>
+                  <button
+                    onClick={handleNext}
+                    className="group flex items-center gap-4 text-white hover:text-green-400 transition-colors"
+                  >
+                    <div className="p-4 rounded-full border border-white/20 group-hover:border-green-500 transition-colors">
+                      <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+                    </div>
+                    <span className="font-bold tracking-widest text-sm whitespace-nowrap">
+                      NEXT TALENT
+                    </span>
+                  </button>
+                </div>
               </motion.div>
             </AnimatePresence>
           </div>
@@ -159,41 +145,63 @@ export default function ArewaTalent() {
                   initial={{ x: 100, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   exit={{ x: -100, opacity: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="relative w-[240px] h-[360px] flex-shrink-0 rounded-lg overflow-hidden cursor-pointer grayscale hover:grayscale-0 transition-all duration-500 border border-white/10"
                   onClick={handleNext}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="relative w-[240px] h-[360px] flex-shrink-0 rounded-lg overflow-hidden grayscale hover:grayscale-0 transition-all duration-500 border border-white/10 group"
                 >
                   <Image
                     src={item.image}
                     alt={item.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     fill
                     sizes="240px"
                   />
-                  <div className="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-black/90 to-transparent">
-                    <p className="text-xs text-green-400 font-bold mb-1">
+                  <div className="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-black/90 via-black/50 to-transparent">
+                    <p className="text-xs text-green-400 font-bold mb-2">
                       {item.role}
                     </p>
-                    <h3 className="text-xl font-bold text-white leading-none">
+                    <h3 className="text-lg font-bold text-white leading-tight mb-4 group-hover:text-green-400 transition-colors">
                       {item.name}
                     </h3>
+                    <Link
+                      href={`/people/${item.slug}`}
+                      className="flex items-center gap-1 text-xs font-bold uppercase text-white/50 hover:text-white rounded transition-colors"
+                    >
+                      View Profile{" "}
+                      <span>
+                        {" "}
+                        <ArrowRight
+                          size={15}
+                          className="group-hover:translate-x-1 transition-transform"
+                        />
+                      </span>
+                    </Link>
                   </div>
                 </motion.div>
               ))}
             </div>
 
-            {/* DESKTOP BUTTON (Visible only on large screens) */}
-            <button
-              onClick={handleNext}
-              className="group flex items-center gap-4 text-white hover:text-green-400 transition-colors"
-            >
-              <div className="p-4 rounded-full border border-white/20 group-hover:border-green-500 transition-colors">
-                <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-              </div>
-              <span className="font-bold tracking-widest text-sm">
-                NEXT TALENT
-              </span>
-            </button>
+            {/* DESKTOP BUTTONS (Visible only on large screens) */}
+            <div className="flex  gap-10 items-center mt-6">
+              <button
+                onClick={handleNext}
+                className="group flex items-center gap-4 text-white hover:text-green-400 transition-colors"
+              >
+                <div className="p-4 rounded-full border border-white/20 group-hover:border-green-500 transition-colors">
+                  <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+                </div>
+                <span className="font-bold tracking-widest text-sm whitespace-nowrap">
+                  NEXT TALENT
+                </span>
+              </button>
+
+              <Link
+                href="/people"
+                className=" text-white hover:text-green-500 font-bold  transition-colors uppercase"
+              >
+                Explore More Talent
+              </Link>
+            </div>
           </div>
         </div>
 
