@@ -12,7 +12,7 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#020402] text-white pt-32 pb-0 overflow-hidden font-sans border-t border-white/5">
+    <footer className="relative bg-[#020402] text-white pt-32 pb-0 overflow-hidden font-serif border-t border-white/5">
       {/* 1. TOP ACCENT (Neon Line) */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-green-500 to-transparent shadow-[0_0_10px_#22c55e]"></div>
 
@@ -50,7 +50,7 @@ export default function Footer() {
             <h4 className="font-bold text-green-500 mb-6 text-sm uppercase tracking-wider opacity-80">
               Explore
             </h4>
-            <ul className="space-y-4 text-gray-500 text-sm font-medium">
+            <ul className="space-y-4 text-gray-400 text-sm font-medium">
               <li>
                 <a
                   href="#destinations"
@@ -91,7 +91,7 @@ export default function Footer() {
             <h4 className="font-bold text-green-500 mb-6 text-sm uppercase tracking-wider opacity-80">
               Contact
             </h4>
-            <ul className="space-y-4 text-gray-500 text-sm font-medium">
+            <ul className="space-y-4 text-gray-400 text-sm font-medium">
               <li className="hover:text-green-500 transition-colors">
                 hello@visitarewa.com
               </li>
@@ -123,7 +123,7 @@ export default function Footer() {
         </div>
 
         {/* BOTTOM BAR */}
-        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600 relative z-30">
+        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400 relative z-30">
           <p>
             &copy; 2026 Arewa Showcase. Made by{" "}
             <a

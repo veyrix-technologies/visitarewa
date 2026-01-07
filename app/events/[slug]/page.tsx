@@ -36,7 +36,7 @@ export default async function EventPage({ params }: any) {
   }
 
   return (
-    <main className="bg-[#020402] min-h-screen text-white font-sans selection:bg-green-500 selection:text-black">
+    <main className="bg-[#020402] min-h-screen text-white font-serif selection:bg-green-500 selection:text-black">
       {/* --- HERO SECTION --- */}
       <div className="relative h-[60vh] w-full overflow-hidden">
         <div className="relative w-full h-full">

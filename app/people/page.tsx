@@ -6,13 +6,14 @@ import { people } from "@/lib/data";
 
 export const metadata = {
   title: "Arewa Talent | Visit Arewa",
-  description: "Discover the talented individuals shaping Arewa's future across business, entertainment, arts, and more.",
+  description:
+    "Discover the talented individuals shaping Arewa's future across business, entertainment, arts, and more.",
 };
 
 // Group people by category
 const groupByCategory = (peopleList: any[]) => {
   const grouped: { [key: string]: any[] } = {};
-  
+
   peopleList.forEach((person) => {
     const category = person.category;
     if (!grouped[category]) {
@@ -20,7 +21,7 @@ const groupByCategory = (peopleList: any[]) => {
     }
     grouped[category].push(person);
   });
-  
+
   return grouped;
 };
 
@@ -29,7 +30,7 @@ export default function PeoplePage() {
   const categories = Object.keys(groupedPeople).sort();
 
   return (
-    <main className="bg-[#020402] min-h-screen text-white font-sans selection:bg-green-500 selection:text-black">
+    <main className="bg-[#020402] min-h-screen text-white font-serif selection:bg-green-500 selection:text-black">
       {/* Hero Section */}
       <div className="relative py-20 px-6 md:px-20 border-b border-white/10">
         <Link
@@ -41,15 +42,18 @@ export default function PeoplePage() {
         </Link>
 
         <div className="max-w-4xl">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">Arewa Talent</h1>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 font-serif">
+            Arewa Talent
+          </h1>
           <p className="text-xl text-gray-300">
-            Meet the visionary leaders, artists, and innovators who are shaping the future of Northern Nigeria across all sectors.
+            Meet the visionary leaders, artists, and innovators who are shaping
+            the future of Northern Nigeria across all sectors.
           </p>
         </div>
       </div>
 
       {/* Categories Section */}
-      <div className="container mx-auto px-6 md:px-20 py-20">
+      <div className="container mx-auto px-6 md:px-20 py-20 font-serif">
         {categories.map((category) => (
           <div key={category} className="mb-20">
             {/* Category Header */}

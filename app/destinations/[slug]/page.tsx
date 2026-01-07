@@ -11,6 +11,7 @@ import {
   Star,
 } from "lucide-react";
 import { destinations } from "@/lib/data";
+import GalleryPreview from "@/components/GalleryPreview";
 
 // 1. Generate Metadata (Fixed for Next.js 15)
 export async function generateMetadata({ params }: any) {
@@ -53,7 +54,7 @@ export default async function DestinationPage({ params }: any) {
   );
 
   return (
-    <main className="bg-[#020402] min-h-screen text-white font-sans selection:bg-green-500 selection:text-black">
+    <main className="bg-[#020402] min-h-screen text-white font-serif selection:bg-green-500 selection:text-black">
       {/* --- HERO SECTION --- */}
       <div className="relative h-[70vh] w-full">
         <div className="relative w-full h-full">
@@ -132,25 +133,11 @@ export default async function DestinationPage({ params }: any) {
               </div>
             </div>
 
-            {/* Gallery Preview */}
+            {/* Gallery */}
             {destination.gallery && (
               <div>
                 <h3 className="text-2xl text-white font-bold mb-6">Gallery</h3>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 h-64 md:h-80">
-                  {destination.gallery.map((img, i) => (
-                    <div
-                      key={i}
-                      className="relative w-full h-full rounded-2xl overflow-hidden first:col-span-2 first:row-span-2 hover:opacity-80 transition-opacity cursor-pointer border border-white/10"
-                    >
-                      <Image
-                        src={img}
-                        alt="Gallery"
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
+                <GalleryPreview images={destination.gallery} />
               </div>
             )}
           </div>

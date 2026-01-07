@@ -51,7 +51,7 @@ export default function ArewaTalent() {
   const activePerson = people[currentIndex];
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-zinc-900 text-white font-sans">
+    <div className="relative w-full h-screen overflow-hidden bg-zinc-900 text-white font-serif">
       {/* Background Image Layer */}
       <AnimatePresence mode="popLayout">
         <motion.div

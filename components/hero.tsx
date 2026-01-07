@@ -86,7 +86,7 @@ export default function HeroSection() {
   const activeDest = destinations[currentIndex];
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-black text-white font-sans">
+    <div className="relative w-full h-screen overflow-hidden bg-black text-white font-serif">
       {/* Background Image */}
       <AnimatePresence mode="popLayout">
         <motion.div

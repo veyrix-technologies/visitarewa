@@ -9,6 +9,12 @@ import {
   Briefcase,
   CheckCircle,
   Quote,
+  Linkedin, // <--- Added
+  Instagram, // <--- Added
+  Twitter, // <--- Added
+  Globe, // <--- Added (For portfolio/website)
+  Facebook,
+  Mail, // <--- Added
 } from "lucide-react";
 import { people } from "@/lib/data";
 import GalleryPreview from "@/components/GalleryPreview";
@@ -34,8 +40,18 @@ export default async function PersonPage({ params }: any) {
     notFound();
   }
 
+  // 1. Define the mapping of keys to Icons
+  const socialIcons: any = {
+    linkedin: Linkedin,
+    instagram: Instagram,
+    twitter: Twitter,
+    facebook: Facebook,
+    website: Globe,
+    // You can easily add more here later, e.g., tiktok: MessageCircle
+  };
+
   return (
-    <main className="bg-[#020402] min-h-screen text-white font-sans selection:bg-green-500 selection:text-black">
+    <main className="bg-[#020402] min-h-screen text-white font-serif selection:bg-green-500 selection:text-black">
       {/* --- HERO SECTION --- */}
       <div className="relative h-[60vh] w-full overflow-hidden">
         <div className="relative w-full h-full">
@@ -78,9 +94,7 @@ export default async function PersonPage({ params }: any) {
               {person.name}
             </h1>
 
-            <p className="text-xl text-gray-300 max-w-2xl">
-              {person.role}
-            </p>
+            <p className="text-xl text-gray-300 max-w-2xl">{person.role}</p>
           </div>
         </div>
       </div>
@@ -102,7 +116,10 @@ export default async function PersonPage({ params }: any) {
             {/* Quote Section */}
             {person.quote && (
               <div className="bg-white/5 border border-green-500/30 rounded-2xl p-8 relative">
-                <Quote className="absolute top-4 right-4 text-green-500/30" size={32} />
+                <Quote
+                  className="absolute top-4 right-4 text-green-500/30"
+                  size={32}
+                />
                 <blockquote className="text-2xl font-serif italic text-gray-100 leading-relaxed">
                   "{person.quote}"
                 </blockquote>
@@ -116,15 +133,17 @@ export default async function PersonPage({ params }: any) {
                 Major Achievements
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {person.achievements?.map((achievement, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <CheckCircle
-                      className="text-green-500 mt-1 shrink-0"
-                      size={18}
-                    />
-                    <span className="text-gray-300">{achievement}</span>
-                  </div>
-                ))}
+                {person.achievements?.map(
+                  (achievement: string, index: number) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <CheckCircle
+                        className="text-green-500 mt-1 shrink-0"
+                        size={18}
+                      />
+                      <span className="text-gray-300">{achievement}</span>
+                    </div>
+                  )
+                )}
               </div>
             </div>
 
@@ -181,10 +200,51 @@ export default async function PersonPage({ params }: any) {
 
               <div className="h-[1px] bg-white/10 my-4"></div>
 
+              {/* --- DYNAMIC SOCIAL MEDIA SECTION --- */}
+              {person.socials && (
+                <div className="space-y-3">
+                  <p className="text-gray-400 text-sm uppercase tracking-wider font-bold">
+                    Connect
+                  </p>
+
+                  <div className="flex flex-wrap gap-4">
+                    {/* Loop through the socials object */}
+                    {Object.entries(person.socials).map(
+                      ([platform, url]: [string, any]) => {
+                        // 1. Find the matching icon component
+                        const IconComponent =
+                          socialIcons[platform.toLowerCase()];
+
+                        // 2. If we don't have an icon for this platform or no URL, skip it
+                        if (!IconComponent || !url) return null;
+
+                        // 3. Render the link
+                        return (
+                          <a
+                            key={platform}
+                            href={url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-3 bg-white/5 rounded-full hover:bg-green-500 hover:text-black transition-all border border-white/10 group"
+                            title={platform} // Shows tooltip on hover
+                          >
+                            <IconComponent size={20} />
+                          </a>
+                        );
+                      }
+                    )}
+                  </div>
+                </div>
+              )}
+
+              <div className="h-[1px] bg-white/10 my-4"></div>
+
               {/* Call to Action */}
               <div className="space-y-3">
+                {/* Primary Action */}
                 <p className="text-gray-400 text-sm">
-                  Discover the stories and achievements of Arewa's finest talent.
+                  Discover the stories and achievements of Arewa's finest
+                  talent.
                 </p>
                 <Link
                   href="/people"
@@ -192,6 +252,23 @@ export default async function PersonPage({ params }: any) {
                 >
                   Explore More Talent
                 </Link>
+
+                {/* --- NEW: Feature Request Section --- */}
+                <div className="pt-6 mt-2 border-t border-white/10">
+                  <p className="text-gray-400 text-sm mb-3">
+                    Are you a creative or innovator? <br />
+                    <span className="text-white font-bold">
+                      Want to get featured?
+                    </span>
+                  </p>
+
+                  <a
+                    href="mailto:hello@visitarewa.com?subject=Feature%20Request"
+                    className="block w-full text-center bg-transparent border border-white/20 hover:border-green-500 text-gray-300 hover:text-green-400 font-bold py-3 rounded-lg transition-all flex items-center justify-center gap-2 text-sm"
+                  >
+                    <Mail size={16} /> Contact Us Here
+                  </a>
+                </div>
               </div>
             </div>
           </div>
