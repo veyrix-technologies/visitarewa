@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { destinations } from "@/lib/data";
 import GalleryPreview from "@/components/GalleryPreview";
+import DestinationButtons from "@/components/DestinationButtons";
 
 // 1. Generate Metadata (Fixed for Next.js 15)
 export async function generateMetadata({ params }: any) {
@@ -156,23 +157,8 @@ export default async function DestinationPage({ params }: any) {
 
               <div className="h-[1px] bg-white/10"></div>
 
-              <div className="space-y-4">
-                <button className="w-full bg-green-500 text-black font-bold py-4 rounded-xl hover:bg-green-400 transition-colors shadow-[0_0_20px_rgba(34,197,94,0.4)]">
-                  View on Map
-                </button>
-                {/* NOTE: We removed the client-side onClick handler for simplicity in this server component. 
-                       You can convert this button into a separate client component if you need the share functionality here. */}
-                <button className="w-full bg-transparent border border-white/20 text-white font-bold py-4 rounded-xl hover:bg-white/10 transition-colors flex items-center justify-center gap-2">
-                  <Share2 size={18} /> Share Location
-                </button>
-              </div>
-
-              <div className="flex items-start gap-3 p-4 bg-green-900/20 rounded-xl border border-green-900/50">
-                <Calendar className="text-green-500 shrink-0" size={20} />
-                <p className="text-sm text-green-200 leading-relaxed">
-                  <strong>Best time to visit:</strong> November to February for
-                  the best weather and festivals.
-                </p>
+              <div className="mt-8">
+                <DestinationButtons destination={destination} slug={slug} />
               </div>
             </div>
           </div>
