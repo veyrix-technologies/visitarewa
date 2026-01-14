@@ -1,91 +1,116 @@
-Markdown
-
 # Visit Arewa 🇳🇬✨
 
 ![Project Status](https://img.shields.io/badge/Status-Live-green)
 ![Tech Stack](https://img.shields.io/badge/Built%20With-Next.js%20%7C%20Tailwind%20%7C%20Framer%20Motion-black)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 
-**Visit Arewa** is an open-source digital initiative to document, preserve, and showcase the beauty of Northern Nigeria. From the ancient walls of Kano to the lush plateaus of Taraba, we are building the definitive digital guide to Arewa culture, cuisine, and events.
+**Visit Arewa** is an open-source digital initiative dedicated to documenting, preserving, and showcasing the rich culture, heritage, and tourism potential of Northern Nigeria.
 
-🚀 **Live Demo:** [visitarewa.com](https://visitarewa.com)
+From the ancient walls of Kano to the lush plateaus of Taraba, Visit Arewa aims to become the definitive digital guide to Arewa culture, cuisine, destinations, and events.
 
-## 🎯 The Mission
+🚀 **Live Demo:** https://visitarewa.com
 
-The internet lacks a centralized, high-quality platform for Northern Nigerian tourism and culture. Most searches yield empty results.
+---
 
-**We decided to fix that.** This project is maintained by **Veyrix Technologies**, but it belongs to the community. We are archiving our stories, one commit at a time.
+## 🎯 Mission
+
+Northern Nigeria is deeply rich in culture and history, yet the internet lacks a centralized, high-quality platform that represents its tourism and lifestyle accurately.
+
+**Visit Arewa exists to change that.**
+
+Maintained by **Veyrix Technologies**, this project is community-driven and open to everyone who wants to help preserve our stories—one commit at a time.
+
+---
 
 ## 🛠️ Tech Stack
 
-- **Framework:** [Next.js 15](https://nextjs.org/) (App Router)
+- **Framework:** Next.js 15 (App Router)
+- **Language:** TypeScript
 - **Styling:** Tailwind CSS
 - **Animations:** Framer Motion
 - **Icons:** Lucide React
-- **Language:** TypeScript
+
+---
 
 ## 🚀 Getting Started
 
-Want to run this locally? Follow these steps:
+### Clone the repository
+```bash
+git clone https://github.com/Veyrix-Technologies/visitarewa.git
+cd visitarewa
+```
 
-1. **Clone the repository**
-   ```bash
-   git clone [https://github.com/Veyrix-Technologies/visitarewa.git](https://github.com/Veyrix-Technologies/visitarewa.git)
-   cd visitarewa
-   Install dependencies
-   ```
-
-Bash
+### Install dependencies
+```bash
 npm install
-
 # or
-
 yarn install
-Run the development server
+```
 
-Bash
+### Run the development server
+```bash
 npm run dev
+```
+
 Open http://localhost:3000 in your browser.
 
-🤝 How to Contribute (We Need You!)
-We are looking for developers, designers, and content curators. Here is how you can help:
+---
 
-1. Add an Event or Festival 📅
-   Go to lib/data.ts and add a new object to the events array:
+## 🤝 Contributing
 
-JavaScript
+We welcome developers, designers, writers, photographers, and cultural curators.
+
+### Add an Event or Festival 📅
+Edit `lib/data.ts` and add a new object to the `events` array:
+
+```ts
 {
-id: 4,
-slug: "hawant-sallah",
-name: "Hawan Sallah",
-date: "Eid al-Fitr",
-location: "Katsina",
-// ...
-} 2. Add a Local Dish 🍲
-Go to lib/data.ts and update the food section with high-quality images and descriptions.
+  id: 4,
+  slug: "hawan-sallah",
+  name: "Hawan Sallah",
+  date: "Eid al-Fitr",
+  location: "Katsina",
+}
+```
 
-3. Fix Bugs & Improve UI 🐛
-   Found a layout shift? Want to improve the mobile menu?
+### Add a Local Dish 🍲
+Update the food section in `lib/data.ts` with accurate descriptions and high-quality images.
 
-Fork the repo.
+### Fix Bugs or Improve UI 🐛
+UX improvements, performance tweaks, and bug fixes are welcome.
 
-Create a branch (git checkout -b feature/amazing-feature).
+### Contribution Flow
+1. Fork the repository  
+2. Create a branch  
+   ```bash
+   git checkout -b feature/amazing-feature
+   ```
+3. Commit your changes  
+4. Open a Pull Request  
 
-Commit your changes.
+---
 
-Open a Pull Request.
+## 📂 Project Structure
 
-📂 Project Structure
-/app # Next.js App Router pages
-/components # Reusable UI components (Navbar, Footer, EventCard)
-/lib # Static data files (events, food, destinations)
-/public # Images and assets
-📜 License
-This project is open-source under the MIT License. See the LICENSE file for details.
+```
+/app         → Next.js App Router pages
+/components  → Reusable UI components
+/lib         → Static data (events, food, destinations)
+/public      → Images and assets
+```
 
-📬 Contact
-Maintained by Veyrix Technologies.
+---
 
-📧 Email: devs@veyrixtech.com
+## 📜 License
 
-💻 GitHub: @Veyrix-Technologies
+This project is licensed under the **MIT License**.  
+See the `LICENSE` file for details.
+
+---
+
+## 📬 Contact
+
+**Maintained by:** Veyrix Technologies  
+
+📧 Email: devs@veyrixtech.com  
+💻 GitHub: https://github.com/Veyrix-Technologies
