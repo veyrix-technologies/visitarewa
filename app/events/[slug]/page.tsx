@@ -158,7 +158,7 @@ export default async function EventPage({ params }: any) {
                   </div>
                   <div>
                     <p className="text-gray-400 text-sm">Status</p>
-                    <p className="text-green-400 font-bold text-lg">Upcoming</p>
+                    <p className="text-green-400 font-bold text-lg">{event.status}</p>
                   </div>
                 </div>
               </div>

@@ -1,14 +1,14 @@
 export const destinations = [
-//     {
-//     id: 0,
-//     title: "Visit Arewa",
-//     subtitle: "The Heart of Nigeria",
-//     description: "Journey through ancient emirates, taste the spices of the savannah, and witness festivals that have endured for centuries. Your guide to Northern Nigeria starts here.",
-//     image: "/images/general-hero.jpg", // Use a generic beautiful shot (not just Abuja)
-//     location: "Northern Nigeria",
-//     link: "/about", // Link to an About page or scroll down
-//     cta: "Start the Journey" // Different button text
-//   },
+    //     {
+    //     id: 0,
+    //     title: "Visit Arewa",
+    //     subtitle: "The Heart of Nigeria",
+    //     description: "Journey through ancient emirates, taste the spices of the savannah, and witness festivals that have endured for centuries. Your guide to Northern Nigeria starts here.",
+    //     image: "/images/general-hero.jpg", // Use a generic beautiful shot (not just Abuja)
+    //     location: "Northern Nigeria",
+    //     link: "/about", // Link to an About page or scroll down
+    //     cta: "Start the Journey" // Different button text
+    //   },
     {
         id: 1,
         slug: "abuja-city",
@@ -42,7 +42,7 @@ export const destinations = [
         id: 3,
         slug: "kajuru-castle",
         name: "Kajuru",
-        title: "KAJURU",
+        title: "KAJURU CASTLE",
         location: "Kaduna, Nigeria",
         rating: 4, // <--- Added
         shortDescription: "A stunning medieval-style castle perched on a hill in Kaduna. This architectural masterpiece offers a fairytale escape with breathtaking views of the surrounding savannah.",
@@ -63,7 +63,7 @@ export const destinations = [
         shortDescription: "The gem of Taraba, known for its cool climate, lush green rolling hills, and vast tea plantations. It offers some of the most scenic highland views in West Africa.",
         fullDescription: "Home to Chappal Waddi, the highest point in Nigeria, Mambilla Plateau offers a climate unlike anywhere else in West Africa. With rolling green hills, infinite tea plantations, and a temperate climate, it is often called the 'Europe of Nigeria'. Perfect for hiking, camping, and disconnecting from the world.",
         image: "/images/mambilla.jpg",
-        gallery: ["/images/mambilla.jpg", "/images/mambilla-2.jpg", "/images/mambilla-3.jpeg", "/images/mambilla-4.jpg","/images/mambilla-5.jpg", "/images/mambilla-6.jpg","/images/mambilla-7.jpg"],
+        gallery: ["/images/mambilla.jpg", "/images/mambilla-2.jpg", "/images/mambilla-3.jpeg", "/images/mambilla-4.jpg", "/images/mambilla-5.jpg", "/images/mambilla-6.jpg", "/images/mambilla-7.jpg"],
         highlights: ["Highest Peak in Nigeria", "Highland Tea Farms", "Cool Temperate Weather", "Waterfalls"],
         coordinates: "6.9160° N, 11.1750° E"
     }
@@ -99,6 +99,7 @@ export const er = [
 export const events = [
     {
         id: 1,
+        status: "Upcoming",
         slug: "kano-durbar",
         name: "Kano Durbar Festival",
         title: "Grand Durbar Festival",
@@ -119,10 +120,11 @@ export const events = [
     },
     {
         id: 2,
+        status: "Finished",
         slug: "argungu-fishing",
         name: "Argungu Fishing Festival",
         title: "Argungu Fishing Fest",
-        date: "February / March",
+        date: "February 11th – 14th",
         location: "Kebbi State",
         category: "Competition",
         shortDescription: "Thousands of fishermen jump into the river to catch the biggest fish.",
@@ -133,14 +135,19 @@ export const events = [
             "/images/argungu-2.webp",
             "/images/argungu-3.webp",
             "/images/argungu-4.webp",
-            "/images/argungu-5.webp",
+            "/images/argungu-5.jpg",
             "/images/argungu-6.jpg",
             "/images/argungu-7.jpg",
+            "/images/argungu-8.jpg",
+            "/images/argungu-8.webp",
+
+
         ],
         highlights: ["Grand Fishing Competition", "Wild Duck Catching", "Local Wrestling", "Cultural Night"],
     },
     {
         id: 3,
+        status: "Upcoming",
         slug: "dambe-warriors",
         name: "Dambe Warriors League",
         title: "Dambe Warriors League",
@@ -163,6 +170,7 @@ export const events = [
     },
     {
         id: 4,
+        status: "Upcoming",
         slug: "kabafest",
         name: "KABAFEST",
         title: "Kaduna Arts (KABAFEST)",
