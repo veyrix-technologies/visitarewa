@@ -108,7 +108,7 @@ export const events = [
         category: "Cultural",
         shortDescription: "A 500-year-old tradition involving thousands of horsemen in colorful regalia.",
         fullDescription: "The Kano Durbar is a magnificent equestrian parade that dates back over 500 years. Held during the two Muslim festivals (Eid al-Fitr and Eid al-Adha), it sees the Emir of Kano riding in a procession accompanied by thousands of horsemen dressed in vibrant, traditional regalia. It is a display of loyalty, war readiness, and cultural pride, attracting tourists from all over the globe.",
-        image: "/images/hawa-3.jpg", // <--- Added thumbnail (Make sure this file exists)
+        image: "/images/hawa-3.jpg", // <--- Added thumbnail
         video: "https://www.youtube.com/watch?v=FepSLXg1Eiw", // YouTube (for Modal)
         gallery: [
             "/images/hawa-1.webp",
