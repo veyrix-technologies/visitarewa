@@ -129,7 +129,7 @@ export const events = [
         category: "Competition",
         shortDescription: "Thousands of fishermen jump into the river to catch the biggest fish.",
         fullDescription: "The Argungu Fishing Festival is an annual four-day festival in the state of Kebbi, in the north-western part of Nigeria. The region is made up of fertile river areas. The main event is the fishing competition where thousands of fishermen line up and jump into the river at the sound of a gun, attempting to catch the largest fish using only traditional nets.",
-        image: "/images/argungu-4.webp", // <--- Added thumbnail
+        image: "/images/argungu-4.webp",
         video: "https://www.youtube.com/watch?v=oKsRcD0fJCU",
         gallery: [
             "/images/argungu-2.webp",
@@ -140,8 +140,6 @@ export const events = [
             "/images/argungu-7.jpg",
             "/images/argungu-8.jpg",
             "/images/argungu-8.webp",
-
-
         ],
         highlights: ["Grand Fishing Competition", "Wild Duck Catching", "Local Wrestling", "Cultural Night"],
     },
