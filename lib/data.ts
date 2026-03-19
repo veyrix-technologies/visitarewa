@@ -512,6 +512,16 @@ export const languages = [
         fullDescription: "Hausa is a Chadic language with a significant number of speakers across West Africa. In Northern Nigeria, it serves as the primary lingua franca, bridging communication between diverse ethnic groups. The language has a rich literary tradition, both oral and written, and is known for its extensive use of proverbs and poetry.",
         speakers: "Over 50 million native speakers",
         regions: ["Kano", "Kaduna", "Sokoto", "Katsina", "Jigawa", "Bauchi", "Zamfara", "Kebbi", "Gombe"],
+        history: "Hausa is a Chadic language belonging to the Afroasiatic language family. Historically, it spread extensively as a lingua franca through trade across West Africa.",
+        culturalSignificance: "Hausa is rich in oral traditions, proverbs, and poetry. It plays a pivotal role in unifying diverse ethnic groups across Northern Nigeria.",
+        writingSystem: "Boko (Latin script) & Ajami (Arabic script)",
+        dialects: ["Kano", "Sokoto", "Katsina", "Zazzau"],
+        commonPhrases: [
+            { phrase: "Sannu", meaning: "Hello / Sorry" },
+            { phrase: "Na gode", meaning: "Thank you" },
+            { phrase: "Ina kwana?", meaning: "How was your night? (Good morning)" },
+            { phrase: "Lafiya lau", meaning: "I am fine" }
+        ]
     },
     {
         id: 2,
@@ -524,6 +534,16 @@ export const languages = [
         fullDescription: "Fulfulde is the language of the Fulani people, traditionally a nomadic, pastoralist community. It is a Senegambian language with various dialects spread across West and Central Africa. The language is deeply intertwined with the Fulani's cattle-herding culture and Islamic scholarly heritage.",
         speakers: "Approximately 20-30 million speakers",
         regions: ["Adamawa", "Taraba", "Gombe", "Bauchi", "Kano", "Katsina", "Sokoto"],
+        history: "Fulfulde (also known as Fula) is a Senegambian language of the Niger-Congo family. It originated in the Senegal River valley and spread eastwards across the Sahel by nomadic pastoralists.",
+        culturalSignificance: "It is the linguistic carrier of the rich Fulani cultural heritage (Pulaaku), embodying values of bravery, patience, and wisdom.",
+        writingSystem: "Latin script & Adlam script",
+        dialects: ["Adamawa", "Sokoto", "Kano-Katsina"],
+        commonPhrases: [
+            { phrase: "Jabbama", meaning: "Welcome" },
+            { phrase: "Useko", meaning: "Thank you" },
+            { phrase: "Jam waali", meaning: "Good morning" },
+            { phrase: "No mbadaa?", meaning: "How are you?" }
+        ]
     },
     {
         id: 3,
@@ -536,6 +556,15 @@ export const languages = [
         fullDescription: "Kanuri was the language of the powerful Kanem-Bornu Empire that dominated the Lake Chad region for centuries. It belongs to the Nilo-Saharan language family. Kanuri culture is known for its unique political structures, Islamic scholarship, and distinct architectural and clothing styles.",
         speakers: "Around 5-10 million speakers",
         regions: ["Borno", "Yobe"],
+        history: "Kanuri is a Nilo-Saharan language historically associated with the mighty Kanem-Bornu Empire, which dominated the Lake Chad region for centuries.",
+        culturalSignificance: "The language carries the history of Islamic scholarship and trade that characterized the Kanem-Bornu Empire.",
+        writingSystem: "Latin script & Ajami (Arabic script)",
+        dialects: ["Yerwa", "Manga", "Suwurti"],
+        commonPhrases: [
+            { phrase: "Nda wuye", meaning: "How are you?" },
+            { phrase: "Kele", meaning: "Good / Fine" },
+            { phrase: "Lale", meaning: "Welcome" }
+        ]
     },
     {
         id: 4,
@@ -548,6 +577,15 @@ export const languages = [
         fullDescription: "Nupe, also known as Nupenci, is a Volta-Niger language spoken largely in the Middle Belt of Nigeria. The Nupe people are renowned for their artistic traditions, particularly in brass-smithing, glass-making, and wood carving. The language reflects their agrarian and riverine lifestyle along the Niger River.",
         speakers: "Approximately 1-2 million speakers",
         regions: ["Niger", "Kwara", "Kogi"],
+        history: "Nupe is a Nupoid language of the Volta-Niger family. The Nupe people formed a powerful kingdom in the Middle Belt of Nigeria before the 19th century.",
+        culturalSignificance: "The language is central to the identity of the Nupe people, who are renowned for their traditional brass-smithing, glass-making, and rich agrarian culture.",
+        writingSystem: "Latin script",
+        dialects: ["Bida", "Lafiagi", "Agaie", "Pategi"],
+        commonPhrases: [
+            { phrase: "Okú", meaning: "Greetings" },
+            { phrase: "Lafiya", meaning: "Fine / Good" },
+            { phrase: "Kú ishé", meaning: "Well done" }
+        ]
     },
     {
         id: 5,
@@ -560,6 +598,15 @@ export const languages = [
         fullDescription: "Tiv is a Southern Bantoid language spoken primarily by the Tiv people in the Benue valley. The Tiv have a highly egalitarian society and are famous for their rich agricultural produce, particularly yams. Their language is central to their vibrant cultural expressions, including the energetic Swange dance and intricate storytelling.",
         speakers: "Around 4-5 million speakers",
         regions: ["Benue", "Taraba", "Nasarawa"],
+        history: "Tiv is a Tivoid language of the Southern Bantoid family. The Tiv people trace their origins to the southeastern part of Africa, migrating to their present location in the Benue Valley.",
+        culturalSignificance: "Tiv is famous for its vibrant storytelling, communal values, and energetic traditional dances like the Swange.",
+        writingSystem: "Latin script",
+        dialects: ["Largely uniform (highly mutually intelligible across regions)"],
+        commonPhrases: [
+            { phrase: "Msugh", meaning: "Thank you / Welcome" },
+            { phrase: "U ngu nena?", meaning: "How are you?" },
+            { phrase: "M ngu dedoo", meaning: "I am fine" }
+        ]
     },
     {
         id: 6,
@@ -572,5 +619,14 @@ export const languages = [
         fullDescription: "Gbagyi (or Gwari) is a Nupoid language spoken by one of the largest ethnic groups in Central Nigeria. They are the original inhabitants of Abuja, Nigeria's capital. Gbagyi culture is marked by a deep sense of peace, agrarian life, and remarkable pottery skills, most notably associated with the legendary potter Ladi Kwali.",
         speakers: "Over 1 million speakers",
         regions: ["FCT (Abuja)", "Niger", "Kaduna", "Kogi", "Nasarawa"],
+        history: "Gbagyi (also known as Gwari) is a Nupoid language. The Gbagyi are the indigenous and original inhabitants of Nigeria's capital, Abuja, before its development as the FCT.",
+        culturalSignificance: "The language encapsulates a heritage of peace, agricultural prowess, and artistic pottery, famously symbolized by the legendary potter Ladi Kwali.",
+        writingSystem: "Latin script",
+        dialects: ["Gbagyi Nkwa", "Gbagyi Yamma"],
+        commonPhrases: [
+            { phrase: "Eku", meaning: "Greetings" },
+            { phrase: "Be na yi", meaning: "How are you doing?" },
+            { phrase: "Mi gba eku", meaning: "I am fine" }
+        ]
     }
 ];

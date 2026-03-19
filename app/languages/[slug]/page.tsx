@@ -1,7 +1,7 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Users, MapPin } from "lucide-react";
+import { ArrowLeft, Users, MapPin, BookOpen, MessageSquare } from "lucide-react";
 import { languages } from "@/lib/data";
 import LanguageAudioButton from "@/components/LanguageAudioButton";
 
@@ -43,9 +43,37 @@ export default async function LanguageDetail({ params }: { params: Promise<{ slu
           <div className="md:col-span-2 space-y-6">
             <h2 className="text-2xl font-bold text-white mb-4 border-b border-white/10 pb-4">About the Language</h2>
             <p className="text-gray-300 text-lg leading-relaxed">{language.fullDescription}</p>
+
+            {language.history && (
+              <div className="mt-10">
+                <h2 className="text-2xl font-bold text-white mb-4 border-b border-white/10 pb-4">History & Origins</h2>
+                <p className="text-gray-300 text-lg leading-relaxed">{language.history}</p>
+              </div>
+            )}
+
+            {language.culturalSignificance && (
+              <div className="mt-10">
+                <h2 className="text-2xl font-bold text-white mb-4 border-b border-white/10 pb-4">Cultural Significance</h2>
+                <p className="text-gray-300 text-lg leading-relaxed">{language.culturalSignificance}</p>
+              </div>
+            )}
+
+            {language.commonPhrases && language.commonPhrases.length > 0 && (
+              <div className="mt-10">
+                <h2 className="text-2xl font-bold text-white mb-4 border-b border-white/10 pb-4">Common Phrases</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {language.commonPhrases.map((item: any, idx: number) => (
+                    <div key={idx} className="bg-white/5 border border-white/10 p-5 rounded-xl hover:border-green-500/50 transition-colors">
+                      <p className="text-green-400 font-bold mb-1 text-lg">{item.phrase}</p>
+                      <p className="text-gray-300 text-sm">{item.meaning}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
-          <div className="space-y-8 bg-zinc-900 border border-white/10 p-8 rounded-2xl h-fit">
+          <div className="lex flex-col gap-4 space-y-8 bg-zinc-900 border border-white/10 p-8 rounded-2xl h-fit">
             <div>
               <h3 className="flex items-center gap-2 text-green-500 font-bold uppercase tracking-wider text-sm mb-3"><Users size={16} /> Speakers</h3>
               <p className="text-gray-200 font-medium">{language.speakers}</p>
@@ -58,6 +86,24 @@ export default async function LanguageDetail({ params }: { params: Promise<{ slu
                 ))}
               </div>
             </div>
+            {language.writingSystem && (
+              <div>
+                <h3 className="flex items-center gap-2 text-green-500 font-bold uppercase tracking-wider text-sm mb-3"><BookOpen size={16} /> Writing System</h3>
+                <p className="text-gray-200 font-medium">{language.writingSystem}</p>
+              </div>
+            )}
+            {language.dialects && language.dialects.length > 0 && (
+              <div>
+                <h3 className="flex items-center gap-2 text-green-500 font-bold uppercase tracking-wider text-sm mb-3"><MessageSquare size={16} /> Key Dialects</h3>
+                <div className="flex flex-col gap-2">
+                  {language.dialects.map((dialect: string, idx: number) => (
+                    <span key={idx} className="text-gray-300 text-sm flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-green-500/50"></span> {dialect}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
