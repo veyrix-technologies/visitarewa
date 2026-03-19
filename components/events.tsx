@@ -55,7 +55,7 @@ export default function ArewaEvents() {
       <div className="px-6 md:px-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {events.map((event, index) => (
-            <EventCard
+            index <= 3 && (<EventCard
               key={event.id}
               event={event}
               index={index}
@@ -63,7 +63,7 @@ export default function ArewaEvents() {
                 navigator.push(`/events/${event.slug}`);
               }}
               onWatch={() => setSelectedVideo(event.video)}
-            />
+            />)
           ))}
         </div>
       </div>

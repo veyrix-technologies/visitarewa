@@ -167,7 +167,41 @@ export const events = [
         highlights: ["Lightweight & Heavyweight Bouts", "Traditional Drumming", "Knockout Highlights", "SuperFight Championships"],
     },
     {
-        id: 4,
+        id: 5, // Make sure to update this to your next available ID
+        status: "Upcoming", // Or "Past" depending on the event
+        slug: "city-fiesta",
+        name: "City Fiesta",
+        title: "City Fiesta",
+        date: "March 20 - 21, 2026", // Please update with their actual date
+        location: "BraveRock, Gombe", // Please update with their actual venue
+        category: "Entertainment & Lifestyle",
+        shortDescription: "A vibrant celebration of urban culture, music, and lifestyle in the heart of the city.",
+        fullDescription: "City Fiesta is a premier urban lifestyle and entertainment event bringing together the best of music, food, art, and culture. It serves as a major hub for youth, creatives, and entrepreneurs to connect, celebrate, and showcase the dynamic energy of the city. The event features live performances, vendor exhibitions, and interactive cultural showcases.",
+        image: "/images/city-fiesta-1.jpeg",
+        video: "https://www.youtube.com/watch?v=xijBIo6KYj8", // Add a YouTube link here if they have a promo video
+        gallery: [
+            "/images/city-fiesta-1.jpeg",
+            "/images/city-fiesta-2.jpeg",
+            "/images/city-fiesta-3.jpeg",
+            "/images/city-fiesta-4.jpeg",
+            "/images/city-fiesta-5.jpeg",
+            "/images/city-fiesta-6.jpeg",
+            "/images/city-fiesta-7.jpeg",
+            "/images/city-fiesta-8.jpg",
+            "/images/city-fiesta-9.jpg",
+            "/images/city-fiesta-10.jpg",
+            "/images/city-fiesta-11.jpg",
+            "/images/city-fiesta-12.jpg",
+            "/images/city-fiesta-13.jpg",
+            "/images/city-fiesta-14.jpg",
+            "/images/city-fiesta-15.jpg",
+            "/images/city-fiesta-16.jpg",
+
+        ],
+        highlights: ["Live Musical Performances", "Food & Vendor Exhibitions", "Cultural Showcases", "Networking & Lifestyle"],
+    },
+    {
+        id: 5,
         status: "Upcoming",
         slug: "kabafest",
         name: "KABAFEST",
@@ -464,4 +498,79 @@ export const dishes = [
             "Yaji (Suya Spice)"
         ]
     },
+];
+
+export const languages = [
+    {
+        id: 1,
+        slug: "hausa",
+        name: "Hausa",
+        greeting: "Sannu",
+        audio: "/audio/hausa-sannu.mp3",
+        meaning: "Hello / Greetings",
+        description: "The most widely spoken language in Northern Nigeria, serving as a lingua franca across West Africa. It is rich in proverbs, poetry, and literature.",
+        fullDescription: "Hausa is a Chadic language with a significant number of speakers across West Africa. In Northern Nigeria, it serves as the primary lingua franca, bridging communication between diverse ethnic groups. The language has a rich literary tradition, both oral and written, and is known for its extensive use of proverbs and poetry.",
+        speakers: "Over 50 million native speakers",
+        regions: ["Kano", "Kaduna", "Sokoto", "Katsina", "Jigawa", "Bauchi", "Zamfara", "Kebbi", "Gombe"],
+    },
+    {
+        id: 2,
+        slug: "fulfulde",
+        name: "Fulfulde",
+        greeting: "Jabbama",
+        audio: "/audio/fulfulde-jabbama.mp3",
+        meaning: "Welcome",
+        description: "Spoken by the Fulani people, this language carries the deep nomadic, pastoral, and scholarly heritage of one of Africa's largest ethnic groups.",
+        fullDescription: "Fulfulde is the language of the Fulani people, traditionally a nomadic, pastoralist community. It is a Senegambian language with various dialects spread across West and Central Africa. The language is deeply intertwined with the Fulani's cattle-herding culture and Islamic scholarly heritage.",
+        speakers: "Approximately 20-30 million speakers",
+        regions: ["Adamawa", "Taraba", "Gombe", "Bauchi", "Kano", "Katsina", "Sokoto"],
+    },
+    {
+        id: 3,
+        slug: "kanuri",
+        name: "Kanuri",
+        greeting: "Nda wuye",
+        audio: "/audio/kanuri-ndawuye.mp3",
+        meaning: "How are you?",
+        description: "The principal language of the ancient Borno Empire, rich in history and spoken predominantly in the northeastern region of Nigeria.",
+        fullDescription: "Kanuri was the language of the powerful Kanem-Bornu Empire that dominated the Lake Chad region for centuries. It belongs to the Nilo-Saharan language family. Kanuri culture is known for its unique political structures, Islamic scholarship, and distinct architectural and clothing styles.",
+        speakers: "Around 5-10 million speakers",
+        regions: ["Borno", "Yobe"],
+    },
+    {
+        id: 4,
+        slug: "nupe",
+        name: "Nupe",
+        greeting: "Okú",
+        audio: "/audio/nupe-oku.mp3",
+        meaning: "Greetings",
+        description: "Spoken primarily in Niger State and the surrounding Middle Belt region, deeply tied to the rich aquatic and agricultural culture of the Nupe people.",
+        fullDescription: "Nupe, also known as Nupenci, is a Volta-Niger language spoken largely in the Middle Belt of Nigeria. The Nupe people are renowned for their artistic traditions, particularly in brass-smithing, glass-making, and wood carving. The language reflects their agrarian and riverine lifestyle along the Niger River.",
+        speakers: "Approximately 1-2 million speakers",
+        regions: ["Niger", "Kwara", "Kogi"],
+    },
+    {
+        id: 5,
+        slug: "tiv",
+        name: "Tiv",
+        greeting: "Msugh",
+        audio: "/audio/tiv-msugh.mp3",
+        meaning: "Thank you / Welcome",
+        description: "Predominantly spoken in the Benue valley, the Tiv language is known for its energetic storytelling, communal values, and vibrant cultural expressions.",
+        fullDescription: "Tiv is a Southern Bantoid language spoken primarily by the Tiv people in the Benue valley. The Tiv have a highly egalitarian society and are famous for their rich agricultural produce, particularly yams. Their language is central to their vibrant cultural expressions, including the energetic Swange dance and intricate storytelling.",
+        speakers: "Around 4-5 million speakers",
+        regions: ["Benue", "Taraba", "Nasarawa"],
+    },
+    {
+        id: 6,
+        slug: "gbagyi",
+        name: "Gbagyi",
+        greeting: "Eku",
+        audio: "/audio/gbagyi-eku.mp3",
+        meaning: "Greetings",
+        description: "Indigenous to the central Nigerian region, including the capital territory of Abuja, symbolizing a heritage of peace and artistic pottery.",
+        fullDescription: "Gbagyi (or Gwari) is a Nupoid language spoken by one of the largest ethnic groups in Central Nigeria. They are the original inhabitants of Abuja, Nigeria's capital. Gbagyi culture is marked by a deep sense of peace, agrarian life, and remarkable pottery skills, most notably associated with the legendary potter Ladi Kwali.",
+        speakers: "Over 1 million speakers",
+        regions: ["FCT (Abuja)", "Niger", "Kaduna", "Kogi", "Nasarawa"],
+    }
 ];

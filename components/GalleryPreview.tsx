@@ -34,12 +34,13 @@ export default function GalleryPreview({ images }: GalleryPreviewProps) {
 
   return (
     <>
-      {/* Gallery Grid */}
-      <div className="grid grid-cols-2 gap-4 h-64 md:h-80">
+      {/* Gallery Grid - Removed fixed height, added responsive columns */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {images.map((img, i) => (
           <motion.div
             key={i}
-            className="relative w-full h-full rounded-2xl overflow-hidden cursor-pointer group border border-white/10"
+            // Replaced 'h-full' with aspect ratios so they size themselves perfectly
+            className="relative w-full aspect-square sm:aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer group border border-white/10"
             onClick={() => setSelectedIndex(i)}
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}

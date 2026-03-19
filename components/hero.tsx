@@ -136,6 +136,9 @@ export default function HeroSection() {
           <a href="#cuisine" className="hover:text-green-400 transition">
             Cuisine
           </a>
+          <a href="#languages" className="hover:text-green-400 transition">
+            Languages
+          </a>
           <a href="#events" className="hover:text-green-400 transition">
             Events 2026
           </a>
@@ -238,6 +241,13 @@ export default function HeroSection() {
                 className="text-3xl font-bold text-white hover:text-green-500 transition-colors duration-300"
               >
                 Culinary Guide
+              </a>
+              <a
+                href="#languages"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-3xl font-bold text-white hover:text-green-500 transition-colors duration-300"
+              >
+                Languages
               </a>
               <a
                 href="#events"

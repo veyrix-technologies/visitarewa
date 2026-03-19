@@ -9,6 +9,7 @@ import Manifesto from "@/components/manifestor";
 import ArewaTalent from "@/components/people";
 import Preloader from "@/components/preloader";
 import HeroSection from "@/components/hero";
+import ArewaLanguages from "@/components/languages";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -73,9 +74,14 @@ export default function App() {
             <ArewaTalent />
           </section>
 
+          <section id="languages">
+          <ArewaLanguages />
+          </section>
+
           <section id="cuisine">
             <ArewaCuisine />
           </section>
+
 
           {/* MAKE SURE THIS ID MATCHES THE LINK (#events) */}
           <section id="events">
