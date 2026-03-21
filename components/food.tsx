@@ -13,7 +13,7 @@ export default function ArewaCuisine() {
   const [activeDish, setActiveDish] = useState(data[0]);
 
   return (
-    <section className="bg-zinc-950 text-white py-24 px-6 md:px-20 border-t border-white/10" id="cuisine">
+    <section className="bg-zinc-950 text-white py-6 px-6 md:px-20 " id="cuisine">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center h-full">
         {/* LEFT: The Image Display */}
         <div className="flex flex-col justify-center">
@@ -82,7 +82,7 @@ export default function ArewaCuisine() {
           <div>
             <Link 
               href="/food"
-              className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-white/5 hover:bg-green-500 hover:text-black   transition-all font-bold font-sans  uppercase tracking-wider"
+              className="inline-flex items-center gap-2 px-8 py-3 rounded-full hover:bg-white/5 hover:text-green-500 border border-gray-500 bg-green-500 text-black   transition-all font-bold font-sans  uppercase tracking-wider"
             >
               Explore Full Menu <ArrowRight size={16} />
             </Link>

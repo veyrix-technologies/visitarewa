@@ -35,7 +35,7 @@ export default function ArewaEvents() {
       className="bg-black text-white py-24 overflow-hidden border-t border-white/10"
     >
       {/* Header */}
-      <div className="container mx-auto px-6  mb-16 flex  justify-between items-start md:items-center">
+      <div className="container mx-auto px-6  md:px-20 mb-16 flex  justify-between items-start md:items-center">
         <div>
           <span className="text-green-500 font-bold tracking-widest text-sm uppercase mb-2 block">
             Mark Your Calendar

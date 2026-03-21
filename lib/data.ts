@@ -9,8 +9,22 @@ export const destinations = [
     //     link: "/about", // Link to an About page or scroll down
     //     cta: "Start the Journey" // Different button text
     //   },
-    {
+       {
         id: 1,
+        slug: "yankari-game-reserve",
+        name: "Yankari",
+        title: "YANKARI",
+        location: "Bauchi, Nigeria",
+        rating: 5, // <--- Added
+        shortDescription: "A premier wildlife retreat featuring the Wikki Warm Springs and roaming elephants. It is Nigeria's richest wildlife oasis and a haven for eco-tourism in the West African savanna.",
+        fullDescription: "Yankari Game Reserve is Nigeria's richest wildlife oasis. Located in the south-central part of Bauchi State, it is home to the largest remaining elephant population in Nigeria. The reserve also features the crystal clear Wikki Warm Springs, which stays at a constant 31°C all year round.",
+        image: "/images/yankari.jpg",
+        gallery: ["/images/yankari-2.jpg", "/images/yankari.jpg", "/images/yankari-3.jpg", "/images/yankari-4.jpg", "/images/yankari-5.jpg", "/images/yankari-6.jpg", "/images/yankari-7.jpg"],
+        highlights: ["Wikki Warm Springs", "Safari Tours", "Elephant Sightings", "Marshall Caves"],
+        coordinates: "9.7500° N, 10.5000° E"
+    },
+    {
+        id: 2,
         slug: "abuja-city",
         name: "Abuja",
         title: "ABUJA",
@@ -23,20 +37,6 @@ export const destinations = [
         gallery: ["/images/abj-2.jpg", "/images/abj.jpg", "/images/abj-3.jpg", "/images/abj-4.jpg", "/images/abj-5.jpg"],
         highlights: ["Zuma Rock", "Aso Rock", "National Mosque", "Arts & Crafts Village"],
         coordinates: "9.0765° N, 7.3986° E"
-    },
-    {
-        id: 2,
-        slug: "yankari-game-reserve",
-        name: "Yankari",
-        title: "YANKARI",
-        location: "Bauchi, Nigeria",
-        rating: 5, // <--- Added
-        shortDescription: "A premier wildlife retreat featuring the Wikki Warm Springs and roaming elephants. It is Nigeria's richest wildlife oasis and a haven for eco-tourism in the West African savanna.",
-        fullDescription: "Yankari Game Reserve is Nigeria's richest wildlife oasis. Located in the south-central part of Bauchi State, it is home to the largest remaining elephant population in Nigeria. The reserve also features the crystal clear Wikki Warm Springs, which stays at a constant 31°C all year round.",
-        image: "/images/yankari.jpg",
-        gallery: ["/images/yankari-2.jpg", "/images/yankari.jpg", "/images/yankari-3.jpg", "/images/yankari-4.jpg", "/images/yankari-5.jpg", "/images/yankari-6.jpg", "/images/yankari-7.jpg"],
-        highlights: ["Wikki Warm Springs", "Safari Tours", "Elephant Sightings", "Marshall Caves"],
-        coordinates: "9.7500° N, 10.5000° E"
     },
     {
         id: 3,
@@ -202,7 +202,7 @@ export const events = [
     },
     {
         id: 5,
-        status: "Upcoming",
+        status: "Ongoing",
         slug: "kabafest",
         name: "KABAFEST",
         title: "Kaduna Arts (KABAFEST)",
@@ -521,7 +521,9 @@ export const languages = [
             { phrase: "Na gode", meaning: "Thank you" },
             { phrase: "Ina kwana?", meaning: "How was your night? (Good morning)" },
             { phrase: "Lafiya lau", meaning: "I am fine" }
-        ]
+        ],
+        pdf: "/books/hausa-learning.pdf",
+        image: "/images/hausa.jpg"
     },
     {
         id: 2,
@@ -543,7 +545,9 @@ export const languages = [
             { phrase: "Useko", meaning: "Thank you" },
             { phrase: "Jam waali", meaning: "Good morning" },
             { phrase: "No mbadaa?", meaning: "How are you?" }
-        ]
+        ],
+        pdf: "/books/fulfulde-learning.pdf",
+        image: "/images/fulfulde.jpg"
     },
     {
         id: 3,
@@ -564,7 +568,9 @@ export const languages = [
             { phrase: "Nda wuye", meaning: "How are you?" },
             { phrase: "Kele", meaning: "Good / Fine" },
             { phrase: "Lale", meaning: "Welcome" }
-        ]
+        ],
+        pdf: "/books/kanuri-learning.pdf",
+        image: "/images/kanuri.jpg"
     },
     {
         id: 4,
@@ -585,7 +591,9 @@ export const languages = [
             { phrase: "Okú", meaning: "Greetings" },
             { phrase: "Lafiya", meaning: "Fine / Good" },
             { phrase: "Kú ishé", meaning: "Well done" }
-        ]
+        ],
+        pdf: "/books/nupe-learning.pdf",
+        image: "/images/nupe.jpg"
     },
     {
         id: 5,
@@ -606,7 +614,9 @@ export const languages = [
             { phrase: "Msugh", meaning: "Thank you / Welcome" },
             { phrase: "U ngu nena?", meaning: "How are you?" },
             { phrase: "M ngu dedoo", meaning: "I am fine" }
-        ]
+        ],
+        pdf: "/books/tiv-learning.pdf",
+        image: "/images/tiv.jpg"
     },
     {
         id: 6,
@@ -627,6 +637,8 @@ export const languages = [
             { phrase: "Eku", meaning: "Greetings" },
             { phrase: "Be na yi", meaning: "How are you doing?" },
             { phrase: "Mi gba eku", meaning: "I am fine" }
-        ]
+        ],
+        pdf: "/books/gbagyi-learning.pdf",
+        image: "/images/gbagyi.jpg"
     }
 ];
