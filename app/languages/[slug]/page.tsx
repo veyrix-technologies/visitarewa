@@ -190,7 +190,7 @@ export default async function LanguageDetail({ params }: { params: Promise<{ slu
                     rel="noopener noreferrer"
                     className="w-full px-6 py-4 rounded-xl bg-green-500 text-black border border-green-500 hover:bg-transparent hover:text-green-500 transition-all text-sm font-bold uppercase flex items-center justify-center gap-2"
                   >
-                    View Book <BookOpen size={16} />
+                    <BookOpen size={16} /> View Book 
                   </a>
                 )}
 
