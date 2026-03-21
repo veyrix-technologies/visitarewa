@@ -26,6 +26,11 @@ export default function HeroSection() {
   const [searchQuery, setSearchQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchEndX, setTouchEndX] = useState<number | null>(null);
+  const [touchStartY, setTouchStartY] = useState<number | null>(null);
+  const [touchEndY, setTouchEndY] = useState<number | null>(null);
+
   // Focus input when search opens
   useEffect(() => {
     if (isSearchOpen && inputRef.current) {
@@ -34,7 +39,7 @@ export default function HeroSection() {
   }, [isSearchOpen]);
 
   // Handle Search Logic
-  const handleSearchSubmit = (e: any) => {
+  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const query = searchQuery.toLowerCase();
 
@@ -42,7 +47,7 @@ export default function HeroSection() {
     const foundIndex = destinations.findIndex(
       (dest) =>
         dest.title.toLowerCase().includes(query) ||
-        dest.location.toLowerCase().includes(query)
+        dest.location.toLowerCase().includes(query),
     );
 
     if (foundIndex !== -1) {
@@ -60,7 +65,7 @@ export default function HeroSection() {
 
   const handlePrev = () => {
     setCurrentIndex((prev) =>
-      prev === 0 ? destinations.length - 1 : prev - 1
+      prev === 0 ? destinations.length - 1 : prev - 1,
     );
   };
 
@@ -85,8 +90,45 @@ export default function HeroSection() {
 
   const activeDest = destinations[currentIndex];
 
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEndX(null);
+    setTouchEndY(null);
+    setTouchStartX(e.targetTouches[0].clientX);
+    setTouchStartY(e.targetTouches[0].clientY);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+    setTouchEndY(e.targetTouches[0].clientY);
+  };
+
+  const onTouchEnd = () => {
+    // Disable background swiping if an overlay is open
+    if (isSearchOpen || isMenuOpen) return;
+
+    if (!touchStartX || !touchEndX || !touchStartY || !touchEndY) return;
+
+    const distanceX = touchStartX - touchEndX;
+    const distanceY = touchStartY - touchEndY;
+    const minSwipeDistance = 50;
+
+    // Check if the swipe is mostly horizontal and exceeds distance
+    if (
+      Math.abs(distanceX) > Math.abs(distanceY) &&
+      Math.abs(distanceX) > minSwipeDistance
+    ) {
+      if (distanceX > minSwipeDistance) handleNext();
+      if (distanceX < -minSwipeDistance) handlePrev();
+    }
+  };
+
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-black text-white font-sans">
+    <div
+      className="relative w-full h-screen overflow-hidden bg-black text-white font-sans"
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
       {/* Background Image */}
       <AnimatePresence mode="popLayout">
         <motion.div
@@ -133,11 +175,11 @@ export default function HeroSection() {
           <a href="#people" className="hover:text-green-400 transition">
             People & Icons
           </a>
-          <a href="#cuisine" className="hover:text-green-400 transition">
-            Cuisine
-          </a>
           <a href="#languages" className="hover:text-green-400 transition">
             Languages
+          </a>
+          <a href="#cuisine" className="hover:text-green-400 transition">
+            Cuisine
           </a>
           <a href="#events" className="hover:text-green-400 transition">
             Events 2026

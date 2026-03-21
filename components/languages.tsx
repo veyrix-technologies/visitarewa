@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Volume2 } from "lucide-react";
+import { ArrowRight, MessageCircle, Volume2 } from "lucide-react";
 import Link from "next/link";
 import { languages } from "@/lib/data";
 
@@ -28,10 +28,7 @@ export default function ArewaLanguages() {
   };
 
   return (
-    <section
-      className="bg-zinc-950 text-white py-24"
-      id="languages"
-    >
+    <section className="bg-zinc-950 text-white py-24" id="languages">
       <div className="container mx-auto px-6 md:px-20">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -68,20 +65,25 @@ export default function ArewaLanguages() {
               {/* Hover gradient */}
               <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-              <div className="relative z-10 flex flex-col h-full">
+              <Link
+                key={lang.id}
+                href={`/languages/${lang.slug}`}
+                className="relative z-10 flex flex-col h-full"
+              >
                 <div className="flex items-start justify-between mb-6">
-                  <div>
-                    <h3 className="text-2xl font-bold text-white mb-1">
-                      {lang.name}
-                    </h3>
-
-                    <button
-                      onClick={() => playGreeting(lang.audio)}
-                      className="inline-flex items-center gap-2 bg-green-500/10 text-green-400 px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase cursor-pointer hover:bg-green-500/20 hover:scale-105 active:scale-95 transition-all outline-none"
-                    >
-                      <Volume2 size={14} />
-                      {lang.greeting}
-                    </button>
+                  <div className="flex justify-between items-start mb-6">
+                    <div>
+                      <h2 className="text-3xl font-bold text-white mb-2">
+                        {lang.name}
+                      </h2>
+                      <div className="flex items-center gap-2 text-green-400 font-medium">
+                        <MessageCircle size={16} />
+                        <span>&quot;{lang.greeting}&quot;</span>
+                        <span className="text-gray-500 text-sm line-clamp-1">
+                          ({lang.meaning})
+                        </span>
+                      </div>
+                    </div>
                   </div>
 
                   <Link
@@ -92,19 +94,10 @@ export default function ArewaLanguages() {
                   </Link>
                 </div>
 
-                <div className="mb-4">
-                  <span className="text-gray-500 text-sm uppercase tracking-wider font-bold block mb-1">
-                    Meaning
-                  </span>
-                  <span className="text-gray-200 font-medium">
-                    {lang.meaning}
-                  </span>
-                </div>
-
                 <p className="text-gray-400 text-sm leading-relaxed flex-grow">
                   {lang.description}
                 </p>
-              </div>
+              </Link>
             </motion.div>
           ))}
         </div>

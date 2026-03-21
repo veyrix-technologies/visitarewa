@@ -69,18 +69,18 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="#cuisine"
-                  className="hover:text-green-500 transition-colors block"
-                >
-                  Culinary Delights
-                </a>
-              </li>
-              <li>
-                <a
                   href="#languages"
                   className="hover:text-green-500 transition-colors block"
                 >
                   Languages
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#cuisine"
+                  className="hover:text-green-500 transition-colors block"
+                >
+                  Culinary Delights
                 </a>
               </li>
               <li>

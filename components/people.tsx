@@ -33,25 +33,66 @@ const people = peopleData.map((person) => {
 });
 
 export default function ArewaTalent() {
+  if (!people || people.length === 0) return null;
+
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchEndX, setTouchEndX] = useState<number | null>(null);
+  const [touchStartY, setTouchStartY] = useState<number | null>(null);
+  const [touchEndY, setTouchEndY] = useState<number | null>(null);
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % people.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + people.length) % people.length);
   };
 
   const getNextPeople = () => {
     let nextItems = [];
     for (let i = 1; i <= 3; i++) {
       const index = (currentIndex + i) % people.length;
-      nextItems.push(people[index]);
+      nextItems.push({ ...people[index], originalIndex: index });
     }
     return nextItems;
   };
 
   const activePerson = people[currentIndex];
 
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEndX(null);
+    setTouchEndY(null);
+    setTouchStartX(e.targetTouches[0].clientX);
+    setTouchStartY(e.targetTouches[0].clientY);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+    setTouchEndY(e.targetTouches[0].clientY);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStartX || !touchEndX || !touchStartY || !touchEndY) return;
+    
+    const distanceX = touchStartX - touchEndX;
+    const distanceY = touchStartY - touchEndY;
+    const minSwipeDistance = 50;
+
+    // Check if the swipe is mostly horizontal and exceeds distance
+    if (Math.abs(distanceX) > Math.abs(distanceY) && Math.abs(distanceX) > minSwipeDistance) {
+      if (distanceX > minSwipeDistance) handleNext();
+      if (distanceX < -minSwipeDistance) handlePrev();
+    }
+  };
+
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-zinc-900 text-white font-sans">
+    <div 
+      className="relative w-full h-screen overflow-hidden bg-zinc-900 text-white font-sans"
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
       {/* Background Image Layer */}
       <AnimatePresence mode="popLayout">
         <motion.div
@@ -146,9 +187,9 @@ export default function ArewaTalent() {
             
                   animate={{ x: 0, opacity: 1 }}
                   exit={{ x: -100, opacity: 0 }}
-                  onClick={handleNext}
+                  onClick={() => setCurrentIndex(item.originalIndex)}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="relative w-[240px] h-[360px] flex-shrink-0 rounded-lg overflow-hidden grayscale hover:grayscale-0 transition-all duration-500 border border-white/10 group"
+                  className="relative w-[240px] h-[360px] flex-shrink-0 rounded-lg overflow-hidden cursor-pointer grayscale hover:grayscale-0 transition-all duration-500 border border-white/10 group"
                 >
                   <Image
                     src={item.image}
@@ -166,6 +207,7 @@ export default function ArewaTalent() {
                     </h3>
                     <Link
                       href={`/people/${item.slug}`}
+                      onClick={(e) => e.stopPropagation()}
                       className="flex items-center gap-1 text-xs font-bold uppercase text-white/50 hover:text-white rounded transition-colors"
                     >
                       View Profile{" "}

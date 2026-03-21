@@ -639,6 +639,6 @@ export const languages = [
             { phrase: "Mi gba eku", meaning: "I am fine" }
         ],
         pdf: "/books/gbagyi-learning.pdf",
-        image: "/images/gbagyi.jpg"
+        image: "/images/gbagyi.webp"
     }
 ];

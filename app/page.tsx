@@ -10,6 +10,7 @@ import ArewaTalent from "@/components/people";
 import Preloader from "@/components/preloader";
 import HeroSection from "@/components/hero";
 import ArewaLanguages from "@/components/languages";
+import CustomCursor from "@/components/CustomCursor";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -45,8 +46,9 @@ export default function App() {
 
   return (
     <main className="bg-black w-full min-h-screen text-white selection:bg-green-500 selection:text-black">
-      {/* ... (Rest of your JSX remains exactly the same) ... */}
-      
+      {/* Custom curson */}
+      <CustomCursor />
+
       <AnimatePresence mode="wait">
         {loading && (
           <motion.div
