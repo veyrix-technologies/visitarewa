@@ -168,11 +168,11 @@ export const events = [
     },
     {
         id: 5, // Make sure to update this to your next available ID
-        status: "Upcoming", // Or "Past" depending on the event
+        status: "Ongoing", // Or "Past" depending on the event
         slug: "city-fiesta",
         name: "City Fiesta",
         title: "City Fiesta",
-        date: "March 20 - 21, 2026", // Please update with their actual date
+        date: "March 21 - 22, 2026", // Please update with their actual date
         location: "BraveRock, Gombe", // Please update with their actual venue
         category: "Entertainment & Lifestyle",
         shortDescription: "A vibrant celebration of urban culture, music, and lifestyle in the heart of the city.",
@@ -202,7 +202,7 @@ export const events = [
     },
     {
         id: 5,
-        status: "Ongoing",
+        status: "Upcoming",
         slug: "kabafest",
         name: "KABAFEST",
         title: "Kaduna Arts (KABAFEST)",
