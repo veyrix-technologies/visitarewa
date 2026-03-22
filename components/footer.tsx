@@ -8,6 +8,7 @@ import {
   Linkedin,
   ArrowUpRight,
   MapPin,
+  Github,
 } from "lucide-react";
 
 export default function Footer() {
@@ -132,18 +133,31 @@ export default function Footer() {
 
         {/* BOTTOM BAR */}
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400 relative z-30">
-          <p>
-            &copy; 2026 Arewa Showcase. Made by{" "}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://veyrixtech.com/"
-              className="text-green-500 hover:text-green-500 font-bold transition-colors"
-            >
-              Veyrix Technologies
-            </a>
-            .
-          </p>
+          <div className="flex flex-col items-center md:items-start gap-1 text-center md:text-left">
+            <p>
+              &copy; 2026 Arewa Showcase. Made by{" "}
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://veyrixtech.com/"
+                className="text-green-500 hover:text-green-400 font-bold transition-colors"
+              >
+                Veyrix Technologies
+              </a>
+              .
+            </p>
+            <p className="flex items-center gap-1 flex-wrap justify-center md:justify-start">
+              This project is open source.
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://github.com/Veyrix-Technologies/visitarewa"
+                className="inline-flex items-center gap-1 text-green-500 hover:text-green-400 font-bold transition-colors underline underline-offset-2"
+              >
+                Contribute on GitHub <Github size={14} /> 
+              </a>
+            </p>
+          </div>
 
           <div className="flex gap-6">
             <a
