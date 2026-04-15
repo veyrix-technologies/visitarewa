@@ -29,7 +29,7 @@ export default function LanguageDetail({ params }: { params: { slug: string } })
         </Link>
 
         <div className="mb-12">
-          <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6">
+          <h1 className="text-5xl md:text-7xl font-rikafu font-bold mb-6">
             {language.name}
           </h1>
           <div className="flex flex-wrap items-center gap-4 mb-8">

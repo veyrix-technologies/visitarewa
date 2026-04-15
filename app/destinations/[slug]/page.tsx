@@ -90,7 +90,7 @@ export default async function DestinationPage({ params }: any) {
               </div>
             </div>
 
-            <h1 className="text-5xl md:text-8xl font-serif font-black tracking-tighter leading-none text-white drop-shadow-xl">
+            <h1 className="text-5xl md:text-8xl font-rikafu font-black tracking-tighter leading-none text-white drop-shadow-xl">
               {destination.name}
             </h1>
           </div>

@@ -40,7 +40,7 @@ export default function ArewaLanguages() {
             <div className="h-[1px] w-8 bg-green-500"></div>
           </div>
 
-          <h2 className="text-4xl md:text-6xl font-serif mb-6">
+          <h2 className="text-4xl md:text-6xl font-rikafu mb-6">
             Linguistic Heritage
           </h2>
 
@@ -107,7 +107,7 @@ export default function ArewaLanguages() {
           <div className="flex justify-end">
             <Link
               href="/languages"
-              className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-green-500 text-black font-bold uppercase tracking-wider text-sm hover:bg-transparent hover:text-green-500 border border-green-500 transition-all duration-300"
+              className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-green-500 text-black font-bold  tracking-wider text-sm hover:bg-transparent hover:text-green-500 border border-green-500 transition-all duration-300"
             >
               View All Languages
               <ArrowRight

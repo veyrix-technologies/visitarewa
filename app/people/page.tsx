@@ -42,7 +42,7 @@ export default function PeoplePage() {
         </Link>
 
         <div className="max-w-4xl">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 font-serif text-green-500">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 font-rikafu text-green-500">
             Arewa Talent
           </h1>
           <p className="text-xl text-gray-300">
@@ -59,7 +59,7 @@ export default function PeoplePage() {
             {/* Category Header */}
             <div className="flex items-center gap-4 mb-12">
               <div className="h-[2px] w-12 bg-green-500"></div>
-              <h2 className="text-3xl md:text-4xl font-serif font-bold">{category}</h2>
+              <h2 className="text-3xl md:text-4xl font-rikafu font-bold">{category}</h2>
             </div>
 
             {/* People Grid */}

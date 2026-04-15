@@ -90,7 +90,7 @@ export default async function PersonPage({ params }: any) {
               </div>
             </div>
 
-            <h1 className="text-4xl md:text-7xl font-black tracking-tighter leading-none text-white font-serif drop-shadow-xl">
+            <h1 className="text-4xl md:text-7xl font-black tracking-tighter leading-none text-white font-rikafu drop-shadow-xl">
               {person.name}
             </h1>
 
@@ -120,7 +120,7 @@ export default async function PersonPage({ params }: any) {
                   className="absolute top-4 right-4 text-green-500/30"
                   size={32}
                 />
-                <blockquote className="text-2xl font-serif italic text-gray-100 leading-relaxed">
+                <blockquote className="text-2xl font-rikafu italic text-gray-100 leading-relaxed">
                   "{person.quote}"
                 </blockquote>
                 <p className="text-green-400 font-bold mt-4">— {person.name}</p>

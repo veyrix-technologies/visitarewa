@@ -9,37 +9,24 @@ export const destinations = [
     //     link: "/about", // Link to an About page or scroll down
     //     cta: "Start the Journey" // Different button text
     //   },
-       {
-        id: 1,
-        slug: "yankari-game-reserve",
-        name: "Yankari",
-        title: "YANKARI",
-        location: "Bauchi, Nigeria",
-        rating: 5, // <--- Added
-        shortDescription: "A premier wildlife retreat featuring the Wikki Warm Springs and roaming elephants. It is Nigeria's richest wildlife oasis and a haven for eco-tourism in the West African savanna.",
-        fullDescription: "Yankari Game Reserve is Nigeria's richest wildlife oasis. Located in the south-central part of Bauchi State, it is home to the largest remaining elephant population in Nigeria. The reserve also features the crystal clear Wikki Warm Springs, which stays at a constant 31°C all year round.",
-        image: "/images/yankari.jpg",
-        gallery: ["/images/yankari-2.jpg", "/images/yankari.jpg", "/images/yankari-3.jpg", "/images/yankari-4.jpg", "/images/yankari-5.jpg", "/images/yankari-6.jpg", "/images/yankari-7.jpg"],
-        highlights: ["Wikki Warm Springs", "Safari Tours", "Elephant Sightings", "Marshall Caves"],
-        coordinates: "9.7500° N, 10.5000° E"
-    },
-    {
-        id: 2,
-        slug: "abuja-city",
-        name: "Abuja",
-        title: "ABUJA",
-        location: "Abuja, Nigeria",
-        rating: 5, // <--- Added
-        shortDescription: "The capital city known for its stunning architecture and the monolithic Zuma Rock, the 'Gateway to Abuja' that rises majestically 725 meters above the surrounding countryside.",
 
-        fullDescription: "Abuja is the capital city of Nigeria, located in the centre of the country. The skyline is dominated by the majestic Aso Rock and the monolithic Zuma Rock, the 'Gateway to Abuja' that rises 725 meters above the surroundings. It features stunning modern architecture like the National Mosque and the National Christian Centre.",
-        image: "/images/abj.jpg",
-        gallery: ["/images/abj-2.jpg", "/images/abj.jpg", "/images/abj-3.jpg", "/images/abj-4.jpg", "/images/abj-5.jpg"],
-        highlights: ["Zuma Rock", "Aso Rock", "National Mosque", "Arts & Crafts Village"],
-        coordinates: "9.0765° N, 7.3986° E"
-    },
+    // {
+    //     id: 2,
+    //     slug: "abuja-city",
+    //     name: "Abuja",
+    //     title: "ABUJA",
+    //     location: "Abuja, Nigeria",
+    //     rating: 5, // <--- Added
+    //     shortDescription: "The capital city known for its stunning architecture and the monolithic Zuma Rock, the 'Gateway to Abuja' that rises majestically 725 meters above the surrounding countryside.",
+
+    //     fullDescription: "Abuja is the capital city of Nigeria, located in the centre of the country. The skyline is dominated by the majestic Aso Rock and the monolithic Zuma Rock, the 'Gateway to Abuja' that rises 725 meters above the surroundings. It features stunning modern architecture like the National Mosque and the National Christian Centre.",
+    //     image: "/images/abj.jpg",
+    //     gallery: ["/images/abj-2.jpg", "/images/abj.jpg", "/images/abj-3.jpg", "/images/abj-4.jpg", "/images/abj-5.jpg"],
+    //     highlights: ["Zuma Rock", "Aso Rock", "National Mosque", "Arts & Crafts Village"],
+    //     coordinates: "9.0765° N, 7.3986° E"
+    // },
     {
-        id: 3,
+        id: 1,
         slug: "kajuru-castle",
         name: "Kajuru",
         title: "KAJURU CASTLE",
@@ -52,6 +39,47 @@ export const destinations = [
         gallery: ["/images/kajuru-2.jpg", "/images/kajuru.jpg", "/images/kajuru-3.png", "/images/kajuru-4.jpg", "/images/kajuru-5.jpg", "/images/kajuru-6.jpg"],
         highlights: ["Medieval Architecture", "Rooftop Pool", "Sauna", "Private Hiking Trails"],
         coordinates: "10.3160° N, 7.6750° E"
+    },
+    {
+        id: 2,
+        slug: "zuma-rock",
+        name: "Zuma Rock",
+        title: "ZUMA ROCK",
+        location: "Niger, Nigeria",
+        rating: 5,
+        shortDescription:
+            "The iconic monolith known as the 'Gateway to Abuja', rising dramatically from the plains at about 725 meters above its surroundings, and famous for the natural human-face engraving on its surface.",
+
+        fullDescription:
+            "Zuma Rock is a large monolithic inselberg located near Suleja in Niger State, just outside Abuja. Often called the 'Gateway to Abuja', it stands at about 725 meters above the surrounding landscape and is one of Nigeria’s most recognizable natural landmarks. The rock is famous for its imposing presence and the natural markings that resemble a human face. Historically and culturally significant, it has long been regarded as a symbol of protection and strength.",
+
+        image: "/images/zuma.webp",
+        gallery: [
+            "/images/zuma.webp",
+        ],
+
+        highlights: [
+            "Natural human-face formation",
+            "Gateway to Abuja landmark",
+            "Hiking viewpoint surroundings",
+            "Cultural significance in Northern Nigeria"
+        ],
+
+        coordinates: "9.12° N, 7.25° E"
+    },
+    {
+        id: 3,
+        slug: "yankari-game-reserve",
+        name: "Yankari",
+        title: "YANKARI",
+        location: "Bauchi, Nigeria",
+        rating: 5, // <--- Added
+        shortDescription: "A premier wildlife retreat featuring the Wikki Warm Springs and roaming elephants. It is Nigeria's richest wildlife oasis and a haven for eco-tourism in the West African savanna.",
+        fullDescription: "Yankari Game Reserve is Nigeria's richest wildlife oasis. Located in the south-central part of Bauchi State, it is home to the largest remaining elephant population in Nigeria. The reserve also features the crystal clear Wikki Warm Springs, which stays at a constant 31°C all year round.",
+        image: "/images/yankari.jpg",
+        gallery: ["/images/yankari-2.jpg", "/images/yankari.jpg", "/images/yankari-3.jpg", "/images/yankari-4.jpg", "/images/yankari-5.jpg", "/images/yankari-6.jpg", "/images/yankari-7.jpg"],
+        highlights: ["Wikki Warm Springs", "Safari Tours", "Elephant Sightings", "Marshall Caves"],
+        coordinates: "9.7500° N, 10.5000° E"
     },
     {
         id: 4,

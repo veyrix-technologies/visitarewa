@@ -40,7 +40,7 @@ export default function ArewaEvents() {
           <span className="text-green-500 font-bold tracking-widest text-sm uppercase mb-2 block">
             Mark Your Calendar
           </span>
-          <h2 className="text-4xl md:text-6xl font-serif">Upcoming Events</h2>
+          <h2 className="text-4xl md:text-6xl font-rikafu">Upcoming Events</h2>
         </div>
 
         <Link

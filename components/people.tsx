@@ -142,7 +142,7 @@ export default function ArewaTalent() {
                 </div>
 
                 {/* Name */}
-                <h1 className="text-6xl md:text-8xl font-bold font-serif tracking-tight text-white mb-6">
+                <h1 className="text-6xl md:text-8xl font-bold font-rikafu tracking-tight text-white mb-6">
                   {activePerson.name}
                 </h1>
 

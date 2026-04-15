@@ -44,7 +44,7 @@ export default async function LanguageDetail({ params }: { params: Promise<{ slu
           </Link>
 
           <div className="space-y-4 max-w-4xl">
-            <h1 className="text-4xl md:text-7xl font-black font-serif tracking-tighter leading-none">
+            <h1 className="text-4xl md:text-7xl font-black font-rikafu tracking-tighter leading-none">
               {language.name}
             </h1>
 

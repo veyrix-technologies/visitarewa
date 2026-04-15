@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 // 1. IMPORT THE SERIF FONT HERE 👇
 import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -14,10 +15,16 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// 2. CONFIGURE THE SERIF FONT 
+// 2. CONFIGURE THE SERIF FONT
 const playfair = Playfair_Display({
-  variable: "--font-serif", 
+  variable: "--font-serif",
   subsets: ["latin"],
+});
+
+// ✅ Rikafu Local Font
+const rikafu = localFont({
+  src: "../public/fonts/rikafu.otf",
+  variable: "--font-rikafu",
 });
 
 export const metadata: Metadata = {
@@ -97,7 +104,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistMono.variable} ${playfair.variable} antialiased`}
+        className={`${geistMono.variable} ${playfair.variable} ${rikafu.variable} antialiased`}
       >
         {children}
         <Analytics />

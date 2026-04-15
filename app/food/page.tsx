@@ -42,7 +42,7 @@ export default function FoodIndexPage() {
         </Link>
 
         <div className="max-w-4xl">
-          <h1 className="text-5xl md:text-7xl text-green-500 font-bold mb-6 font-serif">
+          <h1 className="text-5xl md:text-7xl text-green-500 font-bold mb-6 font-rikafu">
             Taste of Arewa
           </h1>
           <p className="text-xl text-gray-300">
@@ -60,7 +60,7 @@ export default function FoodIndexPage() {
             {/* Category Header */}
             <div className="flex items-center gap-4 mb-12">
               <div className="h-[2px] w-12 bg-green-500"></div>
-              <h2 className="text-3xl font-serif md:text-4xl font-bold">{category}</h2>
+              <h2 className="text-3xl font-rikafu md:text-4xl font-bold">{category}</h2>
             </div>
 
             {/* Food Grid */}

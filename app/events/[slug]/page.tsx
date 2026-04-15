@@ -77,7 +77,7 @@ export default async function EventPage({ params }: any) {
               </div>
             </div>
 
-            <h1 className="text-4xl font-serif md:text-7xl font-black tracking-tighter leading-none text-white drop-shadow-xl">
+            <h1 className="text-4xl font-rikafu md:text-7xl font-black tracking-tighter leading-none text-white drop-shadow-xl">
               {event.name}
             </h1>
           </div>

@@ -63,7 +63,7 @@ export default function EventsCalendarPage() {
           <span className="text-sm font-bold">Back to Home</span>
         </Link>
         <div className="max-w-4xl">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-green-500 font-serif">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-green-500 font-rikafu">
             Events Calendar
           </h1>
           <p className="text-xl text-gray-300">
@@ -79,7 +79,7 @@ export default function EventsCalendarPage() {
             {/* Group Header (The Date Text) */}
             <div className="sticky top-0 z-10 py-6 bg-[#020402]/90 backdrop-blur-md border border-white/10 mb-12 flex items-center gap-4">
               <div className="h-3 w-3 rounded-full bg-green-500 animate-pulse"></div>
-              <h2 className="text-2xl md:text-3xl font-bold text-white uppercase tracking-wider font-serif">
+              <h2 className="text-2xl md:text-3xl font-bold text-white uppercase tracking-wider font-rikafu">
                 {label}
               </h2>
             </div>

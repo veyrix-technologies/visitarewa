@@ -29,7 +29,7 @@ export default function Footer() {
           <div className="space-y-6">
             <div className="flex items-center gap-3">
               <Image
-                src="/logo-g.svg"
+                src="/logo.svg"
                 className="w-24"
                 alt="Visit Arewa Logo"
                 width={96}

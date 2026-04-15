@@ -12,6 +12,7 @@ import {
   X,
   Share2,
   Check,
+  ChevronDown,
 } from "lucide-react";
 import { destinations } from "@/lib/data";
 import Link from "next/link";
@@ -155,10 +156,10 @@ export default function HeroSection() {
         <div className="flex items-center gap-2">
           <Image
             src={"/logo.svg"}
-            className="w-25"
+            className="w-20"
             alt="Visit Arewa Logo"
-            width={100}
-            height={40}
+            width={0}
+            height={0}
           />
         </div>
 
@@ -328,27 +329,27 @@ export default function HeroSection() {
                 </div>
 
                 {/* Location Tag (Now Secondary) */}
-                <div className="flex items-center gap-2 text-gray-400 mb-2 pl-1">
+                <div className="flex items-center gap-2 text-gray-400 mb-4 pl-1">
                   <MapPin size={16} className="text-white" />
-                  <span className="uppercase tracking-widest text-xs font-bold text-white">
+                  <span className="uppercase tracking-widest text-xs font-bold text-white ">
                     {activeDest.location}
                   </span>
                 </div>
 
                 {/* Title */}
-                <h1 className="text-5xl md:text-8xl font-bold font-serif tracking-tighter uppercase leading-none mb-6">
+                <h1 className="text-5xl md:text-8xl font-bold lowercase first-letter:uppercase font-rikafu tracking-tighter leading-none mb-2">
                   {activeDest.title}
                 </h1>
 
                 {/* Description */}
-                <p className="max-w-md text-gray-200 text-sm md:text-base leading-relaxed line-clamp-3 border-l-2 border-white/10 pl-4">
+                <p className="max-w-md text-gray-200 text-sm md:text-base leading-relaxed line-clamp-3 ">
                   {activeDest.shortDescription}
                 </p>
 
                 {/* Button */}
                 <Link href={`/destinations/${destinations[currentIndex].slug}`}>
                   <button className="bg-green-500 hover:bg-green-400 text-black px-8 py-4 mt-8 rounded-full font-bold flex items-center gap-2 transition-all group shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:shadow-[0_0_30px_rgba(34,197,94,0.5)]">
-                    Start The Journey
+                    Explore
                     <ArrowRight
                       size={18}
                       className="group-hover:translate-x-1 transition-transform"
@@ -434,7 +435,7 @@ export default function HeroSection() {
         </div>
 
         {/* Controls */}
-        <div className="absolute bottom-8 left-8 right-8 flex justify-between items-end border-t border-white/10 pt-4">
+        {/* <div className="absolute bottom-8 left-8 right-8 flex justify-between items-end border-t border-white/10 pt-4">
           <div className="text-xs text-gray-400">
             0{currentIndex + 1} <span className="mx-2 text-gray-600">/</span> 0
             {destinations.length}
@@ -452,6 +453,18 @@ export default function HeroSection() {
             >
               <ArrowRight size={16} />
             </button>
+          </div>
+        </div> */}
+
+        {/* Swipe Down Indicator */}
+        <div className="absolute bottom-8 left-8 right-8 flex justify-center items-end pt-4">
+          <div className="lg:hidden flex flex-col items-center gap-1 text-gray-400">
+            <div className="animate-bounce">
+              <ChevronDown size={20} className="opacity-80" />
+            </div>
+            <span className="text-[10px] tracking-widest uppercase opacity-60">
+              Swipe
+            </span>
           </div>
         </div>
       </div>

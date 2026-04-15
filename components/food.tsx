@@ -21,7 +21,7 @@ export default function ArewaCuisine() {
             <span className="text-green-500 font-bold tracking-widest text-sm uppercase">
               Culinary Heritage
             </span>
-            <h2 className="text-4xl md:text-5xl font-serif mt-2">
+            <h2 className="text-4xl md:text-5xl font-rikafu mt-2">
               Tastes of the North
             </h2>
           </div>
@@ -82,7 +82,7 @@ export default function ArewaCuisine() {
           <div>
             <Link 
               href="/food"
-              className="inline-flex items-center gap-2 px-8 py-3 rounded-full hover:bg-white/5 hover:text-green-500 border border-gray-500 bg-green-500 text-black   transition-all font-bold font-sans  uppercase tracking-wider"
+              className="inline-flex text-sm items-center gap-2 px-8 py-3 rounded-full hover:bg-white/5 hover:text-green-500 border border-gray-500 bg-green-500 text-black   transition-all font-bold font-sans  tracking-wider"
             >
               Explore Full Menu <ArrowRight size={16} />
             </Link>

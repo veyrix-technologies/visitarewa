@@ -16,7 +16,7 @@ export default function LanguagesPage() {
             <span className="text-sm font-bold">Back to Home</span>
           </Link>
           <div className="max-w-4xl">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-green-500 font-serif">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-green-500 font-rikafu">
               Languages of Arewa
             </h1>
             <p className="text-xl text-gray-300">

@@ -76,7 +76,7 @@ export default async function FoodPage({ params }: any) {
               </div>
             </div>
 
-            <h1 className="text-4xl md:text-7xl font-serif font-black tracking-tighter leading-none text-white drop-shadow-xl">
+            <h1 className="text-4xl md:text-7xl font-rikafu font-black tracking-tighter leading-none text-white drop-shadow-xl">
               {item.name}
             </h1>
             <p className="text-xl text-gray-300 max-w-2xl font-sans">
@@ -106,7 +106,7 @@ export default async function FoodPage({ params }: any) {
                 className="absolute top-4 right-4 text-green-500/30"
                 size={32}
               />
-              <blockquote className="text-2xl font-serif italic text-gray-100 leading-relaxed">
+              <blockquote className="text-2xl font-rikafu italic text-gray-100 leading-relaxed">
                 "{item.quote}"
               </blockquote>
               <p className="text-green-400 font-bold mt-4">

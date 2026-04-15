@@ -12,6 +12,8 @@
   /* We use var(--font-serif) because Next.js injects the correct font string into that variable */
   --font-serif: var(--font-serif); 
   --font-sans: var(--font-geist-sans);
+  --font-rikafu: var(--font-rikafu);
+
 }
 
 @media (prefers-color-scheme: dark) {
