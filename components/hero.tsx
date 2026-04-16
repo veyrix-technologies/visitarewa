@@ -155,7 +155,7 @@ export default function HeroSection() {
       <nav className="absolute top-0 left-0 w-full z-50 flex justify-between items-center p-8">
         <div className="flex items-center gap-2">
           <Image
-            src={"/loo.png"}
+            src={"/logo.png"}
             className="w-20"
             alt="Visit Arewa Logo"
             width={0}
