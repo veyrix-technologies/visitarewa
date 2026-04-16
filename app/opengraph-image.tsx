@@ -88,7 +88,7 @@ export default async function Image() {
             fontWeight: 600,
           }}
         >
-          The Soul of Northern Nigeria
+         Your Journey Into the Heart of Nigeria
         </div>
 
         {/* Footer / Branding */}
