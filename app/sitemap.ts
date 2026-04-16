@@ -1,8 +1,9 @@
 import { MetadataRoute } from 'next'
-import { destinations, events, people, dishes } from '@/lib/data' // Import your data
+import { destinations, events, people, dishes, languages } from '@/lib/data' // Import your data
+import { url } from 'inspector'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://visitarewa.com' 
+  const baseUrl = 'https://visitarewa.com'
 
   // 1. Define Static Pages (Main pages)
   const staticPages = [
@@ -18,7 +19,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly' as const,
       priority: 0.8,
     },
-    // Add /food here if you have created the main food page
+    {
+      url: `${baseUrl}/events`, // The main event listing page
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/languages`, // The main languages listing page
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/food`, // The main dishes listing page
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    },
+
   ]
 
   // 2. Generate URLs for Destinations
@@ -45,11 +64,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
-  // 5. Combine everything into one big list
+
+  // 5. Generate URLs for Dishes
+  const dishesUrls = dishes.map((item) => ({
+    url: `${baseUrl}/people/${item.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
+
+
+  // 6. Generate URLs for People
+  const languagesUrls = languages.map((item) => ({
+    url: `${baseUrl}/people/${item.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
+
+
+  // 7. Combine everything into one big list
   return [
     ...staticPages,
     ...destinationUrls,
-    ...eventUrls,
     ...peopleUrls,
+    ...dishesUrls,
+    ...languagesUrls,
+    ...eventUrls,
   ]
 }
