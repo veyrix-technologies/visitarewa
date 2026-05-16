@@ -9,8 +9,28 @@ export async function generateMetadata({ params }: any) {
   if (!craft) return { title: "Not Found" };
 
   return {
-    title: `${craft.title} | Our Forgotten Crafts`,
+    title: `${craft.name} | Our Forgotten Crafts`,
     description: craft.shortDescription,
+    openGraph: {
+      title: `${craft.name} | Our Forgotten Crafts`,
+      description: craft.shortDescription,
+      url: `https://visitarewa.com/crafts/${craft.slug}`,
+      images: [
+        {
+          url: craft.image,
+          width: 1200,
+          height: 630,
+          alt: craft.name,
+        },
+      ],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${craft.name} | Our Forgotten Crafts`,
+      description: craft.shortDescription,
+      images: [craft.image],
+    },
   };
 }
 

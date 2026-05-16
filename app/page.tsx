@@ -12,6 +12,7 @@ import HeroSection from "@/components/hero";
 import ArewaLanguages from "@/components/languages";
 import CraftsShowcase from "@/components/crafts";
 import CustomCursor from "@/components/CustomCursor";
+import MapSection from "@/components/map-section";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -93,6 +94,10 @@ export default function App() {
           {/* MAKE SURE THIS ID MATCHES THE LINK (#events) */}
           <section id="events">
             <ArewaEvents />
+          </section>
+
+          <section id="map">
+            <MapSection />
           </section>
 
           <Footer />

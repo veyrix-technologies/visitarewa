@@ -11,6 +11,37 @@ export function generateStaticParams() {
   return languages.map((lang) => ({ slug: lang.slug }));
 }
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const language = languages.find((l) => l.slug === slug);
+  if (!language) return { title: "Not Found" };
+
+  return {
+    title: `${language.name} | Languages of Arewa`,
+    description: language.description,
+    openGraph: {
+      title: `${language.name} | Languages of Arewa`,
+      description: language.description,
+      url: `https://visitarewa.com/languages/${language.slug}`,
+      images: [
+        {
+          url: language.image,
+          width: 1200,
+          height: 630,
+          alt: language.name,
+        },
+      ],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${language.name} | Languages of Arewa`,
+      description: language.description,
+      images: [language.image],
+    },
+  };
+}
+
 export default async function LanguageDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const language = languages.find((l) => l.slug === slug);

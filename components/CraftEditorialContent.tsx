@@ -151,8 +151,8 @@ export default function CraftEditorialContent({ craft }: { craft: any }) {
           </div>
 
           {/* Right Column: Sidebar */}
-          <div className="lg:col-span-4">
-            <div className="sticky top-20 space-y-8">
+          <div className="lg:col-span-4 mt-8 lg:mt-0">
+            <div className="lg:sticky lg:top-20 space-y-8">
               {/* Quick Facts Card */}
               <div className="bg-white/5 border border-white/10 rounded-3xl p-8 space-y-6 backdrop-blur-sm">
                 <h3 className="text-xl text-white font-bold">Quick Facts</h3>
@@ -298,10 +298,10 @@ export default function CraftEditorialContent({ craft }: { craft: any }) {
             <div className="h-[1px] w-8 bg-green-500"></div>
           </div>
           <h2 className="text-4xl font-rikafu font-bold mb-6">
-            Know a forgotten craft?          </h2>
+            Know a forgotten craft?
+          </h2>
           <p className="text-gray-300 text-lg mb-8">
             Help preserve Arewa&apos;s endangered traditions by sharing your story with the world.
-
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
