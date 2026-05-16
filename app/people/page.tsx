@@ -5,7 +5,7 @@ import { ArrowLeft, Award } from "lucide-react";
 import { people } from "@/lib/data";
 
 export const metadata = {
-  title: "Arewa Talent | Visit Arewa",
+  title: "Arewa Excellence | Visit Arewa",
   description:
     "Discover the talented individuals shaping Arewa's future across business, entertainment, arts, and more.",
 };
@@ -43,7 +43,7 @@ export default function PeoplePage() {
 
         <div className="max-w-4xl">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 font-rikafu text-green-500">
-            Arewa Talent
+            Arewa Excellence
           </h1>
           <p className="text-xl text-gray-300">
             Meet the visionary leaders, artists, and innovators who are shaping

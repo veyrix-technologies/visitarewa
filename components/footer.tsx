@@ -37,7 +37,7 @@ export default function Footer() {
               />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Showcasing the beauty, talent, and heritage of Northern Nigeria to
+              Showcasing the beauty, excellence, and heritage of Northern Nigeria to
               the world. A digital archive of our stories.
             </p>
             {/* <div className="flex items-center gap-2 text-xs text-green-500 font-mono uppercase tracking-widest mt-4 font-bold">
@@ -162,7 +162,7 @@ export default function Footer() {
                 href="https://github.com/Veyrix-Technologies/visitarewa"
                 className="inline-flex items-center gap-1 text-green-500 hover:text-green-400 font-bold transition-colors underline underline-offset-2"
               >
-                Contribute on GitHub <Github size={14} /> 
+                Contribute on GitHub <Github size={14} />
               </a>
             </p>
           </div>

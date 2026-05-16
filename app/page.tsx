@@ -6,7 +6,7 @@ import ArewaEvents from "@/components/events";
 import ArewaCuisine from "@/components/food";
 import Footer from "@/components/footer";
 import Manifesto from "@/components/manifestor";
-import ArewaTalent from "@/components/people";
+import ArewaExcellence from "@/components/people";
 import Preloader from "@/components/preloader";
 import HeroSection from "@/components/hero";
 import ArewaLanguages from "@/components/languages";
@@ -29,14 +29,14 @@ export default function App() {
   useEffect(() => {
     if (!loading && window.location.hash) {
       // Find the element by the hash (e.g., "events")
-      const id = window.location.hash.substring(1); 
+      const id = window.location.hash.substring(1);
       const element = document.getElementById(id);
 
       if (element) {
         // Wait a tiny bit for the Fade In animation to start rendering layout
         setTimeout(() => {
           element.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 100); 
+        }, 100);
       }
     }
   }, [loading]); // <--- Runs whenever 'loading' changes
@@ -75,7 +75,7 @@ export default function App() {
           <Manifesto />
 
           <section id="people">
-            <ArewaTalent />
+            <ArewaExcellence />
           </section>
 
           <section id="crafts">
@@ -83,7 +83,7 @@ export default function App() {
           </section>
 
           <section id="languages">
-          <ArewaLanguages />
+            <ArewaLanguages />
           </section>
 
           <section id="cuisine">

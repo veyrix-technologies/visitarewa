@@ -38,7 +38,7 @@ const people = peopleData.map((person) => {
   return { ...person, icon };
 });
 
-export default function ArewaTalent() {
+export default function ArewaExcellence() {
   if (!people || people.length === 0) return null;
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -80,7 +80,7 @@ export default function ArewaTalent() {
 
   const onTouchEnd = () => {
     if (!touchStartX || !touchEndX || !touchStartY || !touchEndY) return;
-    
+
     const distanceX = touchStartX - touchEndX;
     const distanceY = touchStartY - touchEndY;
     const minSwipeDistance = 50;
@@ -93,7 +93,7 @@ export default function ArewaTalent() {
   };
 
   return (
-    <div 
+    <div
       id="people"
       className="relative w-full h-screen overflow-hidden bg-zinc-900 text-white font-sans"
       onTouchStart={onTouchStart}
@@ -159,23 +159,18 @@ export default function ArewaTalent() {
                 </p>
 
                 {/* MOBILE BUTTONS (Visible only on small screens) */}
-                <div className="mt-10 flex lg:hidden gap-4 flex-wrap">
+                <div className="mt-10 flex lg:hidden items-center gap-4 flex-wrap">
                   <Link
                     href={`/people/${activePerson.slug}`}
-                    className="inline-flex items-center gap-2 border-b border-green-500 pb-1 text-white hover:text-green-500 transition-colors text-sm font-bold mt-5"
+                    className="inline-flex items-center justify-center px-6 py-3 bg-green-500 text-black text-xs font-bold uppercase tracking-widest rounded-full hover:bg-green-400 transition-colors whitespace-nowrap"
                   >
-                    View Full Profile
+                    View Profile
                   </Link>
                   <button
                     onClick={handleNext}
-                    className="group flex items-center gap-4 text-white hover:text-green-400 transition-colors"
+                    className="group flex items-center gap-3 px-6 py-3 border border-white/20 bg-white/5 backdrop-blur-md text-white hover:border-green-500 hover:text-green-400 transition-colors text-xs font-bold uppercase tracking-widest rounded-full whitespace-nowrap"
                   >
-                    <div className="p-4 rounded-full border border-white/20 group-hover:border-green-500 transition-colors">
-                      <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-                    </div>
-                    <span className="font-bold tracking-widest text-sm whitespace-nowrap">
-                      NEXT TALENT
-                    </span>
+                    Next <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
               </motion.div>
@@ -191,7 +186,7 @@ export default function ArewaTalent() {
                   layout
                   key={item.id}
                   initial={{ x: 100, opacity: 0 }}
-            
+
                   animate={{ x: 0, opacity: 1 }}
                   exit={{ x: -100, opacity: 0 }}
                   onClick={() => setCurrentIndex(item.originalIndex)}
@@ -232,37 +227,39 @@ export default function ArewaTalent() {
             </div>
 
             {/* DESKTOP BUTTONS (Visible only on large screens) */}
-            <div className="flex  gap-10 items-center mt-6">
-              <button
-                onClick={handleNext}
-                className="group flex items-center gap-4 text-white hover:text-green-400 transition-colors"
+            <div className="flex gap-4 items-center mt-6">
+              <Link
+                href={`/people/${activePerson.slug}`}
+                className="flex items-center justify-center px-6 py-3 bg-green-500 text-black text-xs font-bold uppercase tracking-widest rounded-full hover:bg-green-400 transition-colors whitespace-nowrap"
               >
-                <div className="p-4 rounded-full border border-white/20 group-hover:border-green-500 transition-colors">
-                  <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-                </div>
-                <span className="font-bold tracking-widest text-sm whitespace-nowrap">
-                  NEXT TALENT
-                </span>
-              </button>
+                View Profile
+              </Link>
 
               <Link
                 href="/people"
-                className="flex items-center gap-2 border-b border-green-500 pb-1 text-white hover:text-green-500 transition-colors text-sm font-bold uppercase"
+                className="flex items-center justify-center px-6 py-3 border border-white/20 bg-black/40 backdrop-blur-md text-white text-xs font-bold uppercase tracking-widest rounded-full hover:border-green-500 hover:text-green-400 transition-colors whitespace-nowrap"
               >
-                Explore More Talent
+                All Excellence
               </Link>
+
+              <button
+                onClick={handleNext}
+                className="group p-4 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-white hover:border-green-500 hover:text-green-400 transition-colors"
+                title="Next Excellence"
+              >
+                <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+              </button>
             </div>
           </div>
         </div>
 
         {/* Bottom Pagination */}
-        <div className="absolute bottom-10 left-20 flex gap-2">
+        <div className="absolute bottom-10 left-6 md:left-20 flex gap-2 bg-black/40 backdrop-blur-md px-4 py-3 rounded-full border border-white/10">
           {people.map((_, idx) => (
             <div
               key={idx}
-              className={`h-1 transition-all duration-300 ${
-                idx === currentIndex ? "w-12 bg-green-500" : "w-4 bg-gray-700"
-              }`}
+              className={`h-1.5 rounded-full transition-all duration-300 ${idx === currentIndex ? "w-10 bg-green-500" : "w-3 bg-white/30"
+                }`}
             />
           ))}
         </div>

@@ -9,11 +9,15 @@ type FormData = {
   craftName: string;
   craftCategory: string;
   craftDescription: string;
+  craftCoordinates: string;
   history: string;
   significance: string;
   contributorName: string;
   contributorEmail: string;
   contributorRegion: string;
+  contributorPicture: string;
+  contributorInstagram: string;
+  contributorLinkedin: string;
   contributorStory: string;
   imageUrl: string;
   gallery: string[];
@@ -23,11 +27,15 @@ const defaultForm: FormData = {
   craftName: "",
   craftCategory: "Textile Craft",
   craftDescription: "",
+  craftCoordinates: "",
   history: "",
   significance: "",
   contributorName: "",
   contributorEmail: "",
   contributorRegion: "",
+  contributorPicture: "",
+  contributorInstagram: "",
+  contributorLinkedin: "",
   contributorStory: "",
   imageUrl: "",
   gallery: [""],
@@ -211,6 +219,18 @@ export default function CraftSubmissionForm() {
         </div>
 
         <div className="mb-8">
+          <label className={labelClass}>Map Coordinates (Optional)</label>
+          <input
+            type="text"
+            name="craftCoordinates"
+            value={formData.craftCoordinates}
+            onChange={handleInputChange}
+            placeholder="e.g., 11.7500° N, 9.3333° E"
+            className={inputClass}
+          />
+        </div>
+
+        <div className="mb-8">
           <label className={labelClass}>History &amp; Origins</label>
           <textarea
             name="history"
@@ -327,6 +347,43 @@ export default function CraftSubmissionForm() {
             placeholder="e.g., The ancient city of Kano"
             className={inputClass}
           />
+        </div>
+
+        <div className="mb-8">
+          <label className={labelClass}>Profile Picture URL (Optional)</label>
+          <input
+            type="url"
+            name="contributorPicture"
+            value={formData.contributorPicture}
+            onChange={handleInputChange}
+            placeholder="Link to your avatar or photo"
+            className={inputClass}
+          />
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8 mb-8">
+          <div>
+            <label className={labelClass}>Instagram URL (Optional)</label>
+            <input
+              type="url"
+              name="contributorInstagram"
+              value={formData.contributorInstagram}
+              onChange={handleInputChange}
+              placeholder="https://instagram.com/..."
+              className={inputClass}
+            />
+          </div>
+          <div>
+            <label className={labelClass}>LinkedIn URL (Optional)</label>
+            <input
+              type="url"
+              name="contributorLinkedin"
+              value={formData.contributorLinkedin}
+              onChange={handleInputChange}
+              placeholder="https://linkedin.com/in/..."
+              className={inputClass}
+            />
+          </div>
         </div>
 
         <div>

@@ -14,7 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${baseUrl}/people`, // The main talent listing page
+      url: `${baseUrl}/people`, // The main Excellence listing page
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.8,
