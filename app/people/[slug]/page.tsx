@@ -24,6 +24,26 @@ export async function generateMetadata({ params }: any) {
   return {
     title: `${person.name} | Visit Arewa Talent`,
     description: person.shortDescription,
+    openGraph: {
+      title: `${person.name} | Visit Arewa Talent`,
+      description: person.shortDescription,
+      url: `https://visitarewa.com/people/${person.slug}`,
+      images: [
+        {
+          url: person.image,
+          width: 1200,
+          height: 630,
+          alt: person.name,
+        },
+      ],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${person.name} | Visit Arewa Talent`,
+      description: person.shortDescription,
+      images: [person.image],
+    },
   };
 }
 

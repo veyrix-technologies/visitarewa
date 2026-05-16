@@ -23,6 +23,26 @@ export async function generateMetadata({ params }: any) {
   return {
     title: `${event.name} | Visit Arewa Events`,
     description: event.shortDescription,
+    openGraph: {
+      title: `${event.name} | Visit Arewa Events`,
+      description: event.shortDescription,
+      url: `https://visitarewa.com/events/${event.slug}`,
+      images: [
+        {
+          url: event.image,
+          width: 1200,
+          height: 630,
+          alt: event.name,
+        },
+      ],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${event.name} | Visit Arewa Events`,
+      description: event.shortDescription,
+      images: [event.image],
+    },
   };
 }
 

@@ -23,8 +23,28 @@ export async function generateMetadata({ params }: any) {
   if (!destination) return { title: "Not Found" };
 
   return {
-    title: `${destination.title} | Visit Arewa`,
+    title: `${destination.name} | Visit Arewa`,
     description: destination.shortDescription,
+    openGraph: {
+      title: `${destination.name} | Visit Arewa`,
+      description: destination.shortDescription,
+      url: `https://visitarewa.com/destinations/${destination.slug}`,
+      images: [
+        {
+          url: destination.image,
+          width: 1200,
+          height: 630,
+          alt: destination.name,
+        },
+      ],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${destination.name} | Visit Arewa`,
+      description: destination.shortDescription,
+      images: [destination.image],
+    },
   };
 }
 
