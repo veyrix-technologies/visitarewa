@@ -70,6 +70,14 @@ export default function Footer() {
               </li>
               <li>
                 <a
+                  href="#crafts"
+                  className="hover:text-green-500 transition-colors block"
+                >
+                  Forgotten Crafts
+                </a>
+              </li>
+              <li>
+                <a
                   href="#languages"
                   className="hover:text-green-500 transition-colors block"
                 >

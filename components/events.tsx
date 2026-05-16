@@ -53,9 +53,9 @@ export default function ArewaEvents() {
 
       {/* Events Grid */}
       <div className="px-6 md:px-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {events.map((event, index) => (
-            index <= 3 && (<EventCard
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {events.slice(0, 3).map((event, index) => (
+            <EventCard
               key={event.id}
               event={event}
               index={index}
@@ -63,7 +63,7 @@ export default function ArewaEvents() {
                 navigator.push(`/events/${event.slug}`);
               }}
               onWatch={() => setSelectedVideo(event.video)}
-            />)
+            />
           ))}
         </div>
       </div>
@@ -168,8 +168,8 @@ function EventCard({ event, index, onWatch, onClick }: any) {
             <MapPin size={16} />
             <span>{event.location}</span>
           </div>
-          <button className="text-white font-semibold text-sm hover:text-green-400 flex items-center gap-1 transition-colors">
-            Details <ArrowRight size={16} />
+          <button className="text-green-500  font-semibold text-sm hover:text-green-400 flex items-center gap-1 transition-colors">
+            <ArrowUpRight size={16} />
           </button>
         </div>
 
@@ -182,9 +182,14 @@ function EventCard({ event, index, onWatch, onClick }: any) {
                 e.stopPropagation();
                 onWatch();
               }}
-              className="mt-3 w-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-green-500 hover:border-green-500 hover:text-black transition-all"
+              className="group mt-4 flex items-center justify-center gap-3 bg-white/5 hover:bg-white/10 border border-white/20 px-6 py-3 rounded-full transition-all w-full"
             >
-              Watch Video <Play size={16} fill="currentColor" />
+              <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center pl-[2px] group-hover:scale-110 transition-transform shrink-0">
+                <Play size={14} className="text-white fill-white" />
+              </div>
+              <span className="text-sm font-bold text-gray-200 group-hover:text-white transition-colors">
+                Watch Video
+              </span>
             </button>
           </div>
         </div>

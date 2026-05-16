@@ -58,7 +58,7 @@ export default function ArewaCuisine() {
                       exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden"
                     >
-                      <p className="text-gray-400 text-sm leading-relaxed mt-2">
+                      <p className="text-gray-400 text-sm leading-relaxed line-clamp-2 mt-2">
                         {dish.description}
                       </p>
 

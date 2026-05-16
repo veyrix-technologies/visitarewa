@@ -29,3 +29,27 @@ body {
   /* This applies the font globally */
   font-family: var(--font-sans); 
 }
+
+/* Custom Leaflet Popup Styles */
+.custom-popup .leaflet-popup-content-wrapper {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.custom-popup .leaflet-popup-content {
+  margin: 0 !important;
+}
+
+.custom-popup .leaflet-popup-tip-container {
+  display: none !important; /* Hide the default white tip */
+}
+
+/* Make Leaflet attribution blend into dark mode */
+.leaflet-container .leaflet-control-attribution {
+  background: rgba(0, 0, 0, 0.5) !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+.leaflet-container .leaflet-control-attribution a {
+  color: rgba(255, 255, 255, 0.8) !important;
+}

@@ -176,6 +176,9 @@ export default function HeroSection() {
           <a href="#people" className="hover:text-green-400 transition">
             People & Icons
           </a>
+          <a href="#crafts" className="hover:text-green-400 transition">
+            Forgotten Crafts
+          </a>
           <a href="#languages" className="hover:text-green-400 transition">
             Languages
           </a>
@@ -277,6 +280,13 @@ export default function HeroSection() {
                 className="text-3xl font-bold text-white hover:text-green-500 transition-colors duration-300"
               >
                 People & Icons
+              </a>
+              <a
+                href="#crafts"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-3xl font-bold text-white hover:text-green-500 transition-colors duration-300"
+              >
+                Forgotten Crafts
               </a>
               <a
                 href="#cuisine"

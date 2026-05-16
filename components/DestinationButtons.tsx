@@ -2,19 +2,15 @@
 
 import React, { useState } from "react";
 import { Share2, MapPin, Check } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function DestinationButtons({ destination, slug }: any) {
   const [isCopied, setIsCopied] = useState(false);
+  const router = useRouter();
 
   const handleViewOnMap = () => {
     // Open Google Maps
-    const query = encodeURIComponent(
-      `${destination.title} ${destination.location}`
-    );
-    window.open(
-      `https://www.google.com/maps/search/?api=1&query=${query}`,
-      "_blank"
-    );
+    router.push(`/map?id=destination-${slug}`);
   };
 
   const handleShare = async () => {
@@ -53,14 +49,14 @@ export default function DestinationButtons({ destination, slug }: any) {
     <div className="space-y-4">
       <button
         onClick={handleViewOnMap}
-        className="w-full bg-green-500 text-black font-bold py-4 rounded-xl hover:bg-green-400 transition-colors shadow-[0_0_20px_rgba(34,197,94,0.4)] flex items-center justify-center gap-2"
+        className="w-full bg-green-500 text-black font-bold py-4 cursor-pointer rounded-xl hover:bg-green-400 transition-colors shadow-[0_0_20px_rgba(34,197,94,0.4)] flex items-center justify-center gap-2"
       >
         <MapPin size={20} /> View on Map
       </button>
 
       <button
         onClick={handleShare}
-        className={`w-full font-bold py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 border ${
+        className={`w-full font-bold py-4 rounded-xl transition-all cursor-pointer duration-300 flex items-center justify-center gap-2 border ${
           isCopied
             ? "bg-white text-black border-white"
             : "bg-transparent border-white/20 text-white hover:bg-white/10"

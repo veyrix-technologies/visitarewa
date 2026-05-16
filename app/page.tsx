@@ -10,6 +10,7 @@ import ArewaTalent from "@/components/people";
 import Preloader from "@/components/preloader";
 import HeroSection from "@/components/hero";
 import ArewaLanguages from "@/components/languages";
+import CraftsShowcase from "@/components/crafts";
 import CustomCursor from "@/components/CustomCursor";
 
 export default function App() {
@@ -74,6 +75,10 @@ export default function App() {
 
           <section id="people">
             <ArewaTalent />
+          </section>
+
+          <section id="crafts">
+            <CraftsShowcase />
           </section>
 
           <section id="languages">

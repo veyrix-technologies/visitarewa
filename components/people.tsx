@@ -26,6 +26,12 @@ const people = peopleData.map((person) => {
     case "rahama-sadau":
       icon = <User size={16} />;
       break;
+    case "sabiqah-bello":
+      icon = <Mic size={16} />;
+      break;
+    case "usman-click":
+      icon = <Video size={16} />;
+      break;
     default:
       icon = null;
   }
@@ -88,6 +94,7 @@ export default function ArewaTalent() {
 
   return (
     <div 
+      id="people"
       className="relative w-full h-screen overflow-hidden bg-zinc-900 text-white font-sans"
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
@@ -155,7 +162,7 @@ export default function ArewaTalent() {
                 <div className="mt-10 flex lg:hidden gap-4 flex-wrap">
                   <Link
                     href={`/people/${activePerson.slug}`}
-                    className="  text-white font-bold mt-5"
+                    className="inline-flex items-center gap-2 border-b border-green-500 pb-1 text-white hover:text-green-500 transition-colors text-sm font-bold mt-5"
                   >
                     View Full Profile
                   </Link>
@@ -240,7 +247,7 @@ export default function ArewaTalent() {
 
               <Link
                 href="/people"
-                className=" text-white hover:text-green-500 font-bold  transition-colors uppercase"
+                className="flex items-center gap-2 border-b border-green-500 pb-1 text-white hover:text-green-500 transition-colors text-sm font-bold uppercase"
               >
                 Explore More Talent
               </Link>
