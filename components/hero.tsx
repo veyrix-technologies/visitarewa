@@ -356,22 +356,30 @@ export default function HeroSection() {
                   {activeDest.shortDescription}
                 </p>
 
-                {/* Button */}
-                <Link href={`/destinations/${destinations[currentIndex].slug}`}>
-                  <button className="bg-green-500 hover:bg-green-400 text-black px-8 py-4 mt-8 rounded-full font-bold flex items-center gap-2 transition-all group shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:shadow-[0_0_30px_rgba(34,197,94,0.5)]">
-                    Explore
-                    <ArrowRight
-                      size={18}
-                      className="group-hover:translate-x-1 transition-transform"
-                    />
-                  </button>
-                </Link>
+                {/* Buttons */}
+                <div className="flex flex-wrap items-center gap-4 mt-8">
+                  <Link href={`/destinations/${activeDest.slug}`}>
+                    <button className="bg-green-500 hover:bg-green-400 text-black px-8 py-4 rounded-full font-bold flex items-center gap-2 transition-all group shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:shadow-[0_0_30px_rgba(34,197,94,0.5)] cursor-pointer">
+                      Explore
+                      <ArrowRight
+                        size={18}
+                        className="group-hover:translate-x-1 transition-transform"
+                      />
+                    </button>
+                  </Link>
+
+                  <Link href="/destinations">
+                    <button className="bg-transparent border border-white/20 hover:border-green-500/50 hover:bg-white/5 text-white px-8 py-4 rounded-full font-bold flex items-center gap-2 transition-all cursor-pointer">
+                      View All
+                    </button>
+                  </Link>
+                </div>
               </motion.div>
             </AnimatePresence>
           </div>
 
           {/* RIGHT: Slider */}
-          <div className="hidden lg:flex lg:col-span-5 h-[400px] items-center gap-4 overflow-hidden relative">
+          <div className="hidden lg:flex lg:col-span-5 h-[400px] items-center gap-5 overflow-hidden relative">
             {getNextDestinations().map((item, index) => (
               <motion.div
                 layout
@@ -380,7 +388,7 @@ export default function HeroSection() {
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: -100, opacity: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="relative w-[200px] h-[280px] flex-shrink-0 rounded-2xl overflow-hidden cursor-pointer group shadow-2xl"
+                className="relative w-[210px] h-[300px] flex-shrink-0 rounded-2xl overflow-hidden cursor-pointer group border border-white/10 hover:border-green-500/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_-15px_rgba(34,197,94,0.35)] shadow-2xl"
                 onClick={handleNext}
               >
                 <Image
@@ -388,9 +396,9 @@ export default function HeroSection() {
                   alt={item.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   fill
-                  sizes="200px"
+                  sizes="210px"
                 />
-                <div className="absolute inset-0 bg-black/20 hover:bg-transparent transition-colors" />
+                <div className="absolute inset-0 bg-black/30 hover:bg-black/10 transition-colors duration-300" />
 
                 <button
                   type="button" // Explicitly define type to prevent form submission issues
@@ -422,20 +430,27 @@ export default function HeroSection() {
                     }
                   }}
                   // Z-INDEX FIX: z-50 and relative ensures it sits ON TOP of everything
-                  className="absolute top-4 right-4 z-70 bg-black/40 backdrop-blur-md p-2 rounded-full hover:bg-green-500 hover:text-black hover:scale-110 transition-all duration-300 border border-white/10 group/icon cursor-pointer"
+                  className="absolute top-4 right-4 z-70 bg-black/60 backdrop-blur-md p-2.5 rounded-full hover:bg-green-500 hover:text-black hover:scale-110 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 border border-white/10 group/icon cursor-pointer"
                 >
                   {copied ? (
-                    <Check size={14} className="text-green-400" />
+                    <Check size={12} className="text-green-400" />
                   ) : (
                     <Share2
-                      size={14}
+                      size={12}
                       className="text-white group-hover/icon:text-black"
                     />
                   )}
                 </button>
-                <div className="absolute bottom-4 left-4">
-                  <h3 className="text-lg font-bold">{item.location}</h3>
-                  <div className="flex gap-1 text-white text-xs">
+
+                {/* Advanced Info Overlay */}
+                <div className="absolute bottom-0 inset-x-0 p-5 bg-gradient-to-t from-black via-black/70 to-transparent">
+                  <span className="text-[10px] text-green-400 font-mono uppercase tracking-widest block mb-1">
+                    {item.location.split(",")[0]}
+                  </span>
+                  <h3 className="text-base font-bold text-white group-hover:text-green-400 transition-colors leading-tight mb-2">
+                    {item.name}
+                  </h3>
+                  <div className="flex gap-0.5 text-yellow-400 text-xs">
                     {"★".repeat(item.rating)}
                   </div>
                 </div>

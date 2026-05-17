@@ -1,20 +1,6 @@
 export const destinations = [
     {
         id: 1,
-        slug: "kajuru-castle",
-        name: "Kajuru",
-        title: "KAJURU CASTLE",
-        location: "Kaduna, Nigeria",
-        rating: 4,
-        shortDescription: "A stunning medieval-style castle perched on a hill in Kaduna. This architectural masterpiece offers a fairytale escape with breathtaking views of the surrounding savannah.",
-        fullDescription: "Perched atop the rocky hills of Kaduna, Kajuru Castle is a stunning piece of architecture that feels pulled straight from a European fairytale. Built by a German expatriate in the 1980s, the castle represents an astonishing juxtaposition of Bavarian medieval design against the rugged, sun-drenched topography of the Northern Nigerian savannah. It was constructed using locally sourced stone and materials, demanding immense craftsmanship to replicate the authentic feel of a 12th-century fortress.\n\nThe castle is not merely a facade; it is fully equipped with an armory, dungeons, turrets, and a spectacular rooftop pool that overlooks the sweeping valleys below. The walls are thick, designed to keep the interior cool against the piercing heat of the dry season, while large, dramatic windows invite the golden hour light to bounce off its stone interiors.\n\nToday, Kajuru Castle operates as an exclusive eco-resort and private retreat. Whether you are seeking a romantic getaway, a private hiking expedition through the surrounding inselbergs, or simply the surreal experience of waking up in a castle in the heart of West Africa, Kajuru offers an unparalleled, luxurious escape.",
-        image: "/images/kajuru.jpg",
-        gallery: ["/images/kajuru-2.jpg", "/images/kajuru.jpg", "/images/kajuru-3.png", "/images/kajuru-4.jpg", "/images/kajuru-5.jpg", "/images/kajuru-6.jpg"],
-        highlights: ["Medieval Architecture", "Rooftop Pool", "Sauna", "Private Hiking Trails"],
-        coordinates: "10.3160° N, 7.6750° E"
-    },
-    {
-        id: 2,
         slug: "zuma-rock",
         name: "Zuma Rock",
         title: "ZUMA ROCK",
@@ -26,6 +12,20 @@ export const destinations = [
         gallery: ["/images/zuma.webp"],
         highlights: ["Natural human-face formation", "Gateway to Abuja landmark", "Hiking viewpoint surroundings", "Cultural significance in Northern Nigeria"],
         coordinates: "9.12° N, 7.25° E"
+    },
+    {
+        id: 2,
+        slug: "kajuru-castle",
+        name: "Kajuru",
+        title: "KAJURU CASTLE",
+        location: "Kaduna, Nigeria",
+        rating: 4,
+        shortDescription: "A stunning medieval-style castle perched on a hill in Kaduna. This architectural masterpiece offers a fairytale escape with breathtaking views of the surrounding savannah.",
+        fullDescription: "Perched atop the rocky hills of Kaduna, Kajuru Castle is a stunning piece of architecture that feels pulled straight from a European fairytale. Built by a German expatriate in the 1980s, the castle represents an astonishing juxtaposition of Bavarian medieval design against the rugged, sun-drenched topography of the Northern Nigerian savannah. It was constructed using locally sourced stone and materials, demanding immense craftsmanship to replicate the authentic feel of a 12th-century fortress.\n\nThe castle is not merely a facade; it is fully equipped with an armory, dungeons, turrets, and a spectacular rooftop pool that overlooks the sweeping valleys below. The walls are thick, designed to keep the interior cool against the piercing heat of the dry season, while large, dramatic windows invite the golden hour light to bounce off its stone interiors.\n\nToday, Kajuru Castle operates as an exclusive eco-resort and private retreat. Whether you are seeking a romantic getaway, a private hiking expedition through the surrounding inselbergs, or simply the surreal experience of waking up in a castle in the heart of West Africa, Kajuru offers an unparalleled, luxurious escape.",
+        image: "/images/kajuru.jpg",
+        gallery: ["/images/kajuru-2.jpg", "/images/kajuru.jpg", "/images/kajuru-3.png", "/images/kajuru-4.jpg", "/images/kajuru-5.jpg", "/images/kajuru-6.jpg"],
+        highlights: ["Medieval Architecture", "Rooftop Pool", "Sauna", "Private Hiking Trails"],
+        coordinates: "10.3160° N, 7.6750° E"
     },
     {
         id: 3,

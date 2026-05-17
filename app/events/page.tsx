@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -84,39 +85,54 @@ export default function EventsCalendarPage() {
               </h2>
             </div>
 
-            {/* List */}
-            <div className="space-y-6">
+            {/* Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {groupedEvents[label].map((event) => (
                 <Link key={event.slug} href={`/events/${event.slug}`}>
-                  <div className="group relative grid grid-cols-1 md:grid-cols-12 gap-6 bg-white/5 border border-white/5 rounded-2xl overflow-hidden hover:border-green-500/50 transition-all duration-300 p-4 md:p-6 items-center">
-                    {/* Icon Badge (Left) - Replaces the broken date number */}
-                    <div className="md:col-span-2 flex md:flex-col items-center justify-center text-center gap-2 md:gap-0 border-b md:border-b-0 md:border-r border-white/10 pb-4 md:pb-0 md:pr-6">
-                      <div className="h-16 w-16 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 group-hover:bg-green-500 group-hover:text-black transition-all">
-                        <Calendar size={32} />
+                  <div className="group cursor-pointer">
+                    {/* Image Card */}
+                    <div className="relative h-[400px] rounded-2xl overflow-hidden mb-4 border border-white/5 group-hover:transition-all duration-300">
+                      <Image
+                        src={event.image}
+                        alt={event.name}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-300"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+
+                      {/* Overlay Info */}
+                      <div className="absolute bottom-0 inset-x-0 p-6">
+                        <h3 className="text-2xl font-bold mb-2 text-green-400 group-hover:transition-colors">
+                          {event.name}
+                        </h3>
+                        <p className="text-gray-300 text-sm flex items-center gap-2">
+                          <span>{event.category}</span>
+                          {event.time && (
+                            <>
+                              <span className="w-1 h-1 rounded-full bg-white/20"></span>
+                              <span className="flex items-center gap-1">
+                                <Clock size={12} /> {event.time}
+                              </span>
+                            </>
+                          )}
+                        </p>
                       </div>
                     </div>
 
-                    {/* Content (Middle) */}
-                    <div className="md:col-span-7 space-y-2">
-                      <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-wider text-green-400 mb-1">
-                        <span>{event.category}</span>
-                        <span className="w-1 h-1 rounded-full bg-white/20"></span>
-                        <span className="flex items-center gap-1">
-                          <Clock size={12} /> {event.time || "Time TBD"}
-                        </span>
-                      </div>
-                      <h3 className="text-2xl font-bold group-hover:text-green-400 transition-colors">
-                        {event.name}
-                      </h3>
-                      <div className="flex items-center gap-2 text-gray-400 text-sm">
-                        <MapPin size={16} /> {event.location}
-                      </div>
-                    </div>
-
-                    {/* Action (Right) */}
-                    <div className="md:col-span-3 flex justify-end">
-                      <div className="w-full md:w-auto px-6 py-3 rounded-full border border-white/20 group-hover:bg-green-500 group-hover:text-black group-hover:border-green-500 transition-all text-sm font-bold uppercase flex items-center justify-center gap-2">
-                        View Details <ArrowUpRight size={16} />
+                    {/* Details below card */}
+                    <div className="space-y-2 px-2">
+                      <p className="text-gray-400 text-sm flex items-center gap-2">
+                        <MapPin size={16} className="text-green-500" />
+                        {event.location}
+                      </p>
+                      <p className="text-gray-300 line-clamp-2">
+                        {event.shortDescription}
+                      </p>
+                      <div className="pt-4">
+                        <button className="text-green-500 hover:text-green-400 font-bold text-sm uppercase group-hover:translate-x-1 transition-transform">
+                          View Details →
+                        </button>
                       </div>
                     </div>
                   </div>

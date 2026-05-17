@@ -115,62 +115,64 @@ export default function ArewaExcellence() {
             alt={activePerson.name}
             className="w-full h-full object-cover grayscale-[30%] hover:grayscale-0 transition-all duration-1000"
             fill
+            priority
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent" />
+          {/* Hybrid Gradient Overlay: Vertical on mobile, horizontal on desktop */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/85 to-black/30 lg:bg-gradient-to-r lg:from-black lg:via-black/80 lg:to-transparent" />
         </motion.div>
       </AnimatePresence>
 
       {/* Main Content Layer */}
-      <div className="absolute inset-0 z-10 flex flex-col justify-center px-8 md:px-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 w-full h-full items-center">
+      <div className="absolute inset-0 z-10 flex flex-col justify-center px-6 md:px-20 pt-20 pb-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 w-full max-w-7xl mx-auto items-center">
           {/* LEFT: Text Content */}
-          <div className="lg:col-span-6 flex flex-col justify-center space-y-8">
+          <div className="lg:col-span-6 flex flex-col justify-center space-y-4 md:space-y-8">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activePerson.id}
-                initial={{ x: -50, opacity: 0 }}
+                initial={{ x: -30, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
-                exit={{ x: 50, opacity: 0 }}
-                transition={{ duration: 0.5 }}
+                exit={{ x: 30, opacity: 0 }}
+                transition={{ duration: 0.4 }}
               >
                 {/* Section Header */}
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="h-[2px] w-12 bg-green-500"></div>
-                  <span className="text-green-500 font-bold tracking-[0.2em] uppercase text-sm">
+                <div className="flex items-center gap-3 mb-4 md:mb-6">
+                  <div className="h-[2px] w-8 md:w-12 bg-green-500"></div>
+                  <span className="text-green-500 font-bold tracking-[0.2em] uppercase text-xs md:text-sm">
                     Arewa Excellence
                   </span>
                 </div>
 
                 {/* Role Title */}
-                <div className="flex items-center gap-3 text-gray-400 mb-4 font-mono text-sm">
+                <div className="flex items-center gap-2 text-gray-400 mb-3 md:mb-4 font-mono text-xs md:text-sm">
                   {activePerson.icon}
-                  <span className="uppercase">{activePerson.role}</span>
+                  <span className="uppercase tracking-wider">{activePerson.role}</span>
                 </div>
 
                 {/* Name */}
-                <h1 className="text-6xl md:text-8xl font-bold font-rikafu tracking-tight text-white mb-6">
+                <h1 className="text-4xl sm:text-5xl md:text-8xl font-bold font-rikafu tracking-tight text-white mb-4 md:mb-6 leading-tight">
                   {activePerson.name}
                 </h1>
 
                 {/* Description */}
-                <p className="max-w-xl text-gray-300 text-lg leading-relaxed border-l-4 border-green-500/50 pl-6">
+                <p className="max-w-xl text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed border-l-4 border-green-500/50 pl-4 md:pl-6">
                   {activePerson.shortDescription}
                 </p>
 
-                {/* MOBILE BUTTONS (Visible only on small screens) */}
-                <div className="mt-10 flex lg:hidden items-center gap-4 flex-wrap">
+                {/* MOBILE BUTTONS (Thumb-friendly & beautifully scaled) */}
+                <div className="mt-8 flex lg:hidden items-center gap-3 flex-wrap">
                   <Link
                     href={`/people/${activePerson.slug}`}
-                    className="inline-flex items-center justify-center px-6 py-3 bg-green-500 text-black text-xs font-bold uppercase tracking-widest rounded-full hover:bg-green-400 transition-colors whitespace-nowrap"
+                    className="flex-1 min-w-[140px] inline-flex items-center justify-center px-5 py-3.5 bg-green-500 text-black text-xs font-black uppercase tracking-widest rounded-full hover:bg-green-400 active:scale-95 transition-all whitespace-nowrap text-center"
                   >
                     View Profile
                   </Link>
                   <button
                     onClick={handleNext}
-                    className="group flex items-center gap-3 px-6 py-3 border border-white/20 bg-white/5 backdrop-blur-md text-white hover:border-green-500 hover:text-green-400 transition-colors text-xs font-bold uppercase tracking-widest rounded-full whitespace-nowrap"
+                    className="flex-1 min-w-[120px] group flex items-center justify-center gap-2 px-5 py-3.5 border border-white/20 bg-white/5 backdrop-blur-md text-white hover:border-green-500 hover:text-green-400 active:scale-95 transition-all text-xs font-black uppercase tracking-widest rounded-full whitespace-nowrap"
                   >
-                    Next <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                    Next <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
               </motion.div>
@@ -186,7 +188,6 @@ export default function ArewaExcellence() {
                   layout
                   key={item.id}
                   initial={{ x: 100, opacity: 0 }}
-
                   animate={{ x: 0, opacity: 1 }}
                   exit={{ x: -100, opacity: 0 }}
                   onClick={() => setCurrentIndex(item.originalIndex)}
@@ -254,11 +255,11 @@ export default function ArewaExcellence() {
         </div>
 
         {/* Bottom Pagination */}
-        <div className="absolute bottom-10 left-6 md:left-20 flex gap-2 bg-black/40 backdrop-blur-md px-4 py-3 rounded-full border border-white/10">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 md:left-20 md:translate-x-0 flex gap-2 bg-black/60 backdrop-blur-md px-4 py-3 rounded-full border border-white/10">
           {people.map((_, idx) => (
             <div
               key={idx}
-              className={`h-1.5 rounded-full transition-all duration-300 ${idx === currentIndex ? "w-10 bg-green-500" : "w-3 bg-white/30"
+              className={`h-1.5 rounded-full transition-all duration-300 ${idx === currentIndex ? "w-8 bg-green-500" : "w-2 bg-white/30"
                 }`}
             />
           ))}

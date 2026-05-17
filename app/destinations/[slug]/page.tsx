@@ -117,11 +117,11 @@ export default async function DestinationPage({ params }: any) {
         {/* Navigation & Title */}
         <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-20 z-10">
           <Link
-            href="/"
+            href="/destinations"
             className="w-fit flex items-center gap-2 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full hover:bg-green-500 hover:text-black transition-colors border border-white/10"
           >
             <ArrowLeft size={18} />
-            <span className="text-sm font-bold">Back to Home</span>
+            <span className="text-sm font-bold">Back to Destinations</span>
           </Link>
 
           <div className="space-y-4 max-w-4xl">
@@ -202,8 +202,17 @@ export default async function DestinationPage({ params }: any) {
 
               <div className="h-[1px] bg-white/10"></div>
 
-              <div className="mt-8">
+              <div className="mt-8 space-y-4">
                 <DestinationButtons destination={destination} slug={slug} />
+                
+                <div className="h-[1px] bg-white/10 my-2"></div>
+                
+                <Link
+                  href="/destinations"
+                  className="w-full flex items-center justify-center gap-2 bg-white/5 border border-white/10 hover:border-green-500/30 hover:bg-white/10 text-white font-bold py-4 rounded-xl transition-all duration-300"
+                >
+                  View All Destinations
+                </Link>
               </div>
             </div>
           </div>
