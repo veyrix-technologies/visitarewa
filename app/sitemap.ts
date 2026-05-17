@@ -1,6 +1,5 @@
 import { MetadataRoute } from 'next'
-import { destinations, events, people, dishes, languages } from '@/lib/data' // Import your data
-import { url } from 'inspector'
+import { destinations, events, people, dishes, languages, crafts } from '@/lib/data' // Import your data
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://visitarewa.com'
@@ -37,7 +36,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly' as const,
       priority: 0.8,
     },
-
+    {
+      url: `${baseUrl}/crafts`, // The main crafts listing page
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/crafts/submit`, // The story submission page
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/map`, // The interactive map explorer page
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    },
   ]
 
   // 2. Generate URLs for Destinations
@@ -67,23 +83,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // 5. Generate URLs for Dishes
   const dishesUrls = dishes.map((item) => ({
-    url: `${baseUrl}/people/${item.slug}`,
+    url: `${baseUrl}/food/${item.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
 
 
-  // 6. Generate URLs for People
+  // 6. Generate URLs for Languages
   const languagesUrls = languages.map((item) => ({
-    url: `${baseUrl}/people/${item.slug}`,
+    url: `${baseUrl}/languages/${item.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
 
 
-  // 7. Combine everything into one big list
+  // 7. Generate URLs for Crafts
+  const craftsUrls = crafts.map((item) => ({
+    url: `${baseUrl}/crafts/${item.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
+
+
+  // 8. Combine everything into one big list
   return [
     ...staticPages,
     ...destinationUrls,
@@ -91,5 +116,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...dishesUrls,
     ...languagesUrls,
     ...eventUrls,
+    ...craftsUrls,
   ]
 }

@@ -50,8 +50,28 @@ export default async function PersonPage({ params }: any) {
     // You can easily add more here later, e.g., tiktok: MessageCircle
   };
 
+  // Define Person Schema JSON-LD
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": person.name,
+    "jobTitle": person.role,
+    "image": person.image,
+    "description": person.shortDescription,
+    "homeLocation": {
+      "@type": "Place",
+      "name": person.origin
+    },
+    "sameAs": Object.values(person.socials || {})
+  };
+
   return (
     <main className="bg-[#020402] min-h-screen text-white font-sans selection:bg-green-500 selection:text-black">
+      {/* Schema.org Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* --- HERO SECTION --- */}
       <div className="relative h-[60vh] w-full overflow-hidden">
         <div className="relative w-full h-full">

@@ -74,8 +74,33 @@ export default async function DestinationPage({ params }: any) {
     </div>
   );
 
+  // Define TouristAttraction Schema JSON-LD
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "TouristAttraction",
+    "name": destination.name,
+    "description": destination.shortDescription,
+    "image": [destination.image],
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 10.5105,
+      "longitude": 7.4165
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": destination.location,
+      "addressRegion": "Arewa",
+      "addressCountry": "NG"
+    }
+  };
+
   return (
     <main className="bg-[#020402] min-h-screen text-white font-sans selection:bg-green-500 selection:text-black">
+      {/* Schema.org Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* --- HERO SECTION --- */}
       <div className="relative h-[70vh] w-full">
         <div className="relative w-full h-full">

@@ -55,8 +55,40 @@ export default async function EventPage({ params }: any) {
     notFound();
   }
 
+  // Define Event Schema JSON-LD
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": event.name,
+    "description": event.shortDescription,
+    "image": [event.image],
+    "startDate": "2026-11-20T09:00:00+01:00",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": {
+      "@type": "Place",
+      "name": event.location,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": event.location,
+        "addressRegion": "Arewa",
+        "addressCountry": "NG"
+      }
+    },
+    "organizer": {
+      "@type": "Organization",
+      "name": "Visit Arewa",
+      "url": "https://visitarewa.com"
+    }
+  };
+
   return (
     <main className="bg-[#020402] min-h-screen text-white font-sans selection:bg-green-500 selection:text-black">
+      {/* Schema.org Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* --- HERO SECTION --- */}
       <div className="relative h-[60vh] w-full overflow-hidden">
         <div className="relative w-full h-full">

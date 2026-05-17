@@ -42,5 +42,37 @@ export default async function CraftDetailPage({ params }: any) {
     notFound();
   }
 
-  return <CraftEditorialContent craft={craft} />;
+  // Define Craft/Heritage Article Schema JSON-LD
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": `${craft.name} — Living Heritage of Arewa`,
+    "description": craft.shortDescription,
+    "image": [craft.image],
+    "author": {
+      "@type": "Organization",
+      "name": "Visit Arewa",
+      "url": "https://visitarewa.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Visit Arewa",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://visitarewa.com/logo.png"
+      }
+    },
+    "datePublished": "2026-05-17"
+  };
+
+  return (
+    <>
+      {/* Schema.org Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <CraftEditorialContent craft={craft} />
+    </>
+  );
 }

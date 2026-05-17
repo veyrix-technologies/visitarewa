@@ -48,8 +48,36 @@ export default async function LanguageDetail({ params }: { params: Promise<{ slu
 
   if (!language) notFound();
 
+  // Define Language/Article Schema JSON-LD
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": `${language.name} Language & Culture | Visit Arewa`,
+    "description": language.description,
+    "image": [language.image],
+    "author": {
+      "@type": "Organization",
+      "name": "Visit Arewa",
+      "url": "https://visitarewa.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Visit Arewa",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://visitarewa.com/logo.png"
+      }
+    },
+    "datePublished": "2026-05-17"
+  };
+
   return (
     <main className="bg-[#020402] min-h-screen text-white font-sans selection:bg-green-500 selection:text-black">
+      {/* Schema.org Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* --- HERO SECTION (MATCHED TO EVENTS) --- */}
       <div className="relative h-[60vh] w-full overflow-hidden">

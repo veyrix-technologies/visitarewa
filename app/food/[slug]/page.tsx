@@ -56,8 +56,34 @@ export default async function FoodPage({ params }: any) {
     notFound();
   }
 
+  // Define Recipe Schema JSON-LD
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": item.name,
+    "image": [item.image],
+    "author": {
+      "@type": "Organization",
+      "name": "Visit Arewa",
+      "url": "https://visitarewa.com"
+    },
+    "datePublished": "2026-05-17",
+    "description": item.description,
+    "prepTime": "PT15M",
+    "cookTime": "PT30M",
+    "totalTime": "PT45M",
+    "recipeCategory": item.category,
+    "recipeCuisine": "Arewa",
+    "recipeIngredient": item.ingredients || []
+  };
+
   return (
     <main className="bg-[#020402] min-h-screen text-white font-sans selection:bg-green-500 selection:text-black">
+      {/* Schema.org Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* --- HERO SECTION --- */}
       <div className="relative h-[60vh] w-full overflow-hidden">
         <div className="relative w-full h-full">
