@@ -130,8 +130,7 @@ export default function EventsCalendarPage() {
         <div className="bg-green-900/10 border border-green-500/20 rounded-3xl p-12 text-center mt-20">
           <h3 className="text-2xl font-bold mb-4">Have an event?</h3>
           <p className="text-gray-400 mb-8 max-w-xl mx-auto">
-            Do you organize cultural, tech, or business events in Northern
-            Nigeria? Get listed on our official calendar.
+            Do you organize cultural, tech, or business events in Arewa? Get listed on our official calendar.
           </p>
           <a
             href="mailto:hello@visitarewa.com"

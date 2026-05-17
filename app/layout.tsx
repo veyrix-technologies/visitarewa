@@ -30,7 +30,7 @@ const rikafu = localFont({
 export const metadata: Metadata = {
   title: "Visit Arewa | Your Journey Into the Heart of Nigeria",
   description:
-    "Discover the breathtaking landscapes, rich heritage, and vibrant culture of Northern Nigeria. From the ancient walls of Kano to the rolling hills of Mambilla, experience the true spirit of Arewa.",
+    "Discover the breathtaking landscapes, rich heritage, and vibrant culture of Arewa. From the ancient walls of Kano to the rolling hills of Mambilla, experience the true spirit of Arewa.",
   keywords: [
     // Locations
     "Arewa",
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Visit Arewa | Your Journey Into the Heart of Nigeria",
     description:
-      "A digital archive showcasing the beauty, talent, and heritage of Northern Nigeria.",
+      "A digital archive showcasing the beauty, talent, and heritage of Arewa.",
     url: "https://visitarewa.com",
     siteName: "Visit Arewa",
     type: "website",
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Visit Arewa",
     description:
-      "The definitive guide to Northern Nigeria's heritage and beauty.",
+      "The definitive guide to Arewa's heritage and beauty.",
   },
   verification: {
     google: "s2loh9IkY006mUI7jaDsApM_M1cwja0J3AgtBrUDaEA",

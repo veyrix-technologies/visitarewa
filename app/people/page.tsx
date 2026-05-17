@@ -47,7 +47,7 @@ export default function PeoplePage() {
           </h1>
           <p className="text-xl text-gray-300">
             Meet the visionary leaders, artists, and innovators who are shaping
-            the future of Northern Nigeria across all sectors.
+            the future of Arewa across all sectors.
           </p>
         </div>
       </div>

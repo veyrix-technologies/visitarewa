@@ -7,7 +7,7 @@ import { dishes } from "@/lib/data";
 export const metadata = {
   title: "Culinary Heritage | Visit Arewa",
   description:
-    "Explore the authentic flavors, traditional recipes, and rich culinary history of Northern Nigeria.",
+    "Explore the authentic flavors, traditional recipes, and rich culinary history of Arewa.",
 };
 
 // Group items by category (Main Dish, Snack, Drink, etc.)
@@ -47,7 +47,7 @@ export default function FoodIndexPage() {
           </h1>
           <p className="text-xl text-gray-300">
             From the spicy kick of Kilishi to the comforting warmth of Tuwo.
-            Discover the recipes and stories behind the North's most beloved
+            Discover the recipes and stories behind Arewa's most beloved
             dishes.
           </p>
         </div>

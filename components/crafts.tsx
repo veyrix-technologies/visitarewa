@@ -19,7 +19,7 @@ export default function CraftsShowcase() {
       <div className="container mx-auto px-6 md:px-20 mb-16 flex justify-between items-start md:items-center">
         <div>
           <span className="text-green-500 font-bold tracking-widest text-sm uppercase mb-2 block">
-            Cultural Preservation
+            Living Heritage
           </span>
           <h2 className="text-4xl md:text-6xl font-rikafu">Our Forgotten Crafts</h2>
         </div>
@@ -113,7 +113,7 @@ export default function CraftsShowcase() {
                       Know a Forgotten Craft?
                     </h3>
                     <p className="text-gray-500 text-sm leading-relaxed group-hover:text-gray-400 transition-colors">
-                      Share your story and help preserve Arewa&apos;s endangered traditions for generations to come.
+                      Share your story and help keep Arewa&apos;s endangered traditions alive for generations to come.
                     </p>
                   </div>
                   <span className="text-green-500 text-sm font-bold border-b border-green-500/50 pb-0.5 group-hover:border-green-500 transition-colors">

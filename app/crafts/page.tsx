@@ -27,20 +27,15 @@ export default function CraftsPage() {
               <ArrowLeft size={18} />
               <span className="text-sm font-bold uppercase tracking-widest">Back to Home</span>
             </Link>
-            <div className="flex items-center gap-4 mb-6">
-              <div className="h-[2px] w-12 bg-green-500"></div>
-              <span className="text-green-500 font-bold tracking-widest text-sm uppercase">
-                Cultural Preservation
-              </span>
-            </div>
-            <h1 className="font-rikafu text-5xl md:text-7xl font-bold mb-8">
+
+            <h1 className="font-rikafu text-5xl md:text-7xl text-green-500 font-bold mb-8">
               Our Forgotten Crafts
             </h1>
             <p className="text-lg md:text-xl text-gray-300 max-w-3xl leading-relaxed">
               These are the stories of Arewa's most endangered traditions. They
               are fading, but they must not die. Through these pages, we
               celebrate the craftspeople keeping these arts alive and invite you
-              to help preserve them for generations to come.
+              to help keep them alive for generations to come.
             </p>
           </motion.div>
 
@@ -93,11 +88,10 @@ export default function CraftsPage() {
                       {/* Status + Featured badges */}
                       <div className="absolute top-6 left-6 flex gap-2">
                         <span
-                          className={`text-xs font-bold px-3 py-1 rounded-full shadow-lg ${
-                            craft.status === "Active"
+                          className={`text-xs font-bold px-3 py-1 rounded-full shadow-lg ${craft.status === "Active"
                               ? "bg-green-500 text-black"
                               : "bg-yellow-400 text-black"
-                          }`}
+                            }`}
                         >
                           {craft.status}
                         </span>

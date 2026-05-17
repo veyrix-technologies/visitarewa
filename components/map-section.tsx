@@ -35,7 +35,7 @@ function parseCoordinates(coordString: string): [number, number] | null {
 export default function MapSection() {
   const allItems = useMemo(() => {
     const items: any[] = [];
-    
+
     destinations.forEach((d) => {
       const coords = parseCoordinates(d.coordinates);
       if (coords) {
@@ -91,7 +91,7 @@ export default function MapSection() {
   return (
     <section className="bg-[#020402] text-white py-24 border-t border-white/5" id="map-section">
       <div className="container mx-auto px-6 md:px-20">
-        
+
         {/* Header Section */}
         <div className="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
           <div>
@@ -102,7 +102,7 @@ export default function MapSection() {
               </span>
             </div>
             <h2 className="text-4xl md:text-6xl font-rikafu leading-tight">
-              Map of the North
+              Map of Arewa
             </h2>
             <p className="text-gray-400 max-w-2xl mt-4 text-lg">
               Explore the rich cultural tapestry of Arewa geographically. From ancient crafts to bustling events, discover what makes each region unique.
@@ -113,13 +113,13 @@ export default function MapSection() {
             href="/map"
             className="flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-green-500 hover:text-black border border-white/10 hover:border-green-500 rounded-full transition-all text-sm font-bold tracking-widest uppercase shrink-0 group"
           >
-            Open Full Map 
+            Open Full Map
             <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
           </Link>
         </div>
 
         {/* Map Container */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

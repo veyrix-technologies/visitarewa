@@ -100,7 +100,7 @@ export default function CraftEditorialContent({ craft }: { craft: any }) {
                         className="object-cover group-hover:scale-105 transition-transform duration-1000"
                       />
                       <div className="absolute bottom-6 left-6 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
-                        <span className="text-[10px] font-bold uppercase tracking-widest text-green-400">Cultural Archive</span>
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-green-400">Cultural Memory</span>
                       </div>
                     </motion.div>
                   )}
@@ -113,7 +113,7 @@ export default function CraftEditorialContent({ craft }: { craft: any }) {
                   <div className="absolute top-0 right-0 p-8 opacity-10">
                     <QuoteIcon size={80} className="text-green-500" />
                   </div>
-                  <blockquote className="text-3xl md:text-4xl font-rikafu font-bold leading-tight text-white italic relative z-10">
+                  <blockquote className="text-2xl font-serif italic text-gray-100 leading-relaxed relative z-10">
                     &ldquo;{craft.quote}&rdquo;
                   </blockquote>
                 </div>
@@ -281,7 +281,7 @@ export default function CraftEditorialContent({ craft }: { craft: any }) {
         <section className="container mx-auto px-6 md:px-20 py-24 border-t border-white/5">
           <div className="flex items-center gap-4 mb-12">
             <div className="h-[1px] w-12 bg-green-500"></div>
-            <h3 className="text-3xl font-rikafu font-bold text-white">Visual Archive</h3>
+            <h3 className="text-3xl font-rikafu font-bold text-white">Visual Legacy</h3>
           </div>
           <GalleryPreview images={galleryImages.slice(Math.floor(storyChapters.length / 2))} />
         </section>
@@ -293,7 +293,7 @@ export default function CraftEditorialContent({ craft }: { craft: any }) {
           <div className="flex items-center justify-center gap-4 mb-6">
             <div className="h-[1px] w-8 bg-green-500"></div>
             <span className="text-green-500 font-bold tracking-widest text-sm uppercase">
-              Support Preservation
+              Champion the Craft
             </span>
             <div className="h-[1px] w-8 bg-green-500"></div>
           </div>
@@ -301,7 +301,7 @@ export default function CraftEditorialContent({ craft }: { craft: any }) {
             Know a forgotten craft?
           </h2>
           <p className="text-gray-300 text-lg mb-8">
-            Help preserve Arewa&apos;s endangered traditions by sharing your story with the world.
+            Know a craft that&apos;s being forgotten? Share its story and help keep Arewa&apos;s living traditions alive.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link

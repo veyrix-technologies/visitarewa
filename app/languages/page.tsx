@@ -7,7 +7,7 @@ import { languages } from "@/lib/data";
 export const metadata = {
   title: "Languages of Arewa | Visit Arewa",
   description:
-    "Discover the rich linguistic heritage of Northern Nigeria — from Hausa and Fulfulde to Kanuri, Tiv, Nupe, and Gbagyi.",
+    "Discover the rich linguistic heritage of Arewa — from Hausa and Fulfulde to Kanuri, Tiv, Nupe, and Gbagyi.",
 };
 
 export default function LanguagesPage() {
@@ -27,7 +27,7 @@ export default function LanguagesPage() {
             Languages of Arewa
           </h1>
           <p className="text-xl text-gray-300">
-            Discover the rich linguistic heritage of Northern Nigeria. From
+            Discover the rich linguistic heritage of Arewa. From
             the widely spoken Hausa to the distinct sounds of Tiv and Kanuri,
             explore the voices that shape our culture.
           </p>

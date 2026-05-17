@@ -30,7 +30,7 @@ export default function Manifesto() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-3xl md:text-5xl font-serif leading-tight text-gray-200"
         >
-          "The North is not just a place on the map. It is a tapestry woven with
+          "Arewa is not just a place on the map. It is a tapestry woven with
           <span className="text-white font-bold"> ancient history</span>,
           <span className="text-white font-bold"> breathtaking landscapes</span>
           , and

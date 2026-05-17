@@ -15,7 +15,7 @@ export default function ArewaLanguages() {
         <div className="mb-16 flex justify-between items-start md:items-center">
           <div>
             <span className="text-green-500 font-bold tracking-widest text-sm uppercase mb-2 block">
-              Languages of the North
+              Languages of Arewa
             </span>
             <h2 className="text-4xl md:text-6xl font-rikafu">Linguistic Heritage</h2>
           </div>

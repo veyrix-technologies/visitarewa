@@ -6,7 +6,7 @@ import CraftSubmissionForm from "@/components/CraftSubmissionForm";
 export const metadata = {
   title: "Share Your Craft | Visit Arewa",
   description:
-    "Know a forgotten craft? Submit your story and become part of Arewa's cultural preservation movement.",
+    "Know a forgotten craft? Submit your story and help keep Arewa's living traditions alive for generations to come.",
 };
 
 export default function CraftSubmitPage() {
@@ -34,8 +34,8 @@ export default function CraftSubmitPage() {
           </h1>
           <p className="text-xl text-gray-300 max-w-2xl">
             Know a forgotten craft? Have a story to share about a traditional
-            art? Submit your knowledge and become part of Arewa&apos;s cultural
-            preservation movement.
+            art? Submit your knowledge and help keep Arewa&apos;s living
+            traditions alive.
           </p>
         </div>
       </div>

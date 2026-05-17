@@ -48,7 +48,7 @@ export default function App() {
 
   return (
     <main className="bg-black w-full min-h-screen text-white selection:bg-green-500 selection:text-black">
-      {/* Custom curson */}
+      {/* Custom cursor */}
       <CustomCursor />
 
       <AnimatePresence mode="wait">
@@ -74,26 +74,25 @@ export default function App() {
 
           <Manifesto />
 
-          <section id="people">
-            <ArewaExcellence />
-          </section>
-
-          <section id="crafts">
-            <CraftsShowcase />
+          <section id="cuisine">
+            <ArewaCuisine />
           </section>
 
           <section id="languages">
             <ArewaLanguages />
           </section>
 
-          <section id="cuisine">
-            <ArewaCuisine />
+          <section id="crafts">
+            <CraftsShowcase />
           </section>
-
 
           {/* MAKE SURE THIS ID MATCHES THE LINK (#events) */}
           <section id="events">
             <ArewaEvents />
+          </section>
+
+          <section id="people">
+            <ArewaExcellence />
           </section>
 
           <section id="map">

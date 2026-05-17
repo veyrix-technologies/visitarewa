@@ -22,7 +22,7 @@ export default function ArewaCuisine() {
               Culinary Heritage
             </span>
             <h2 className="text-4xl md:text-5xl font-rikafu mt-2">
-              Tastes of the North
+              Tastes of Arewa
             </h2>
           </div>
 
@@ -31,19 +31,17 @@ export default function ArewaCuisine() {
               <div
                 key={dish.id}
                 onClick={() => setActiveDish(dish)}
-                className={`group cursor-pointer p-6 rounded-xl transition-all font-sans duration-300 border ${
-                  activeDish.id === dish.id
+                className={`group cursor-pointer p-6 rounded-xl transition-all font-sans duration-300 border ${activeDish.id === dish.id
                     ? "bg-white/5 border-green-500"
                     : "bg-transparent border-transparent hover:bg-white/5"
-                }`}
+                  }`}
               >
                 <div className="flex justify-between items-center mb-2">
                   <h3
-                    className={`text-xl font-bold ${
-                      activeDish.id === dish.id
+                    className={`text-xl font-bold ${activeDish.id === dish.id
                         ? "text-green-400"
                         : "text-white group-hover:text-gray-200"
-                    }`}
+                      }`}
                   >
                     {dish.name}
                   </h3>
@@ -80,7 +78,7 @@ export default function ArewaCuisine() {
 
           {/* --- NEW: MAIN MENU LINK --- */}
           <div>
-            <Link 
+            <Link
               href="/food"
               className="inline-flex text-sm items-center gap-2 px-8 py-3 rounded-full hover:bg-white/5 hover:text-green-500 border border-gray-500 bg-green-500 text-black   transition-all font-bold font-sans  tracking-wider"
             >

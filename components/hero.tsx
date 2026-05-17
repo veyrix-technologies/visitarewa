@@ -173,20 +173,20 @@ export default function HeroSection() {
           </a>
 
           {/* Other Links */}
-          <a href="#people" className="hover:text-green-400 transition">
-            People & Icons
-          </a>
-          <a href="#crafts" className="hover:text-green-400 transition">
-            Forgotten Crafts
+          <a href="#cuisine" className="hover:text-green-400 transition">
+            Cuisine
           </a>
           <a href="#languages" className="hover:text-green-400 transition">
             Languages
           </a>
-          <a href="#cuisine" className="hover:text-green-400 transition">
-            Cuisine
+          <a href="#crafts" className="hover:text-green-400 transition">
+            Forgotten Crafts
           </a>
           <a href="#events" className="hover:text-green-400 transition">
-            Events 2026
+            Events & Festivals
+          </a>
+          <a href="#people" className="hover:text-green-400 transition">
+            People & Icons
           </a>
         </div>
 
@@ -275,25 +275,11 @@ export default function HeroSection() {
                 Destinations
               </a>
               <a
-                href="#people"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-3xl font-bold text-white hover:text-green-500 transition-colors duration-300"
-              >
-                People & Icons
-              </a>
-              <a
-                href="#crafts"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-3xl font-bold text-white hover:text-green-500 transition-colors duration-300"
-              >
-                Forgotten Crafts
-              </a>
-              <a
                 href="#cuisine"
                 onClick={() => setIsMenuOpen(false)}
                 className="text-3xl font-bold text-white hover:text-green-500 transition-colors duration-300"
               >
-                Culinary Guide
+                Cuisine
               </a>
               <a
                 href="#languages"
@@ -303,11 +289,25 @@ export default function HeroSection() {
                 Languages
               </a>
               <a
+                href="#crafts"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-3xl font-bold text-white hover:text-green-500 transition-colors duration-300"
+              >
+                Forgotten Crafts
+              </a>
+              <a
                 href="#events"
                 onClick={() => setIsMenuOpen(false)}
                 className="text-3xl font-bold text-white hover:text-green-500 transition-colors duration-300"
               >
-                Events 2026
+                Events & Festivals
+              </a>
+              <a
+                href="#people"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-3xl font-bold text-white hover:text-green-500 transition-colors duration-300"
+              >
+                People & Icons
               </a>
             </nav>
           </motion.div>

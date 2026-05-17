@@ -126,7 +126,7 @@ export default async function FoodPage({ params }: any) {
                 className="absolute top-4 right-4 text-green-500/30"
                 size={32}
               />
-              <blockquote className="text-2xl font-rikafu italic text-gray-100 leading-relaxed">
+              <blockquote className="text-2xl font-serif italic text-gray-100 leading-relaxed">
                 "{item.quote}"
               </blockquote>
               <p className="text-green-400 font-bold mt-4">

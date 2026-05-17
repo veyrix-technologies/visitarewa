@@ -37,7 +37,7 @@ export default function Footer() {
               />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Showcasing the beauty, excellence, and heritage of Northern Nigeria to
+              Showcasing the beauty, excellence, and heritage of Arewa to
               the world. A digital archive of our stories.
             </p>
             {/* <div className="flex items-center gap-2 text-xs text-green-500 font-mono uppercase tracking-widest mt-4 font-bold">
@@ -62,18 +62,10 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="#people"
+                  href="#cuisine"
                   className="hover:text-green-500 transition-colors block"
                 >
-                  People & Heritage
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#crafts"
-                  className="hover:text-green-500 transition-colors block"
-                >
-                  Forgotten Crafts
+                  Cuisine
                 </a>
               </li>
               <li>
@@ -86,10 +78,10 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="#cuisine"
+                  href="#crafts"
                   className="hover:text-green-500 transition-colors block"
                 >
-                  Culinary Delights
+                  Forgotten Crafts
                 </a>
               </li>
               <li>
@@ -98,6 +90,14 @@ export default function Footer() {
                   className="hover:text-green-500 transition-colors block"
                 >
                   Events & Festivals
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#people"
+                  className="hover:text-green-500 transition-colors block"
+                >
+                  People & Icons
                 </a>
               </li>
             </ul>
