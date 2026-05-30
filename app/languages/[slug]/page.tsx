@@ -130,9 +130,11 @@ export default async function LanguageDetail({ params }: { params: Promise<{ slu
             {/* Overview */}
             <div className="prose prose-lg prose-invert text-gray-400">
               <h3 className="text-2xl text-white font-bold mb-4">About the Language</h3>
-              <p className="text-xl leading-8 text-gray-300">
-                {language.fullDescription}
-              </p>
+              {language.fullDescription.split("\n\n").map((paragraph, index) => (
+                <p key={index} className="text-xl leading-8 text-gray-300 mb-6 last:mb-0">
+                  {paragraph}
+                </p>
+              ))}
             </div>
 
             {/* History */}

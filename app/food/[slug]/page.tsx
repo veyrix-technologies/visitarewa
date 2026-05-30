@@ -224,7 +224,11 @@ export default async function FoodPage({ params }: any) {
               {/* INTERACTIVE ACTIONS */}
               <div className="space-y-3">
                 {/* Primary: Watch Video */}
-                <FoodActionButtons videoUrl={item.video} />
+                <FoodActionButtons
+                  videoUrl={item.video}
+                  title={item.name}
+                  creator={(item as any).videoCreator}
+                />
 
                 {/* Secondary: View Menu */}
                 <Link

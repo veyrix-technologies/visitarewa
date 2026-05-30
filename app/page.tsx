@@ -13,6 +13,7 @@ import ArewaLanguages from "@/components/languages";
 import CraftsShowcase from "@/components/crafts";
 import CustomCursor from "@/components/CustomCursor";
 import MapSection from "@/components/map-section";
+import ArewaExplorers from "@/components/explorers";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -93,6 +94,10 @@ export default function App() {
 
           <section id="people">
             <ArewaExcellence />
+          </section>
+
+          <section id="explorers">
+            <ArewaExplorers />
           </section>
 
           <section id="map">

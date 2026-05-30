@@ -188,6 +188,9 @@ export default function HeroSection() {
           <a href="#people" className="hover:text-green-400 transition">
             People & Icons
           </a>
+          <a href="#explorers" className="hover:text-green-400 transition">
+            Explorers
+          </a>
         </div>
 
         <div className="flex items-center gap-4">
@@ -308,6 +311,13 @@ export default function HeroSection() {
                 className="text-3xl font-bold text-white hover:text-green-500 transition-colors duration-300"
               >
                 People & Icons
+              </a>
+              <a
+                href="#explorers"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-3xl font-bold text-white hover:text-green-500 transition-colors duration-300"
+              >
+                Explorers
               </a>
             </nav>
           </motion.div>

@@ -10,23 +10,17 @@ import {
   MapPin,
   ArrowUpRight,
   Play,
-  X,
   ArrowRight,
 } from "lucide-react";
 import { events } from "@/lib/data";
+import VideoModal from "@/components/VideoModal";
 
-// Helper to extract YouTube ID
-const getYouTubeId = (url: string) => {
-  if (!url) return null;
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-  const match = url.match(regExp);
-  return match && match[2].length === 11 ? match[2] : null;
-};
+
 
 export default function ArewaEvents() {
   const navigator = useRouter();
   const targetRef = useRef(null);
-  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+  const [activeEvent, setActiveEvent] = useState<any>(null);
 
   return (
     <section
@@ -62,67 +56,24 @@ export default function ArewaEvents() {
               onClick={() => {
                 navigator.push(`/events/${event.slug}`);
               }}
-              onWatch={() => setSelectedVideo(event.video)}
+              onWatch={() => setActiveEvent(event)}
             />
           ))}
         </div>
       </div>
 
-      {/* --- VIDEO MODAL OVERLAY --- */}
-      <AnimatePresence>
-        {selectedVideo && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 md:p-10"
-            onClick={() => setSelectedVideo(null)}
-          >
-            <button
-              onClick={() => setSelectedVideo(null)}
-              className="absolute top-6 right-6 p-2 bg-white/10 rounded-full hover:bg-white/20 transition text-white z-50"
-            >
-              <X size={32} />
-            </button>
-
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="w-full max-w-5xl aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-black relative"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <Suspense
-                fallback={
-                  <div className="w-full h-full bg-black/50 flex items-center justify-center">
-                    <div className="animate-spin text-green-500">
-                      Loading...
-                    </div>
-                  </div>
-                }
-              >
-                <iframe
-                  loading="lazy"
-                  className="w-full h-full"
-                  src={`https://www.youtube.com/embed/${getYouTubeId(
-                    selectedVideo
-                  )}?autoplay=1&rel=0`}
-                  title="Event Video"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </Suspense>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <VideoModal
+        isOpen={!!activeEvent}
+        onClose={() => setActiveEvent(null)}
+        videoUrl={activeEvent?.video || ""}
+        title={activeEvent?.name}
+        creator={activeEvent?.videoCreator}
+      />
     </section>
   );
 }
 
-// Sub-component
 function EventCard({ event, index, onWatch, onClick }: any) {
-  const videoId = getYouTubeId(event.video);
 
   return (
     <motion.div

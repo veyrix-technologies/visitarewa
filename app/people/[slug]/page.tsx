@@ -128,9 +128,11 @@ export default async function PersonPage({ params }: any) {
               <h3 className="text-2xl text-white font-bold mb-4">
                 Who They Are
               </h3>
-              <p className="text-xl leading-8 text-gray-300">
-                {person.fullDescription}
-              </p>
+              {person.fullDescription.split("\n\n").map((paragraph, index) => (
+                <p key={index} className="text-xl leading-8 text-gray-300 mb-6 last:mb-0">
+                  {paragraph}
+                </p>
+              ))}
             </div>
 
             {/* Quote Section */}

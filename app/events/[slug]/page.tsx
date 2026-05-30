@@ -145,9 +145,11 @@ export default async function EventPage({ params }: any) {
               <h3 className="text-2xl text-white font-bold mb-4">
                 Event Overview
               </h3>
-              <p className="text-xl leading-8 text-gray-300">
-                {event.fullDescription}
-              </p>
+              {event.fullDescription.split("\n\n").map((paragraph, index) => (
+                <p key={index} className="text-xl leading-8 text-gray-300 mb-6 last:mb-0">
+                  {paragraph}
+                </p>
+              ))}
             </div>
 
             {/* Highlights */}
@@ -218,7 +220,11 @@ export default async function EventPage({ params }: any) {
               <div className="h-[1px] bg-white/10 my-4"></div>
 
               {/* INTERACTIVE ACTIONS (New Component) */}
-              <EventActionButtons videoUrl={event.video} />
+              <EventActionButtons
+                videoUrl={event.video}
+                title={event.name}
+                creator={(event as any).videoCreator}
+              />
               
             </div>
           </div>

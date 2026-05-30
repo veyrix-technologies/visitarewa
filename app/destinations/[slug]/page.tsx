@@ -151,9 +151,11 @@ export default async function DestinationPage({ params }: any) {
               <h3 className="text-2xl text-white font-bold mb-4">
                 About this Destination
               </h3>
-              <p className="text-xl leading-8 text-gray-300">
-                {destination.fullDescription}
-              </p>
+              {destination.fullDescription.split("\n\n").map((paragraph, index) => (
+                <p key={index} className="text-xl leading-8 text-gray-300 mb-6 last:mb-0">
+                  {paragraph}
+                </p>
+              ))}
             </div>
 
             {/* Highlights Grid */}

@@ -87,7 +87,7 @@ export const er = [
 export const events = [
     {
         id: 1,
-        status: "Upcoming",
+        status: "Ongoing",
         slug: "kano-durbar",
         name: "Kano Durbar Festival",
         title: "Grand Durbar Festival",
@@ -97,8 +97,9 @@ export const events = [
         shortDescription: "A 500-year-old tradition involving thousands of horsemen in colorful regalia.",
         fullDescription: "The Kano Durbar (Hawan Daushe) is a breathtaking equestrian parade and one of the most spectacular cultural displays in West Africa. Dating back over 500 years to the reign of Muhammadu Rumfa in the 14th century, the Durbar was originally a military parade to showcase the cavalry's readiness for war and to pledge allegiance to the Emir. Today, it serves as a powerful celebration of Northern Nigerian heritage, occurring annually during the two major Muslim festivals—Eid al-Fitr and Eid al-Adha.\n\nThe festival transforms the ancient city of Kano. The air reverberates with the thunderous sound of thousands of hooves, traditional Kakaki (long trumpets), and the deep boom of ceremonial gun salutes. Noblemen, district heads, and royal guards ride spectacularly adorned horses, dressed in extravagant turbans, flowing robes, and chainmail armor reminiscent of the medieval Sahelian empires.\n\nThe climax of the Durbar, known as the 'Jahi', sees horsemen charging at full speed towards the Emir, pulling their mounts to an abrupt halt just inches away to raise their swords in a salute of loyalty. Witnessing the Durbar is like stepping back in time; it is a profound testament to the enduring majesty of the Hausa-Fulani aristocracy.",
         image: "/images/hawa-3.jpg",
-        video: "https://www.youtube.com/watch?v=FepSLXg1Eiw",
-        gallery: ["/images/hawa-1.webp", "/images/hawa-2.webp", "/images/hawa-3.jpg", "/images/hawa-3.webp"],
+        video: "https://www.youtube.com/watch?v=jhe-DV8xRtk",
+        videoCreator: "Nonso Okoye",
+        gallery: ["/images/hawa-1.webp", "/images/hawa-2.webp", "/images/hawa-3.jpg", "/images/hawa-3.webp", "/images/hawa-5.webp", "/images/hawa-6.webp", "/images/hawa-7.webp", "/images/hawa-8.webp", "/images/hawa-9.webp", "/images/hawa-10.webp", "/images/hawa-11.webp",],
         highlights: ["Royal Procession", "Traditional Gun Salutes", "Horse Riding Skills", "Cultural Music & Dance"],
         coordinates: "11.9964° N, 8.5167° E"
     },
@@ -115,6 +116,7 @@ export const events = [
         fullDescription: "The Argungu International Fishing and Cultural Festival is a massive, highly anticipated four-day event in Kebbi State. The festival traces its roots back to 1934, when it was inaugurated to mark the end of centuries-old hostilities between the Sokoto Caliphate and the Kebbi Kingdom. Today, it has grown into a major international tourist attraction that celebrates the agricultural and aquatic prosperity of the region.\n\nThe absolute spectacle of the festival occurs on the final day along the banks of the Matan Fada river. At the sound of a ceremonial gunshot, over 30,000 fishermen, armed only with traditional hand-woven nets (homa) and large gourds, plunge simultaneously into the muddy waters. The river instantly becomes a chaotic, thrilling frenzy of splashing water and cheering spectators as the men compete to catch the largest fish, typically massive Nile Perch that can weigh upwards of 70 kilograms.\n\nBeyond the fishing competition, the festival is a multi-faceted cultural jamboree featuring wild duck catching, bare-hand fishing, local wrestling (Kokawa), agricultural exhibitions, and pulsating traditional music. It is a true celebration of life and sustenance in the riverine savannah.",
         image: "/images/argungu-4.webp",
         video: "https://www.youtube.com/watch?v=oKsRcD0fJCU",
+        videoCreator: "Teo-Inspiro International",
         gallery: ["/images/argungu-2.webp", "/images/argungu-3.webp", "/images/argungu-4.webp", "/images/argungu-5.jpg", "/images/argungu-6.jpg", "/images/argungu-7.jpg", "/images/argungu-8.jpg", "/images/argungu-8.webp"],
         highlights: ["Grand Fishing Competition", "Wild Duck Catching", "Local Wrestling", "Cultural Night"],
         coordinates: "12.7500° N, 4.5333° E"
@@ -132,6 +134,7 @@ export const events = [
         fullDescription: "Dambe is an ancient form of martial arts and traditional boxing associated with the Hausa butchers' guild (the Kassawa). Historically, young men from different butcher castes would travel from village to village to compete during the harvest festivals, fighting for honor, bragging rights, and the attention of local women. Today, the Dambe Warriors League has modernized this raw, visceral sport, bringing it from sandy village squares into global arenas with professional rankings and massive online followings.\n\nThe mechanics of Dambe are unique and intense. Fighters wrap their dominant arm tightly in thick cord, turning it into a devastating weapon known as the 'spear', while their un-wrapped lead hand serves as the 'shield' to deflect blows. The goal is simple: score a 'kill' by making the opponent's hand, knee, or back touch the ground. There are no rounds based on time; a round ends when a fighter falls, a hold is broken, or a fighter raises his hand to concede.\n\nThe atmosphere at a Dambe Warriors League match is electric. Accompanied by rhythmic, hypnnotic drumming and praise singing, fighters enter the arena covered in traditional amulets (laya) believed to grant them supernatural strength. It is a breathtaking display of raw courage, skill, and the preservation of indigenous African combat sports.",
         image: "/images/dambe-3.jpg",
         video: "https://www.youtube.com/watch?v=DPaTu8C3Xi8",
+        videoCreator: "Dambe Warriors",
         loopVideo: "https://www.youtube.com/watch?v=DPaTu8C3Xi8",
         gallery: ["/images/dambe-1.webp", "/images/dambe-1.jpg", "/images/dambe-2.jpg", "/images/dambe-3.jpg", "/images/dambe-4.jpg"],
         highlights: ["Lightweight & Heavyweight Bouts", "Traditional Drumming", "Knockout Highlights", "SuperFight Championships"],
@@ -149,7 +152,8 @@ export const events = [
         shortDescription: "A vibrant celebration of urban culture, music, and lifestyle in the heart of the city.",
         fullDescription: "City Fiesta represents the modern, dynamic, and youthful pulse of Northern Nigeria. Moving away from traditional heritage festivals, this premier urban lifestyle event focuses heavily on contemporary entertainment, bringing together the absolute best of Afrobeats, hip-hop, urban art, and modern cuisine. It has rapidly grown into the ultimate gathering for young creatives, tech innovators, and lifestyle enthusiasts in the region.\n\nThe event serves as a massive incubator and showcase for local talent. Throughout the two-day festival, attendees are treated to high-octane live performances from both established superstars and rising indie artists. The sprawling venue is sectioned into various interactive zones: a food court offering everything from gourmet Suya to fusion street food, a vendor exhibition area highlighting local streetwear and tech startups, and an immersive art installation space.\n\nMore than just a party, City Fiesta is a networking hub. It is where the modern identity of the Northern Nigerian youth is expressed freely—a beautiful collision of deep-rooted cultural pride and forward-thinking urban swagger. As the sun sets, the neon lights turn on, and the city truly comes alive.",
         image: "/images/city-fiesta-1.jpeg",
-        video: "https://www.youtube.com/watch?v=xijBIo6KYj8",
+        video: "https://www.youtube.com/watch?v=aP1-1zZ5_00",
+        videoCreator: "TrustTV News",
         gallery: ["/images/city-fiesta-1.jpeg", "/images/city-fiesta-2.jpeg", "/images/city-fiesta-3.jpeg", "/images/city-fiesta-4.jpeg", "/images/city-fiesta-5.jpeg", "/images/city-fiesta-6.jpeg", "/images/city-fiesta-7.jpeg", "/images/city-fiesta-8.jpg", "/images/city-fiesta-9.jpg", "/images/city-fiesta-10.jpg", "/images/city-fiesta-11.jpg", "/images/city-fiesta-12.jpg", "/images/city-fiesta-13.jpg", "/images/city-fiesta-14.jpg", "/images/city-fiesta-15.jpg", "/images/city-fiesta-16.jpg"],
         highlights: ["Live Musical Performances", "Food & Vendor Exhibitions", "Cultural Showcases", "Networking & Lifestyle"],
         coordinates: "10.2833° N, 11.1667° E"
@@ -166,7 +170,8 @@ export const events = [
         shortDescription: "The premier literary and arts festival in Northern Nigeria.",
         fullDescription: "The Kaduna Book and Arts Festival (KABAFEST) stands as a monumental intellectual beacon in Northern Nigeria. Inaugurated as the very first annual literary and arts festival in the region, KABAFEST was created to change the narrative about Northern Nigeria, shifting the focus towards its rich intellectual history, diverse literary voices, and burgeoning contemporary art scene.\n\nOver the course of four days, the festival brings together an incredible assembly of acclaimed novelists, poets, filmmakers, visual artists, and thinkers from across the continent. The programming is intensely thought-provoking, featuring panel discussions that tackle complex socio-political themes, intimate booklogues with award-winning authors, and vibrant poetry slams that draw massive crowds. \n\nBeyond literature, KABAFEST serves as a vibrant canvas for visual artistry, hosting pop-up galleries and screening independent African films. It is a safe, stimulating space for dialogue, challenging stereotypes, and celebrating the power of the written word. For anyone passionate about African literature and the creative economy, KABAFEST is an unmissable intellectual pilgrimage.",
         image: "/images/kabafest-2.jpg",
-        video: "https://www.youtube.com/watch?v=_R9pZ8oWRv0",
+        video: "https://www.youtube.com/watch?v=t_oXpYSHq7E",
+        videoCreator: "Kabafest",
         gallery: ["/images/kabafest-1.jpg", "/images/kabafest-2.jpg", "/images/kabafest-3.jpg"],
         highlights: ["Booklogues", "Art Exhibitions", "Poetry Nights", "Film Screenings"],
         coordinates: "10.5105° N, 7.4165° E"
@@ -340,6 +345,7 @@ export const dishes = [
         quote: "Suya is not just eaten; it is experienced. The spice hits you first, then the smoke, then the memories of vibrant Arewa nights.",
         image: "/images/suya.jpg",
         video: "https://www.youtube.com/watch?v=F-P0t3YubII",
+        videoCreator: "Rozy's Kitchen",
         category: "Street Food",
         calories: "350 kcal",
         stats: ["Spicy", "Smoky", "Street Food"],
@@ -354,6 +360,7 @@ export const dishes = [
         quote: "When the Tuwo is soft and the soup is rich, even a stranger feels at home. It is the ultimate symbol of Northern hospitality.",
         image: "/images/tuwo.jpg",
         video: "https://www.youtube.com/watch?v=XCNacLN9pY0",
+        videoCreator: "Ify's Kitchen",
         category: "Main Dish",
         calories: "450 kcal",
         stats: ["Traditional", "Hearty", "Dinner"],
@@ -367,7 +374,8 @@ export const dishes = [
         description: "In the sweltering heat of the Northern Nigerian afternoon, nothing provides relief quite like a calabash of cold Fura da Nono. This ancient, refreshing beverage is a masterful blend of two distinct elements: 'Nono', which is rich, locally fermented cow's milk, and 'Fura', spiced, boiled dough balls made from millet.\n\nFor centuries, the preparation and sale of Fura da Nono have been the domain of the Fulani pastoralist women, who hawk the drink in beautifully decorated calabashes balanced gracefully on their heads. The millet dough is typically infused with potent spices like cloves, ginger, and sometimes a hint of chili, which gives the drink a surprising, delightful kick that perfectly cuts through the sourness of the fermented milk.\n\nTo prepare it, the vendor traditionally uses a small wooden ladle to mash the Fura balls directly into the cold Nono, mixing it until it forms a thick, creamy, and highly nutritious smoothie. Modern variations might include a dash of sugar or crushed ice, but the authentic, earthy taste of the Savannah remains the same.",
         quote: "Cool as the evening breeze, rich as our heritage. A drink crafted by hands that know the ancient rhythm of the calabash.",
         image: "/images/fura.png",
-        video: "https://www.youtube.com/watch?v=BEuHsh0Uh6A",
+        video: "https://www.youtube.com/watch?v=Ku9WqM6dS3k",
+        videoCreator: "Faizah Imasa",
         category: "Drink",
         calories: "180 kcal",
         stats: ["Refreshing", "Dairy", "Sweet"],
@@ -382,6 +390,7 @@ export const dishes = [
         quote: "Golden pockets of joy that melt in your mouth. A morning without Masa is like a sky without the sun—incomplete.",
         image: "/images/masa.jpg",
         video: "https://www.youtube.com/watch?v=yt7upym4gDM",
+        videoCreator: "Life With Rozy",
         category: "Breakfast",
         calories: "200 kcal",
         stats: ["Breakfast", "Fermented", "Soft"],
@@ -597,4 +606,168 @@ export const crafts = [
     //     coordinates: "11.0667° N, 7.7000° E"
     // }
 ];
+
+
+export interface ExplorerContent {
+    id: number;
+    title: string;
+    type: "video" | "article" | "gallery";
+    thumbnail: string;
+    link: string;
+    description: string;
+    date?: string;
+    locationFeatured?: string;
+}
+
+export interface Explorer {
+    id: number;
+    slug: string;
+    name: string;
+    title: string;
+    role: string;
+    origin: string;
+    image: string;
+    shortDescription: string;
+    fullDescription: string;
+    quote?: string;
+    socials?: {
+        twitter?: string;
+        instagram?: string;
+        youtube?: string;
+        linkedin?: string;
+        website?: string;
+    };
+    createdContent: ExplorerContent[];
+}
+
+export const explorers: Explorer[] = [
+    {
+        id: 1,
+        slug: "ahmad-bello",
+        name: "Ahmad Bello",
+        title: "AHMAD BELLO",
+        role: "Travel Filmmaker & Photographer",
+        origin: "Kano, Nigeria",
+        image: "/images/ahmad_profile.png",
+        shortDescription: "A visual storyteller capturing the soul of Northern Nigeria, from the ancient city walls of Kano to the misty hills of Taraba.",
+        fullDescription: "Ahmad Bello is a documentary filmmaker and travel photographer whose work focuses on reclaiming the narrative of Northern Nigeria. Born and raised in Kano, Ahmad started out using a basic smartphone to capture street photography in the Kurmi Market. Today, his high-production-value video logs and striking photography series highlight the beauty, warmth, and complex history of the region. He travels off-the-beaten-path to capture landscapes that many Nigerians don't even know exist, bringing Arewa's stories to a global audience.",
+        quote: "Through the lens, I see a side of Arewa that words can never fully capture. It is vibrant, historic, and resilient.",
+        socials: {
+            instagram: "https://instagram.com/ahmad_bello_explores",
+            youtube: "https://youtube.com/c/AhmadBelloExplores",
+            twitter: "https://twitter.com/ahmad_explores"
+        },
+        createdContent: [
+            {
+                id: 101,
+                title: "Documenting the Ancient Gates of Kano",
+                type: "video",
+                thumbnail: "/images/hawa-3.jpg",
+                link: "https://www.instagram.com/reel/DYxaQ-IzvGE/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+                description: "A deep dive into the history, military architecture, and current state of the centuries-old mud gates of Kano's ancient city wall.",
+                date: "April 12, 2026",
+                locationFeatured: "Kano, Nigeria"
+            },
+            {
+                id: 102,
+                title: "Mambilla: The Europe of Nigeria",
+                type: "gallery",
+                thumbnail: "/images/mambilla.jpg",
+                link: "/destinations/mambilla-plateau",
+                description: "A breathtaking photography collection showcasing the lush rolling green hills, tea plantations, and cool highlands of the Mambilla Plateau.",
+                date: "March 5, 2026",
+                locationFeatured: "Taraba, Nigeria"
+            },
+            {
+                id: 103,
+                title: "Architecture of Kajuru Castle",
+                type: "article",
+                thumbnail: "/images/kajuru.jpg",
+                link: "/destinations/kajuru-castle",
+                description: "A photographic and historical analysis of Kaduna's Bavarian medieval-style castle perched atop the savannah hills.",
+                date: "May 20, 2026",
+                locationFeatured: "Kaduna, Nigeria"
+            }
+        ]
+    },
+    {
+        id: 2,
+        slug: "fatima-yusuf",
+        name: "Fatima Yusuf",
+        title: "FATIMA YUSUF",
+        role: "Travel Writer & Anthropologist",
+        origin: "Kaduna, Nigeria",
+        image: "/images/fatima_profile.png",
+        shortDescription: "A writer documenting the oral histories, culinary arts, and endangered crafts of the diverse peoples of Arewa.",
+        fullDescription: "Fatima Yusuf is a travel writer and cultural anthropologist who believes that travel is a medium for preservation. Based in Kaduna, she spends her time living with local communities across the Northern states, documenting their traditional recipes, dialects, and crafts. Her writings bridge the gap between academic research and accessible travel logs, urging the younger generation to protect their cultural inheritance before it vanishes under the pressure of modernization.",
+        quote: "Our culture is not static; it lives in the recipes we cook, the languages we speak, and the crafts we weave with our hands.",
+        socials: {
+            twitter: "https://twitter.com/fatima_y_writes",
+            instagram: "https://instagram.com/fatima_y_culturalist",
+            website: "https://fatimayusuf.com"
+        },
+        createdContent: [
+            {
+                id: 201,
+                title: "The Vanishing Fiber Weavers of Jigawa",
+                type: "article",
+                thumbnail: "/images/crafts/woven-3.jpg",
+                link: "/crafts/forgotten-crafts-jigawa",
+                description: "An intimate written piece capturing the daily lives of Jigawa's last traditional mat weavers and their fight against plastic alternatives.",
+                date: "May 15, 2026",
+                locationFeatured: "Jigawa, Nigeria"
+            },
+            {
+                id: 202,
+                title: "Culinary Routes: How Fura da Nono is Crafted",
+                type: "video",
+                thumbnail: "/images/fura.png",
+                link: "https://www.youtube.com/watch?v=Ku9WqM6dS3k",
+                description: "A short documentary film tracing the journey of millet and fermented milk from Fulani pastoralist camps to city calabashes.",
+                date: "Feb 18, 2026",
+                locationFeatured: "Kano, Nigeria"
+            }
+        ]
+    },
+    {
+        id: 3,
+        slug: "kabir-ibrahim",
+        name: "Kabir Ibrahim",
+        title: "KABIR IBRAHIM",
+        role: "Wildlife & Safari Blogger",
+        origin: "Bauchi, Nigeria",
+        image: "/images/kabir_profile.png",
+        shortDescription: "A nature enthusiast and wildlife blogger dedicated to showcasing the natural reserves, mountains, and parks of Northern Nigeria.",
+        fullDescription: "Kabir Ibrahim is a former park ranger turned nature blogger and wildlife guide. Hailing from Bauchi, he has spent over a decade trekking through Yankari Game Reserve, climbing the peaks of Niger, and exploring the waterfalls of the Middle Belt. Through his blog 'Savannah Explorer', he provides practical guides, safety tips, and ecological insights for eco-tourists looking to experience the wild side of Arewa.",
+        quote: "Arewa is blessed with wild spaces that can heal the soul. We just need to step outside and explore them responsibly.",
+        socials: {
+            instagram: "https://instagram.com/savannah_explorer",
+            youtube: "https://youtube.com/c/SavannahExplorer",
+            linkedin: "https://linkedin.com/in/kabir-ibrahim-wildlife"
+        },
+        createdContent: [
+            {
+                id: 301,
+                title: "Conquering Zuma Rock: A Hiker's Journey",
+                type: "video",
+                thumbnail: "/images/zuma.webp",
+                link: "https://www.youtube.com/watch?v=64_F2D4k9sQ",
+                description: "A thrilling video guide showing the approach, paths, and breathtaking aerial views from the peak of Zuma Rock.",
+                date: "March 22, 2026",
+                locationFeatured: "Niger, Nigeria"
+            },
+            {
+                id: 302,
+                title: "Trekking with Elephants in Yankari",
+                type: "article",
+                thumbnail: "/images/yankari.jpg",
+                link: "/destinations/yankari-game-reserve",
+                description: "A detailed guide on tracking elephant herds in Yankari, eco-lodge reviews, and swimming in the Wikki Warm Springs.",
+                date: "January 10, 2026",
+                locationFeatured: "Bauchi, Nigeria"
+            }
+        ]
+    }
+];
+
 

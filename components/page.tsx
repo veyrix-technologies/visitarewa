@@ -41,7 +41,11 @@ export default function LanguageDetail({ params }: { params: { slug: string } })
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div className="md:col-span-2 space-y-6">
             <h2 className="text-2xl font-bold text-white mb-4 border-b border-white/10 pb-4">About the Language</h2>
-            <p className="text-gray-300 text-lg leading-relaxed">{language.fullDescription}</p>
+            {language.fullDescription.split("\n\n").map((paragraph, index) => (
+              <p key={index} className="text-gray-300 text-lg leading-relaxed mb-6 last:mb-0">
+                {paragraph}
+              </p>
+            ))}
           </div>
 
           <div className="space-y-8 bg-zinc-900 border border-white/10 p-8 rounded-2xl h-fit">
