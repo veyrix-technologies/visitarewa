@@ -100,14 +100,14 @@ export default function Footer() {
                   People & Icons
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a
                   href="#explorers"
                   className="hover:text-green-500 transition-colors block"
                 >
                   The Explorers
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
 
@@ -162,7 +162,7 @@ export default function Footer() {
               </a>
               .
             </p>
-            <p className="flex items-center gap-1 flex-wrap justify-center md:justify-start">
+            {/* <p className="flex items-center gap-1 flex-wrap justify-center md:justify-start">
               This project is open source.
               <a
                 target="_blank"
@@ -172,7 +172,7 @@ export default function Footer() {
               >
                 Contribute on GitHub <Github size={14} />
               </a>
-            </p>
+            </p> */}
           </div>
 
           <div className="flex gap-6">

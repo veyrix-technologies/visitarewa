@@ -188,9 +188,9 @@ export default function HeroSection() {
           <a href="#people" className="hover:text-green-400 transition">
             People & Icons
           </a>
-          <a href="#explorers" className="hover:text-green-400 transition">
+          {/* <a href="#explorers" className="hover:text-green-400 transition">
             Explorers
-          </a>
+          </a> */}
         </div>
 
         <div className="flex items-center gap-4">
