@@ -96,9 +96,9 @@ export default function App() {
             <ArewaExcellence />
           </section>
 
-          {/* <section id="explorers">
+          <section id="explorers">
             <ArewaExplorers />
-          </section> */}
+          </section>
 
           <section id="map">
             <MapSection />

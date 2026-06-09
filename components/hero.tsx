@@ -164,7 +164,7 @@ export default function HeroSection() {
         </div>
 
         <div className="hidden md:flex gap-8 text-sm font-medium text-gray-200">
-          {/* Active Link Style (Orange underline) */}
+          {/* Active Link Style (Green underline) */}
           <a
             href="#destinations"
             className="text-white border-b-2 border-green-500 pb-1 font-bold"
@@ -188,9 +188,9 @@ export default function HeroSection() {
           <a href="#people" className="hover:text-green-400 transition">
             People & Icons
           </a>
-          {/* <a href="#explorers" className="hover:text-green-400 transition">
+          <a href="#explorers" className="hover:text-green-400 transition">
             Explorers
-          </a> */}
+          </a>
         </div>
 
         <div className="flex items-center gap-4">

@@ -643,50 +643,80 @@ export interface Explorer {
 export const explorers: Explorer[] = [
     {
         id: 1,
-        slug: "ahmad-bello",
-        name: "Ahmad Bello",
-        title: "AHMAD BELLO",
-        role: "Travel Filmmaker & Photographer",
-        origin: "Kano, Nigeria",
-        image: "/images/ahmad_profile.png",
-        shortDescription: "A visual storyteller capturing the soul of Northern Nigeria, from the ancient city walls of Kano to the misty hills of Taraba.",
-        fullDescription: "Ahmad Bello is a documentary filmmaker and travel photographer whose work focuses on reclaiming the narrative of Northern Nigeria. Born and raised in Kano, Ahmad started out using a basic smartphone to capture street photography in the Kurmi Market. Today, his high-production-value video logs and striking photography series highlight the beauty, warmth, and complex history of the region. He travels off-the-beaten-path to capture landscapes that many Nigerians don't even know exist, bringing Arewa's stories to a global audience.",
-        quote: "Through the lens, I see a side of Arewa that words can never fully capture. It is vibrant, historic, and resilient.",
+        slug: "mary-usah-peter",
+        name: "Mary Usah Peter",
+        title: "MARY USAH PETER",
+        role: "Travel Content Creator & Explorer",
+        origin: "Abuja, Nigeria",
+        image: "/images/shewanders_profile.png",
+        shortDescription: "Discovering hidden places, exploring new cultures, and sharing unforgettable stories from every journey across the landscape.",
+        fullDescription: "Mary Usah Peter, widely known as SheWanders, is an Abuja-based travel content creator, adventure lover, and dedicated cultural storyteller. Her work focuses on journeying off the beaten track to uncover the hidden gems, architectural wonders, and living traditions scattered across Nigeria. Through a mixture of cinematic vlogs and vivid photography series, Mary documents her expeditions to inspire a sense of wonder and curiosity about local history, capturing moments that connect people straight to the heart of regional cultures.",
+        quote: "Adventure begins where comfort ends—every road leads to a new story worth sharing.",
         socials: {
-            instagram: "https://instagram.com/ahmad_bello_explores",
-            youtube: "https://youtube.com/c/AhmadBelloExplores",
-            twitter: "https://twitter.com/ahmad_explores"
+            instagram: "https://instagram.com/shewandersfar_",
+            youtube: "", // Left blank or can be omitted if she doesn't have one
+            twitter: ""
         },
         createdContent: [
             {
-                id: 101,
-                title: "Documenting the Ancient Gates of Kano",
-                type: "video",
-                thumbnail: "/images/hawa-3.jpg",
-                link: "https://www.instagram.com/reel/DYxaQ-IzvGE/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-                description: "A deep dive into the history, military architecture, and current state of the centuries-old mud gates of Kano's ancient city wall.",
-                date: "April 12, 2026",
-                locationFeatured: "Kano, Nigeria"
-            },
-            {
-                id: 102,
-                title: "Mambilla: The Europe of Nigeria",
+                id: 201,
+                title: "Cultural Highlights & Scenic Horizons",
                 type: "gallery",
-                thumbnail: "/images/mambilla.jpg",
-                link: "/destinations/mambilla-plateau",
-                description: "A breathtaking photography collection showcasing the lush rolling green hills, tea plantations, and cool highlands of the Mambilla Plateau.",
-                date: "March 5, 2026",
-                locationFeatured: "Taraba, Nigeria"
+                thumbnail: "/images/shewanders_gallery_1.jpg",
+                link: "https://www.instagram.com/p/DXaX5H8ihya/?img_index=1",
+                description: "A visually striking photography collection detailing local landmarks, vibrant textures, and scenic geographical landscapes from her recent travels.",
+                date: "May 2, 2026",
+                locationFeatured: "Northern Nigeria"
             },
             {
-                id: 103,
-                title: "Architecture of Kajuru Castle",
-                type: "article",
-                thumbnail: "/images/kajuru.jpg",
-                link: "/destinations/kajuru-castle",
-                description: "A photographic and historical analysis of Kaduna's Bavarian medieval-style castle perched atop the savannah hills.",
-                date: "May 20, 2026",
-                locationFeatured: "Kaduna, Nigeria"
+                id: 202,
+                title: "Hidden Gems and Architectural Archives",
+                type: "gallery",
+                thumbnail: "/images/shewanders_gallery_2.jpg",
+                link: "https://www.instagram.com/p/DTSZR5qipqK/?img_index=4",
+                description: "An archival study documenting historic building forms, unique community structures, and forgotten architectural footprints.",
+                date: "March 15, 2026",
+                locationFeatured: "Northern Nigeria"
+            },
+            {
+                id: 203,
+                title: "Expeditions & Ancient Heritage Sites",
+                type: "gallery",
+                thumbnail: "/images/shewanders_gallery_3.jpg",
+                link: "https://www.instagram.com/p/DV_Z-IaClaS/?img_index=1",
+                description: "A continuous visual chronicle capturing physical treks across historic hills, ancient paths, and structural monuments.",
+                date: "April 24, 2026",
+                locationFeatured: "Northern Nigeria"
+            },
+            {
+                id: 204,
+                title: "Local Traditions and Daily Lifestyle",
+                type: "gallery",
+                thumbnail: "/images/shewanders_gallery_4.jpg",
+                link: "https://www.instagram.com/p/DXKV3VhjrJ2/?img_index=1",
+                description: "An intimate, up-close look at regional craft preservation, indigenous daily routines, and lived community history.",
+                date: "May 10, 2026",
+                locationFeatured: "Northern Nigeria"
+            },
+            {
+                id: 205,
+                title: "Journey Across the Savanna Paths",
+                type: "gallery",
+                thumbnail: "/images/shewanders_gallery_5.jpg",
+                link: "https://www.instagram.com/p/DXmTUvXistt/?img_index=20",
+                description: "A panoramic showcase focusing on natural geography, environmental variations, and rural beauty away from urban centers.",
+                date: "May 28, 2026",
+                locationFeatured: "Northern Nigeria"
+            },
+            {
+                id: 206,
+                title: "Abuja Frameworks and Beyond",
+                type: "gallery",
+                thumbnail: "/images/shewanders_gallery_6.jpg",
+                link: "https://www.instagram.com/p/DXxIeoejoUp/?img_index=1",
+                description: "Documenting the transition zones from the Federal Capital Territory outward into deep cultural territories.",
+                date: "June 4, 2026",
+                locationFeatured: "Abuja, Nigeria"
             }
         ]
     },

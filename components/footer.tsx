@@ -100,14 +100,14 @@ export default function Footer() {
                   People & Icons
                 </a>
               </li>
-              {/* <li>
+              <li>
                 <a
                   href="#explorers"
                   className="hover:text-green-500 transition-colors block"
                 >
                   The Explorers
                 </a>
-              </li> */}
+              </li>
             </ul>
           </div>
 
