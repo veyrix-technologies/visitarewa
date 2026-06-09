@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -9,51 +11,42 @@ import {
   Calendar,
   CheckCircle,
   Star,
+  Compass
 } from "lucide-react";
-import { destinations } from "@/lib/data";
+import { useAuth } from "@/lib/AuthContext";
 import GalleryPreview from "@/components/GalleryPreview";
 import DestinationButtons from "@/components/DestinationButtons";
+import RelatedCreations from "@/components/RelatedCreations";
 
-// 1. Generate Metadata (Fixed for Next.js 15)
-export async function generateMetadata({ params }: any) {
-  // Await the params promise
-  const { slug } = await params;
+export default function DestinationPage({ params }: any) {
+  // Unwrap params using React.use() if needed, but in standard client component we can just read it or use React.use(params)
+  const resolvedParams = React.use(params as Promise<any>);
+  const slug = resolvedParams.slug;
 
-  const destination = destinations.find((d) => d.slug === slug);
-  if (!destination) return { title: "Not Found" };
+  const { submissions } = useAuth();
+  const [mounted, setMounted] = useState(false);
 
-  return {
-    title: `${destination.name} | Visit Arewa`,
-    description: destination.shortDescription,
-    openGraph: {
-      title: `${destination.name} | Visit Arewa`,
-      description: destination.shortDescription,
-      url: `https://visitarewa.com/destinations/${destination.slug}`,
-      images: [
-        {
-          url: destination.image,
-          width: 1200,
-          height: 630,
-          alt: destination.name,
-        },
-      ],
-      type: "article",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${destination.name} | Visit Arewa`,
-      description: destination.shortDescription,
-      images: [destination.image],
-    },
-  };
-}
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-// 2. Main Page Component (Async Component)
-export default async function DestinationPage({ params }: any) {
-  // Await the params promise before using it
-  const { slug } = await params;
+  if (!mounted) {
+    return (
+      <div className="bg-[#020402] min-h-screen text-white flex items-center justify-center font-sans">
+        <div className="flex flex-col items-center gap-4">
+          <Compass className="animate-spin text-green-500 w-12 h-12" />
+          <p className="text-gray-400 text-sm uppercase tracking-widest font-bold">Loading Data...</p>
+        </div>
+      </div>
+    );
+  }
 
-  const destination = destinations.find((d) => d.slug === slug);
+  let destination = submissions.find((d) => (d.slug === slug || d.id === slug) && d.type === "destination");
+  if (!destination) {
+    destination = submissions.find(
+      (d) => d.type === "destination" && d.title.toLowerCase().replace(/[^a-z0-9]+/g, "-") === slug
+    );
+  }
 
   if (!destination) {
     notFound();
@@ -78,9 +71,9 @@ export default async function DestinationPage({ params }: any) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "TouristAttraction",
-    "name": destination.name,
-    "description": destination.shortDescription,
-    "image": [destination.image],
+    "name": destination.title,
+    "description": destination.description,
+    "image": [destination.imageUrl || "/images/zuma.webp"],
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 10.5105,
@@ -105,8 +98,8 @@ export default async function DestinationPage({ params }: any) {
       <div className="relative h-[70vh] w-full">
         <div className="relative w-full h-full">
           <Image
-            src={destination.image}
-            alt={destination.name}
+            src={destination.imageUrl || "/images/zuma.webp"}
+            alt={destination.title}
             fill
             className="object-cover"
             priority
@@ -131,12 +124,12 @@ export default async function DestinationPage({ params }: any) {
                 <span>{destination.location}</span>
               </div>
               <div className="hidden md:block">
-                {renderStars(destination.rating)}
+                {renderStars(5)}
               </div>
             </div>
 
             <h1 className="text-5xl md:text-8xl font-rikafu font-black tracking-tighter leading-none text-white drop-shadow-xl">
-              {destination.name}
+              {destination.title}
             </h1>
           </div>
         </div>
@@ -151,11 +144,15 @@ export default async function DestinationPage({ params }: any) {
               <h3 className="text-2xl text-white font-bold mb-4">
                 About this Destination
               </h3>
-              {destination.fullDescription.split("\n\n").map((paragraph, index) => (
+              {destination.fullText ? destination.fullText.split("\n\n").map((paragraph, index) => (
                 <p key={index} className="text-xl leading-8 text-gray-300 mb-6 last:mb-0">
                   {paragraph}
                 </p>
-              ))}
+              )) : (
+                <p className="text-xl leading-8 text-gray-300 mb-6 last:mb-0">
+                  {destination.description}
+                </p>
+              )}
             </div>
 
             {/* Highlights Grid */}
@@ -219,6 +216,8 @@ export default async function DestinationPage({ params }: any) {
             </div>
           </div>
         </div>
+
+        <RelatedCreations searchTerm={destination.title} excludeId={destination.id} />
       </div>
     </main>
   );

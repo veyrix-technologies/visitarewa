@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -15,29 +17,99 @@ import {
   Globe,
   Youtube
 } from "lucide-react";
-import { explorers } from "@/lib/data";
+import { useAuth } from "@/lib/AuthContext";
 import ExplorerContentFeed from "@/components/ExplorerContentFeed";
+import RelatedCreations from "@/components/RelatedCreations";
+import { explorers } from "@/lib/data";
 
-// 1. Generate Metadata
-export async function generateMetadata({ params }: any) {
-  const { slug } = await params;
-  const explorer = explorers.find((e) => e.slug === slug);
-  if (!explorer) return { title: "Explorer Not Found" };
+export default function ExplorerPage({ params }: any) {
+  const resolvedParams = React.use(params as Promise<any>);
+  const slug = resolvedParams.slug;
 
-  return {
-    title: `${explorer.name} | Visit Arewa Explorers`,
-    description: explorer.shortDescription,
-  };
-}
+  const { users, submissions } = useAuth();
+  const [mounted, setMounted] = useState(false);
 
-// 2. Main Page Component
-export default async function ExplorerPage({ params }: any) {
-  const { slug } = await params;
-  const explorer = explorers.find((e) => e.slug === slug);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-  if (!explorer) {
+  if (!mounted) {
+    return (
+      <div className="bg-[#020402] min-h-screen text-white flex items-center justify-center font-sans">
+        <div className="flex flex-col items-center gap-4">
+          <Compass className="animate-spin text-green-500 w-12 h-12" />
+          <p className="text-gray-400 text-sm uppercase tracking-widest font-bold">Loading Data...</p>
+        </div>
+      </div>
+    );
+  }
+
+  const user = users.find((u) => u.username === slug || u.uid === slug);
+  if (!user) {
     notFound();
   }
+
+  const staticExplorer = explorers.find(
+    (e) => e.slug === slug || e.name.toLowerCase() === user.name.toLowerCase()
+  );
+
+  const userSubmissions = submissions.filter((s) => s.userEmail === user.email && s.status === "published");
+
+  const dynamicContent = userSubmissions.map((sub) => {
+    let link = "/";
+    if (sub.type === "destination") link = `/destinations/${sub.slug || sub.id}`;
+    if (sub.type === "cuisine") link = `/food/${sub.slug || sub.id}`;
+    if (sub.type === "event") link = `/events/${sub.slug || sub.id}`;
+    if (sub.type === "craft") link = `/crafts/${sub.slug || sub.id}`;
+
+    return {
+      id: sub.id,
+      type: "article",
+      thumbnail: sub.imageUrl || "/images/zuma.webp",
+      title: sub.title,
+      description: sub.description,
+      date: new Date(sub.submittedAt).toLocaleDateString(),
+      locationFeatured: sub.location || "Arewa",
+      link: link
+    };
+  });
+
+  const staticContent = staticExplorer ? staticExplorer.createdContent : [];
+  
+  // Combine and de-duplicate content items by title
+  const combinedContent = [...dynamicContent];
+  for (const sc of staticContent) {
+    if (!combinedContent.some(dc => dc.title.toLowerCase().trim() === sc.title.toLowerCase().trim())) {
+      combinedContent.push({
+        id: sc.id.toString(),
+        type: sc.type,
+        thumbnail: sc.thumbnail,
+        title: sc.title,
+        description: sc.description,
+        date: sc.date,
+        locationFeatured: sc.locationFeatured || "Arewa",
+        link: sc.link
+      });
+    }
+  }
+
+  const explorer = {
+    name: user.name,
+    role: staticExplorer ? staticExplorer.role : user.role,
+    image: user.image || (staticExplorer ? staticExplorer.image : "/images/users/default.webp"),
+    origin: staticExplorer ? staticExplorer.origin : "Arewa",
+    shortDescription: staticExplorer ? staticExplorer.shortDescription : "Community Member sharing the beauty of Arewa.",
+    fullDescription: staticExplorer
+      ? `${staticExplorer.fullDescription}${
+          userSubmissions.length > 0
+            ? `\n\nThey have also contributed ${userSubmissions.length} additional stories to the platform.`
+            : ""
+        }`
+      : `A valued member of the Visit Arewa community, dedicated to showcasing the region's rich culture and heritage.\n\nThey have contributed ${userSubmissions.length} stories to the platform.`,
+    quote: staticExplorer?.quote || "Arewa is a tapestry of stories waiting to be told.",
+    createdContent: combinedContent,
+    socials: user.socials || staticExplorer?.socials || {}
+  };
 
   const socialIcons: any = {
     linkedin: Linkedin,
@@ -258,6 +330,8 @@ export default async function ExplorerPage({ params }: any) {
             </div>
           </div>
         </div>
+
+        <RelatedCreations searchTerm={explorer.name} />
       </div>
     </main>
   );

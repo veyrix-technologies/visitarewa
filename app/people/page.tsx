@@ -59,7 +59,7 @@ export default function PeoplePage() {
             {/* Category Header */}
             <div className="flex items-center gap-4 mb-12">
               <div className="h-[2px] w-12 bg-green-500"></div>
-              <h2 className="text-3xl md:text-4xl font-rikafu font-bold">{category}</h2>
+              <h2 className="text-3xl md:text-4xl font-sans font-bold">{category}</h2>
             </div>
 
             {/* People Grid */}

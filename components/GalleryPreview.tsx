@@ -45,11 +45,10 @@ export default function GalleryPreview({ images }: GalleryPreviewProps) {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
-            <Image
+            <img
               src={img}
               alt={`Gallery ${i + 1}`}
-              fill
-              className="object-cover group-hover:scale-110 transition-transform duration-300"
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
             />
             {/* Hover Overlay */}
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
@@ -81,12 +80,10 @@ export default function GalleryPreview({ images }: GalleryPreviewProps) {
             >
               {/* Main Image */}
               <div className="relative w-full h-full">
-                <Image
+                <img
                   src={images[selectedIndex]}
                   alt={`Gallery ${selectedIndex + 1}`}
-                  fill
-                  className="object-contain"
-                  priority
+                  className="w-full h-full object-contain"
                 />
               </div>
 

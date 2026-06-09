@@ -121,17 +121,17 @@ export default function CraftSubmissionForm() {
             <CheckCircle size={48} className="text-green-500" />
           </div>
         </div>
-        <h3 className="text-5xl font-rikafu font-bold text-white mb-6">Story Received</h3>
+        <h3 className="text-5xl font-rikafu font-bold text-white mb-6">Successfully Submitted</h3>
         <p className="text-gray-400 mb-10 max-w-lg mx-auto text-lg font-serif italic leading-relaxed">
-          Your craft story has been securely transmitted. Our editorial team will review your submission 
-          and reach out within 7 business days. Thank you for preserving Arewa's legacy.
+          Your craft story has been submitted to Visit Arewa. Our team will review it and publish it once verified.
+          Thank you for contributing to the platform!
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
             onClick={() => { setSubmitted(false); setFormData(defaultForm); }}
             className="px-8 py-4 bg-green-500 text-black text-sm font-bold uppercase tracking-widest rounded-full hover:bg-green-400 transition"
           >
-            Submit Another
+            Publish Another
           </button>
           <Link
             href="/crafts"
@@ -420,7 +420,7 @@ export default function CraftSubmissionForm() {
              )}
           </div>
           <span className="text-sm font-bold text-green-400 uppercase tracking-[0.2em] relative z-10">
-            {isLoading ? "Transmitting..." : "Submit Craft Story"}
+            {isLoading ? "Submitting..." : "Submit Craft Story"}
           </span>
         </button>
         <p className="text-xs text-gray-500 font-medium mt-6 text-center max-w-sm uppercase tracking-widest leading-relaxed">

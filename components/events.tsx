@@ -105,6 +105,23 @@ function EventCard({ event, index, onWatch, onClick }: any) {
           {event.category}
         </div>
 
+        {/* Floating Ticket Price Badge */}
+        {event.registrationEnabled ? (
+          event.ticketType === "paid" ? (
+            <div className="absolute top-6 right-6 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold px-3 py-1 rounded-full shadow-lg backdrop-blur-md">
+              ₦{event.ticketPrice?.toLocaleString()}
+            </div>
+          ) : (
+            <div className="absolute top-6 right-6 bg-green-500/10 border border-green-500/30 text-green-400 text-xs font-bold px-3 py-1 rounded-full shadow-lg backdrop-blur-md">
+              Free
+            </div>
+          )
+        ) : (
+          <div className="absolute top-6 right-6 bg-zinc-900/60 border border-white/5 text-gray-400 text-xs font-bold px-3 py-1 rounded-full shadow-lg backdrop-blur-md">
+            Showcase
+          </div>
+        )}
+
         <div className="mb-4 flex items-center gap-2 text-green-400">
           <Calendar size={18} />
           <span className="text-sm font-medium">{event.date}</span>

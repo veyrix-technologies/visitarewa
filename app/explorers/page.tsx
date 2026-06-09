@@ -1,18 +1,21 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Compass, MapPin, Play, BookOpen, Image as ImageIcon } from "lucide-react";
-import { explorers } from "@/lib/data";
+import { useAuth } from "@/lib/AuthContext";
 import JoinExplorersForm from "@/components/JoinExplorersForm";
 
-export const metadata = {
-  title: "The Explorers | Visit Arewa",
-  description:
-    "Meet the documentary filmmakers, travel writers, and adventurers documenting the beauty and heritage of Arewa.",
-};
-
 export default function ExplorersPage() {
-  const list = explorers || [];
+  const { users, submissions } = useAuth();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const list = users.filter((u) => u.role !== "admin");
 
   return (
     <main className="bg-[#020402] min-h-screen text-white font-sans selection:bg-green-500 selection:text-black">
@@ -43,13 +46,17 @@ export default function ExplorersPage() {
       {/* Grid of Explorers */}
       <div className="container mx-auto px-6 md:px-20 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {list.map((explorer) => (
-            <Link key={explorer.slug} href={`/explorers/${explorer.slug}`}>
+          {mounted && list.map((explorer) => {
+            const userSubmissions = submissions.filter((s) => s.userEmail === explorer.email);
+            const contentTypes = Array.from(new Set(userSubmissions.map(c => c.type)));
+
+            return (
+            <Link key={explorer.uid} href={`/explorers/${explorer.username || explorer.uid}`}>
               <div className="group cursor-pointer bg-zinc-950/40 rounded-3xl border border-white/5 hover:border-green-500/30 overflow-hidden hover:shadow-2xl hover:shadow-green-500/5 transition-all duration-300 flex flex-col h-full">
                 {/* Profile Pic Card */}
                 <div className="relative h-[340px] w-full overflow-hidden">
                   <Image
-                    src={explorer.image}
+                    src={explorer.image || "/images/dye_pits.webp"}
                     alt={explorer.name}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -60,7 +67,7 @@ export default function ExplorersPage() {
                   {/* Origin Badge */}
                   <div className="absolute bottom-4 left-6 flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
                     <MapPin size={12} className="text-green-400" />
-                    <span className="text-xs font-semibold text-white uppercase tracking-wider">{explorer.origin}</span>
+                    <span className="text-xs font-semibold text-white uppercase tracking-wider">Arewa</span>
                   </div>
                 </div>
 
@@ -70,11 +77,11 @@ export default function ExplorersPage() {
                     <span className="text-green-400 text-xs font-semibold uppercase tracking-wider block font-sans">
                       {explorer.role}
                     </span>
-                    <h3 className="text-2xl font-bold font-rikafu tracking-wide text-white group-hover:text-green-400 transition-colors">
+                    <h3 className="text-2xl font-bold font-sans tracking-wide text-white group-hover:text-green-400 transition-colors">
                       {explorer.name}
                     </h3>
                     <p className="text-gray-400 text-sm leading-relaxed line-clamp-3 font-sans">
-                      {explorer.shortDescription}
+                      {userSubmissions.length > 0 ? `Has shared ${userSubmissions.length} creations.` : "Community member of Visit Arewa."}
                     </p>
                   </div>
 
@@ -82,7 +89,7 @@ export default function ExplorersPage() {
                   <div className="pt-4 border-t border-white/5 flex items-center justify-between">
                     <div className="flex items-center gap-3 text-gray-500">
                       {/* Check content types and display small indicator counts/icons */}
-                      {Array.from(new Set(explorer.createdContent.map(c => c.type))).map((type, i) => {
+                      {contentTypes.map((type, i) => {
                         let Icon = ImageIcon;
                         if (type === "video") Icon = Play;
                         if (type === "article") Icon = BookOpen;
@@ -101,7 +108,8 @@ export default function ExplorersPage() {
                 </div>
               </div>
             </Link>
-          ))}
+            );
+          })}
         </div>
       </div>
 

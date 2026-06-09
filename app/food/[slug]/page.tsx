@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -11,46 +13,40 @@ import {
   CheckCircle,
   ChefHat,
   Quote,
+  Compass
 } from "lucide-react";
-import { dishes } from "@/lib/data";
-import FoodActionButtons from "@/components/FoodActionButtons"; // ✅ Import the new component
+import { useAuth } from "@/lib/AuthContext";
+import FoodActionButtons from "@/components/FoodActionButtons";
+import RelatedCreations from "@/components/RelatedCreations";
 
-// 1. Generate Metadata
-export async function generateMetadata({ params }: any) {
-  const { slug } = await params;
-  const item = dishes.find((e) => e.slug === slug);
-  if (!item) return { title: "Dish Not Found" };
+export default function FoodPage({ params }: any) {
+  const resolvedParams = React.use(params as Promise<any>);
+  const slug = resolvedParams.slug;
 
-  return {
-    title: `${item.name} | Taste of Arewa`,
-    description: item.description,
-    openGraph: {
-      title: `${item.name} | Taste of Arewa`,
-      description: item.description,
-      url: `https://visitarewa.com/food/${item.slug}`,
-      images: [
-        {
-          url: item.image,
-          width: 1200,
-          height: 630,
-          alt: item.name,
-        },
-      ],
-      type: "article",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${item.name} | Taste of Arewa`,
-      description: item.description,
-      images: [item.image],
-    },
-  };
-}
+  const { submissions } = useAuth();
+  const [mounted, setMounted] = useState(false);
 
-// 2. Main Page Component
-export default async function FoodPage({ params }: any) {
-  const { slug } = await params;
-  const item = dishes.find((e) => e.slug === slug);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div className="bg-[#020402] min-h-screen text-white flex items-center justify-center font-sans">
+        <div className="flex flex-col items-center gap-4">
+          <Compass className="animate-spin text-green-500 w-12 h-12" />
+          <p className="text-gray-400 text-sm uppercase tracking-widest font-bold">Loading Data...</p>
+        </div>
+      </div>
+    );
+  }
+
+  let item = submissions.find((e) => (e.slug === slug || e.id === slug) && e.type === "cuisine");
+  if (!item) {
+    item = submissions.find(
+      (e) => e.type === "cuisine" && e.title.toLowerCase().replace(/[^a-z0-9]+/g, "-") === slug
+    );
+  }
 
   if (!item) {
     notFound();
@@ -60,8 +56,8 @@ export default async function FoodPage({ params }: any) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Recipe",
-    "name": item.name,
-    "image": [item.image],
+    "name": item.title,
+    "image": [item.imageUrl || "/images/fura.png"],
     "author": {
       "@type": "Organization",
       "name": "Visit Arewa",
@@ -72,7 +68,7 @@ export default async function FoodPage({ params }: any) {
     "prepTime": "PT15M",
     "cookTime": "PT30M",
     "totalTime": "PT45M",
-    "recipeCategory": item.category,
+    "recipeCategory": item.category || "General",
     "recipeCuisine": "Arewa",
     "recipeIngredient": item.ingredients || []
   };
@@ -88,8 +84,8 @@ export default async function FoodPage({ params }: any) {
       <div className="relative h-[60vh] w-full overflow-hidden">
         <div className="relative w-full h-full">
           <Image
-            src={item.image}
-            alt={item.name}
+            src={item.imageUrl || "/images/fura.png"}
+            alt={item.title}
             fill
             className="object-cover"
             priority
@@ -123,10 +119,10 @@ export default async function FoodPage({ params }: any) {
             </div>
 
             <h1 className="text-4xl md:text-7xl font-rikafu font-black tracking-tighter leading-none text-white drop-shadow-xl">
-              {item.name}
+              {item.title}
             </h1>
             <p className="text-xl text-gray-300 max-w-2xl font-sans">
-              {item.tagline}
+              {item.stats?.[0] || item.description}
             </p>
           </div>
         </div>
@@ -141,9 +137,15 @@ export default async function FoodPage({ params }: any) {
               <h3 className="text-2xl text-white font-bold mb-4">
                 About this Dish
               </h3>
-              <p className="text-xl leading-8 text-gray-300">
-                {item.description}
-              </p>
+              {item.fullText ? item.fullText.split("\n\n").map((paragraph, index) => (
+                <p key={index} className="text-xl leading-8 text-gray-300 mb-6 last:mb-0">
+                  {paragraph}
+                </p>
+              )) : (
+                <p className="text-xl leading-8 text-gray-300 mb-6 last:mb-0">
+                  {item.description}
+                </p>
+              )}
             </div>
 
             {/* Quote Section */}
@@ -153,7 +155,7 @@ export default async function FoodPage({ params }: any) {
                 size={32}
               />
               <blockquote className="text-2xl font-serif italic text-gray-100 leading-relaxed">
-                "{item.quote}"
+                "{item.stats?.[1] || "A true taste of our cultural heritage, passed down through generations."}"
               </blockquote>
               <p className="text-green-400 font-bold mt-4">
                 — Cultural Heritage
@@ -225,8 +227,8 @@ export default async function FoodPage({ params }: any) {
               <div className="space-y-3">
                 {/* Primary: Watch Video */}
                 <FoodActionButtons
-                  videoUrl={item.video}
-                  title={item.name}
+                  videoUrl={(item as any).video || undefined}
+                  title={item.title}
                   creator={(item as any).videoCreator}
                 />
 
@@ -241,6 +243,8 @@ export default async function FoodPage({ params }: any) {
             </div>
           </div>
         </div>
+        
+        <RelatedCreations searchTerm={item.title} excludeId={item.id} />
       </div>
     </main>
   );

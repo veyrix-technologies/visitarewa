@@ -4,6 +4,7 @@ import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
+import { AuthProvider } from "@/lib/AuthContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -79,7 +80,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Visit Arewa | Your Journey Into the Heart of Nigeria",
     description:
-      "A digital archive showcasing the beauty, talent, and heritage of Arewa.",
+      "Your platform for Arewa's culture, events, and stories. Explore destinations, food, crafts, and live events from Northern Nigeria.",
     url: "https://visitarewa.com",
     siteName: "Visit Arewa",
     type: "website",
@@ -102,11 +103,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistMono.variable} ${playfair.variable} ${rikafu.variable} antialiased`}
       >
-        {children}
+        <AuthProvider>
+          {children}
+        </AuthProvider>
         <Analytics />
       </body>
     </html>

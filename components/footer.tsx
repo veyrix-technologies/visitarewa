@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Instagram,
   Twitter,
@@ -38,7 +39,7 @@ export default function Footer() {
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
               Showcasing the beauty, excellence, and heritage of Arewa to
-              the world. A digital archive of our stories.
+              the world. Your platform for culture, events, and stories.
             </p>
             {/* <div className="flex items-center gap-2 text-xs text-green-500 font-mono uppercase tracking-widest mt-4 font-bold">
               <MapPin size={12} />
@@ -101,12 +102,12 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a
-                  href="#explorers"
+                <Link
+                  href="/portal"
                   className="hover:text-green-500 transition-colors block"
                 >
-                  The Explorers
-                </a>
+                  Ambassadors Portal
+                </Link>
               </li>
             </ul>
           </div>

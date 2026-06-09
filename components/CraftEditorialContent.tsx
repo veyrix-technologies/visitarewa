@@ -19,6 +19,7 @@ import {
   Linkedin,
 } from "lucide-react";
 import GalleryPreview from "@/components/GalleryPreview";
+import RelatedCreations from "@/components/RelatedCreations";
 
 export default function CraftEditorialContent({ craft }: { craft: any }) {
   // Split description into chapters for editorial flow
@@ -319,6 +320,10 @@ export default function CraftEditorialContent({ craft }: { craft: any }) {
           </div>
         </div>
       </section>
+
+      <div className="container mx-auto px-6 md:px-20 mb-24">
+        <RelatedCreations searchTerm={craft.name} excludeId={craft.id} />
+      </div>
 
     </div>
   );

@@ -16,8 +16,10 @@ import {
 } from "lucide-react";
 import { destinations } from "@/lib/data";
 import Link from "next/link";
+import { useAuth } from "@/lib/AuthContext";
 
 export default function HeroSection() {
+  const { user } = useAuth();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [copied, setCopied] = useState(false); // Add state for visual feedback
@@ -204,12 +206,14 @@ export default function HeroSection() {
             onClick={() => setIsMenuOpen(true)}
           />
 
-          {/* <div className="hidden md:flex items-center gap-4">
-            <div className="text-sm font-medium">Hello, Anne!</div>
-            <div className="w-8 h-8 rounded-full bg-gray-300 overflow-hidden border-2 border-white">
-                <img src="https://i.pravatar.cc/100?img=5" alt="User" />
-            </div>
-          </div> */}
+          {user && (
+            <Link href="/dashboard" className="hidden md:flex items-center gap-3 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 hover:border-green-500/30 transition-all">
+              <div className="text-xs font-bold text-gray-200">Dashboard</div>
+              <div className="relative w-6 h-6 rounded-full overflow-hidden border border-white/20 bg-zinc-950 flex items-center justify-center shrink-0">
+                <Image src={user.image} alt={user.name} fill className="object-cover" />
+              </div>
+            </Link>
+          )}
         </div>
       </nav>
 
@@ -319,6 +323,15 @@ export default function HeroSection() {
               >
                 Explorers
               </a>
+              {user && (
+                <Link
+                  href="/dashboard"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-3xl font-bold text-green-400 hover:text-green-300 transition-colors duration-300 pt-4 border-t border-white/10 w-full"
+                >
+                  Dashboard
+                </Link>
+              )}
             </nav>
           </motion.div>
         )}

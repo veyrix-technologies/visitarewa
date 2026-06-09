@@ -60,7 +60,7 @@ export default function JoinExplorersForm() {
                 Join the Chronicles
               </span>
               <h3 className="text-3xl font-rikafu font-bold mt-4 mb-2 text-white">
-                Are you exploring Arewa?
+                Become a Visit Arewa Ambassador
               </h3>
               <p className="text-gray-400 text-sm md:text-base leading-relaxed">
                 If you are a photographer, writer, or filmmaker documenting the cultural, historical, or natural heritage of Northern Nigeria, we want to feature your work. Apply below.
@@ -108,7 +108,7 @@ export default function JoinExplorersForm() {
                 {/* Focus Role */}
                 <div className="space-y-2">
                   <label htmlFor="role" className="text-xs font-semibold text-gray-400 uppercase tracking-wider flex items-center gap-2">
-                    <Compass size={12} className="text-green-500" /> Travel Focus
+                    <Compass size={12} className="text-green-500" /> Ambassador Focus
                   </label>
                   <select
                     id="role"
@@ -196,7 +196,7 @@ export default function JoinExplorersForm() {
             <div>
               <h3 className="text-3xl font-rikafu font-bold text-white mb-2">Application Received!</h3>
               <p className="text-gray-400 max-w-md mx-auto leading-relaxed text-sm md:text-base">
-                Thank you for applying to join our explorer community. Our editorial team will review your travel content logs and get in touch with you shortly.
+                Thank you for applying to join our ambassador community. Our editorial team will review your travel content logs and get in touch with you shortly.
               </p>
             </div>
             <button

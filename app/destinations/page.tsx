@@ -1,16 +1,24 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, MapPin, Star, ArrowUpRight } from "lucide-react";
-import { destinations } from "@/lib/data";
-
-export const metadata = {
-  title: "Natural Wonders & Landmarks | Visit Arewa",
-  description:
-    "Embark on a visual journey through the iconic landscapes, historic castles, and beautiful natural wonders of Northern Nigeria.",
-};
+import { useAuth, getCanonicalSubmissions } from "@/lib/AuthContext";
 
 export default function DestinationsIndexPage() {
+  const { submissions } = useAuth();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const destSubmissions = getCanonicalSubmissions(
+    submissions.filter(
+      (sub) => sub.type === "destination" && sub.status === "published"
+    )
+  );
   // Helper for rendering rating stars
   const renderStars = (rating: number) => (
     <div className="flex gap-1">
@@ -57,14 +65,14 @@ export default function DestinationsIndexPage() {
       {/* Destinations Grid */}
       <div className="container mx-auto px-6 md:px-20 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {destinations.map((destination) => (
-            <Link key={destination.slug} href={`/destinations/${destination.slug}`}>
+          {mounted && destSubmissions.map((destination) => (
+            <Link key={destination.id} href={`/destinations/${destination.slug || destination.id}`}>
               <div className="group cursor-pointer">
                 {/* Image Card */}
                 <div className="relative h-[400px] rounded-2xl overflow-hidden mb-4 group-hover:transition-all duration-300 border border-white/5">
                   <Image
-                    src={destination.image}
-                    alt={destination.name}
+                    src={destination.imageUrl || "/images/zuma.webp"}
+                    alt={destination.title}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-300"
                     sizes="(max-width: 768px) 100vw, 33vw"
@@ -74,7 +82,7 @@ export default function DestinationsIndexPage() {
                   {/* Overlay Info */}
                   <div className="absolute bottom-0 inset-x-0 p-6">
                     <h3 className="text-2xl font-bold mb-2 text-green-400 group-hover:transition-colors">
-                      {destination.name}
+                      {destination.title}
                     </h3>
                     <p className="text-gray-300 text-sm flex items-center gap-2">
                       <MapPin size={16} className="text-green-500" />
@@ -87,12 +95,12 @@ export default function DestinationsIndexPage() {
                 <div className="space-y-2 px-2">
                   <div className="flex items-center gap-4 text-gray-400 text-sm">
                     <div className="flex items-center gap-1">
-                      {renderStars(destination.rating)}
+                      {renderStars(5)}
                     </div>
                   </div>
 
                   <p className="text-gray-300 line-clamp-2 leading-relaxed">
-                    {destination.shortDescription}
+                    {destination.description}
                   </p>
 
                   <div className="pt-4">
@@ -105,6 +113,11 @@ export default function DestinationsIndexPage() {
               </div>
             </Link>
           ))}
+          {mounted && destSubmissions.length === 0 && (
+            <div className="col-span-full py-20 text-center text-gray-500 font-sans">
+              No destinations have been published by the community yet.
+            </div>
+          )}
         </div>
       </div>
     </main>

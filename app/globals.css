@@ -53,3 +53,41 @@ body {
 .leaflet-container .leaflet-control-attribution a {
   color: rgba(255, 255, 255, 0.8) !important;
 }
+
+/* Print styles for isolating and printing the ticket pass */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  body * {
+    visibility: hidden !important;
+  }
+  .print-ticket, .print-ticket * {
+    visibility: visible !important;
+  }
+  .print-ticket {
+    position: absolute !important;
+    top: 40px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 340px !important;
+    margin: 0 auto !important;
+    border: 1px solid #e4e4e7 !important;
+    border-radius: 32px !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: white !important;
+    overflow: hidden !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  /* Hide mask circles' dark bg so it looks like clean cutouts in print */
+  .print-ticket .w-3 {
+    background: white !important;
+    border: 1px solid #e4e4e7 !important;
+  }
+}

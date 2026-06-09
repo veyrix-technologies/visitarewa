@@ -1,13 +1,25 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { crafts } from "@/lib/data";
+import { useAuth, getCanonicalSubmissions } from "@/lib/AuthContext";
 import Image from "next/image";
 import { ArrowUpRight, ArrowLeft } from "lucide-react";
 
 export default function CraftsPage() {
+  const { submissions } = useAuth();
+  const [mounted, setMounted] = useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const craftSubmissions = getCanonicalSubmissions(
+    submissions.filter(
+      (sub) => sub.type === "craft" && sub.status === "published"
+    )
+  );
 
   return (
     <main className="bg-[#020402] w-full min-h-screen text-white font-sans">
@@ -60,7 +72,7 @@ export default function CraftsPage() {
       <section id="crafts" className="px-6 md:px-20 py-12 mb-24">
         <div className="container mx-auto max-w-6xl">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {crafts.map((craft, index) => (
+            {mounted && craftSubmissions.map((craft, index) => (
               <motion.div
                 key={craft.id}
                 initial={{ opacity: 0, y: 50 }}
@@ -68,13 +80,13 @@ export default function CraftsPage() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Link href={`/crafts/${craft.slug}`}>
+                <Link href={`/crafts/${craft.slug || craft.id}`}>
                   <div className="group relative h-[450px] w-full bg-zinc-900 font-sans rounded-2xl overflow-hidden cursor-pointer border border-white/5 hover:border-green-500/50 transition-all duration-300">
                     {/* Background Image */}
                     <div className="absolute inset-0 overflow-hidden pointer-events-none">
                       <Image
-                        src={craft.image}
-                        alt={craft.name}
+                        src={craft.imageUrl || "/images/dye_pits.webp"}
+                        alt={craft.title}
                         fill
                         sizes="(max-width: 768px) 100vw, 33vw"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -88,36 +100,29 @@ export default function CraftsPage() {
                       {/* Status + Featured badges */}
                       <div className="absolute top-6 left-6 flex gap-2">
                         <span
-                          className={`text-xs font-bold px-3 py-1 rounded-full shadow-lg ${craft.status === "Active"
-                              ? "bg-green-500 text-black"
-                              : "bg-yellow-400 text-black"
-                            }`}
+                          className={`text-xs font-bold px-3 py-1 rounded-full shadow-lg bg-green-500 text-black`}
                         >
-                          {craft.status}
+                          Active
                         </span>
-                        {craft.featured && (
-                          <span className="text-xs font-bold px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white">
-                            Featured
-                          </span>
-                        )}
+                        {/* Status + Featured badges - omitted for user submissions as they don't have "featured" natively yet */}
                       </div>
 
                       {/* Region */}
                       <div className="mb-3">
                         <span className="text-sm font-medium tracking-wider uppercase text-green-400">
-                          {craft.region}
+                          {craft.location || "Arewa"}
                         </span>
                       </div>
 
                       {/* Name */}
                       <h3 className="text-2xl font-bold leading-tight mb-2 group-hover:text-green-500 transition-colors drop-shadow-md">
-                        {craft.name}
+                        {craft.title}
                       </h3>
 
                       {/* Description + Arrow */}
                       <div className="flex items-end justify-between pt-4 border-t border-white/10">
                         <p className="text-gray-400 text-sm line-clamp-2 flex-1 mr-4 leading-relaxed">
-                          {craft.shortDescription}
+                          {craft.description}
                         </p>
                         <ArrowUpRight
                           size={20}
@@ -129,6 +134,11 @@ export default function CraftsPage() {
                 </Link>
               </motion.div>
             ))}
+            {mounted && craftSubmissions.length === 0 && (
+              <div className="col-span-full py-20 text-center text-gray-500 font-sans">
+                No crafts have been published by the community yet.
+              </div>
+            )}
           </div>
         </div>
       </section>

@@ -101,7 +101,7 @@ export const events = [
         videoCreator: "Nonso Okoye",
         gallery: ["/images/hawa-1.webp", "/images/hawa-2.webp", "/images/hawa-3.jpg", "/images/hawa-3.webp", "/images/hawa-5.webp", "/images/hawa-6.webp", "/images/hawa-7.webp", "/images/hawa-8.webp", "/images/hawa-9.webp", "/images/hawa-10.webp", "/images/hawa-11.webp",],
         highlights: ["Royal Procession", "Traditional Gun Salutes", "Horse Riding Skills", "Cultural Music & Dance"],
-        coordinates: "11.9964° N, 8.5167° E"
+        coordinates: "11.9964° N, 8.5167° E",
     },
     {
         id: 2,
@@ -138,7 +138,7 @@ export const events = [
         loopVideo: "https://www.youtube.com/watch?v=DPaTu8C3Xi8",
         gallery: ["/images/dambe-1.webp", "/images/dambe-1.jpg", "/images/dambe-2.jpg", "/images/dambe-3.jpg", "/images/dambe-4.jpg"],
         highlights: ["Lightweight & Heavyweight Bouts", "Traditional Drumming", "Knockout Highlights", "SuperFight Championships"],
-        coordinates: "10.5105° N, 7.4165° E"
+        coordinates: "10.5105° N, 7.4165° E",
     },
     {
         id: 4,
@@ -156,7 +156,11 @@ export const events = [
         videoCreator: "Jewel Magazine",
         gallery: ["/images/city-fiesta-0.webp", "/images/city-fiesta-2.jpeg", "/images/city-fiesta-3.jpeg", "/images/city-fiesta-4.jpeg", "/images/city-fiesta-5.jpeg", "/images/city-fiesta-6.jpeg", "/images/city-fiesta-7.jpeg", "/images/city-fiesta-8.jpg", "/images/city-fiesta-9.jpg", "/images/city-fiesta-10.jpg", "/images/city-fiesta-11.jpg", "/images/city-fiesta-12.jpg", "/images/city-fiesta-13.jpg", "/images/city-fiesta-14.jpg", "/images/city-fiesta-15.jpg", "/images/city-fiesta-16.jpg", "/images/city-fiesta-01.webp"],
         highlights: ["Live Musical Performances", "Food & Vendor Exhibitions", "Cultural Showcases", "Networking & Lifestyle"],
-        coordinates: "10.2833° N, 11.1667° E"
+        coordinates: "10.2833° N, 11.1667° E",
+        registrationEnabled: true,
+        ticketType: "paid",
+        ticketPrice: 5000,
+        ticketCapacity: 100
     },
     {
         id: 5,
@@ -174,7 +178,10 @@ export const events = [
         videoCreator: "Kabafest",
         gallery: ["/images/kabafest-1.jpg", "/images/kabafest-2.jpg", "/images/kabafest-3.jpg"],
         highlights: ["Booklogues", "Art Exhibitions", "Poetry Nights", "Film Screenings"],
-        coordinates: "10.5105° N, 7.4165° E"
+        coordinates: "10.5105° N, 7.4165° E",
+        registrationEnabled: true,
+        ticketType: "free",
+        ticketCapacity: 500
     }
 ];
 
