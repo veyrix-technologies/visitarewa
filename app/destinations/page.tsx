@@ -54,7 +54,7 @@ export default function DestinationsIndexPage() {
           <span className="text-green-500 font-bold tracking-widest text-sm uppercase mb-3 block">
             Natural Wonders & Ancient Sites
           </span>
-          <h1 className="text-5xl md:text-8xl font-black mb-6 font-rikafu leading-none">
+          <h1 className="text-5xl md:text-8xl text-green-500 font-black mb-6 font-rikafu leading-none">
             Arewa Landmarks
           </h1>
           <p className="text-xl text-gray-300 leading-relaxed max-w-2xl">

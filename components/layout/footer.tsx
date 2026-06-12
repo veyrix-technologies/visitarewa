@@ -99,6 +99,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/explorers"
+                  className="hover:text-green-500 transition-colors block"
+                >
+                  The Explorers
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/portal"
                   className="hover:text-green-500 transition-colors block"
                 >

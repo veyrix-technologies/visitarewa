@@ -19,6 +19,7 @@ import {
   Lock,
   CreditCard,
   X,
+  Quote,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/lib/AuthContext";
@@ -28,6 +29,7 @@ import TicketStub from "@/components/events/TicketStub";
 import RelatedCreations from "@/components/media/RelatedCreations";
 import SafeRikafuText from "@/components/layout/SafeRikafuText";
 import Footer from "@/components/layout/footer";
+import { determineEventStatus } from "@/lib/data";
 
 // Main Page Component
 export default function EventPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -69,19 +71,20 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
   }
   if (sub) {
     isCustom = true;
+    const eventDateStr = sub.date || new Date(sub.submittedAt).toLocaleDateString();
     event = {
       id: sub.id as any,
-      status: sub.status === "published" ? "Ongoing" : "Pending Approval",
+      status: determineEventStatus(eventDateStr),
       slug: sub.slug || sub.id,
       name: sub.title,
       title: sub.title,
-      date: sub.date || new Date(sub.submittedAt).toLocaleDateString(),
+      date: eventDateStr,
       location: sub.location,
       category: sub.category || "Cultural",
       shortDescription: sub.description,
       fullDescription: sub.fullText,
       image: sub.imageUrl || "/images/argungu.webp",
-      video: undefined,
+      video: sub.link || undefined,
       gallery: sub.gallery || [],
       highlights: sub.highlights || [],
       videoCreator: undefined,
@@ -89,6 +92,7 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
       ticketType: sub.ticketType || "free",
       ticketPrice: sub.ticketPrice || 0,
       ticketCapacity: sub.ticketCapacity || undefined,
+      theme: sub.theme,
     };
   }
 
@@ -259,7 +263,14 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
         </div>
 
         {/* Navigation & Title */}
-        <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-20 z-20">
+        <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-20 z-20">
+          <Link
+            href="/events"
+            className="w-fit flex items-center gap-2 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full hover:bg-green-500 hover:text-black transition-colors border border-white/10"
+          >
+            <ArrowLeft size={18} />
+            <span className="text-sm font-bold">Back to Events</span>
+          </Link>
 
           <div className="space-y-4 max-w-4xl">
             {/* Badges */}
@@ -327,31 +338,52 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
               </div>
             )}
 
-            <div className="prose prose-lg prose-invert text-gray-400 leading-relaxed">
+            <div className="prose prose-lg prose-invert text-gray-400 leading-relaxed mb-8">
               <h3 className="text-2xl text-white font-bold mb-4 font-rikafu">
                 Event Overview
               </h3>
-              {event.fullDescription.split("\n\n").map((paragraph, index) => (
+              {event.fullDescription.split("\n\n").map((paragraph: any, index: any) => (
                 <p key={index} className="text-xl leading-8 text-gray-300 mb-6 last:mb-0 font-sans">
                   {paragraph}
                 </p>
               ))}
             </div>
 
+            {/* Theme Quote Section */}
+            {event.theme && (
+              <div className="bg-white/5 border border-green-500/30 rounded-2xl p-8 relative mb-8">
+                <Quote
+                  className="absolute top-4 right-4 text-green-500/30"
+                  size={32}
+                />
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-green-500 mb-3 block font-sans">
+                  Event Theme
+                </span>
+                <blockquote className="text-2xl font-serif italic text-gray-100 leading-relaxed">
+                  "{event.theme}"
+                </blockquote>
+              </div>
+            )}
+
             {/* Highlights */}
             {event.highlights && event.highlights.length > 0 && (
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
-                <h3 className="text-xl text-white font-bold mb-6 font-sans">
+              <div>
+                <h3 className="text-2xl text-white font-bold mb-6 font-rikafu">
                   What to Expect
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {event.highlights.map((highlight, index) => (
-                    <div key={index} className="flex items-start gap-3">
+                  {event.highlights.map((highlight: any, index: any) => (
+                    <div
+                      key={index}
+                      className="flex items-center gap-3 bg-white/5 p-4 rounded-xl border border-white/5 hover:border-green-500/50 transition-colors group"
+                    >
                       <CheckCircle
-                        className="text-green-500 mt-1 shrink-0"
-                        size={18}
+                        className="text-green-500 group-hover:scale-110 transition-transform shrink-0"
+                        size={20}
                       />
-                      <span className="text-gray-300 font-sans">{highlight}</span>
+                      <span className="text-gray-300 font-sans font-medium">
+                        {highlight}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -649,66 +681,10 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
             </AnimatePresence>
           </div>
         )}
-        
+
         <RelatedCreations searchTerm={event.name} excludeId={event.id} />
       </div>
 
-      {/* --- FOOTER / COPYRIGHT --- */}
-      <footer className="relative py-16 mt-24 border-t border-white/5 bg-gradient-to-b from-transparent via-zinc-950/40 to-black w-full overflow-hidden font-sans">
-        {/* Ambient Backlight Glow */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-80 h-80 bg-green-950/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
-        
-        {/* Gradient Divider Line */}
-        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-green-500/20 to-transparent"></div>
-
-        <div className="container mx-auto px-6 md:px-20 flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
-          {/* Brand Identity */}
-          <div className="flex items-center gap-3.5 group cursor-pointer transition-all duration-300">
-            <Link href="/" className="flex items-center gap-3.5">
-              <div className="w-12 h-12 rounded-2xl bg-zinc-900/50 border border-white/10 group-hover:border-green-500/30 flex items-center justify-center shadow-lg transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(34,197,94,0.15)]">
-                <Image
-                  src="/logo.png"
-                  alt="Visit Arewa Logo"
-                  width={28}
-                  height={28}
-                  className="object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                />
-              </div>
-              <div className="flex flex-col text-left">
-                <span className="text-xl font-black uppercase tracking-[0.18em] text-white group-hover:text-green-400 transition-colors leading-tight">
-                  Visit Arewa
-                </span>
-                <span className="text-[9px] text-gray-500 uppercase tracking-widest font-semibold mt-0.5">
-                  Explore Northern Chronicles
-                </span>
-              </div>
-            </Link>
-          </div>
-
-          {/* Quick Platform Navigation Links */}
-          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 text-[10px] font-bold uppercase tracking-wider text-gray-400">
-            <Link href="/" className="hover:text-green-400 transition-colors border-b border-transparent hover:border-green-500/20 pb-0.5">
-              Chronicles
-            </Link>
-            <Link href="/dashboard" className="hover:text-green-400 transition-colors border-b border-transparent hover:border-green-500/20 pb-0.5">
-              Ambassador Dashboard
-            </Link>
-            <Link href="/dashboard/submit" className="hover:text-green-400 transition-colors border-b border-transparent hover:border-green-500/20 pb-0.5">
-              Publish Story
-            </Link>
-          </div>
-        </div>
-
-        {/* Bottom Bar: Copyright & Tagline */}
-        <div className="container mx-auto px-6 md:px-20 mt-10 pt-6 border-t border-white/[0.03] flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10 text-[9px] text-gray-600 font-mono tracking-[0.15em] uppercase">
-          <p className="text-center sm:text-left leading-relaxed">
-            © {new Date().getFullYear()} Visit Arewa. All rights reserved.
-          </p>
-          <p className="text-center sm:text-right opacity-60">
-            Celebrating Northern Nigerian Heritage
-          </p>
-        </div>
-      </footer>
 
       {/* --- MOCK PAYSTACK PAYMENT PORTAL OVERLAY --- */}
       <AnimatePresence>

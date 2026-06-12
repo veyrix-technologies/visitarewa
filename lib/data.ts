@@ -182,6 +182,29 @@ export const events = [
     registrationEnabled: true,
     ticketType: "free",
     ticketCapacity: 500
+  },
+
+  {
+    id: 7,
+    status: "Upcoming",
+    slug: "sip-paint-poetry",
+    name: "SIP, PAINT & POETRY",
+    title: "SIP, PAINT & POETRY",
+    date: "July 4th, 2026",
+    location: "GSU New MPH, Gombe",
+    category: "Art & Literature",
+    theme: "Voices in Colour: Poetry, Creativity and Community.",
+    shortDescription: "A live interactive artistic environment where poetry is performed, paintings are created in real time, and audiences are not just spectators but active participants in the creative experience.",
+    fullDescription: "SIP, Paint & Poetry 2026 is a creative arts experience that brings together poetry, visual art, and community engagement in a single immersive platform. It is designed to celebrate artistic expression while building a strong connection between creatives, students, and the wider community.\n\nAt its core, the event aims to promote youth creativity, provide a dedicated platform for poets and visual artists, and encourage deep collaboration between different art forms to build a vibrant creative community both within and beyond the university. Unlike conventional stage events, SIP, Paint & Poetry creates a live interactive artistic environment where poetry is performed, paintings are created in real time, and audiences are not just spectators but active participants in the creative experience.\n\nThe entire evening is intentionally engineered around an interactive, youth-driven, and community-centered experience style. It stands as an emotionally expressive and artistically immersive fusion of words, colors, and human expression—designed to inspire dialogue, genuine cultural connection, and collaboration among emerging young artists and established voices.",
+    image: "/images/sip-paint-1.jpeg",
+    video: "",
+    videoCreator: "",
+    gallery: ["/images/sip-paint-1.jpeg", "/images/sip-paint-2.jpeg", "/images/sip-paint-3.jpeg", "/images/sip-paint.jpeg"],
+    highlights: ["Live Poetry Performances (Spoken Word & Recitations)", "Live Painting Sessions (Art in real time)", "Open Mic Segments for Emerging Voices", "Creative Networking & Community Interaction", "Cultural Expression and Artistic Dialogue", "Student and Youth Engagement Activities"],
+    coordinates: "10.5105° N, 7.4165° E",
+    registrationEnabled: false,
+    ticketType: "free",
+    ticketCapacity: 500
   }
 ];
 
@@ -1019,6 +1042,7 @@ export interface Submission {
   history?: string;
   significance?: string;
   heritageStatus?: string;
+  theme?: string;
 }
 
 export interface Registration {
@@ -1090,7 +1114,8 @@ const legacyEvents: Submission[] = events.map(e => ({
   ticketType: (e as any).ticketType,
   ticketPrice: (e as any).ticketPrice,
   ticketCapacity: (e as any).ticketCapacity,
-  link: e.video || undefined
+  link: e.video || undefined,
+  theme: (e as any).theme
 }));
 
 const legacyCrafts: Submission[] = crafts.map(c => ({
@@ -1413,5 +1438,74 @@ export const db = {
     return registration;
   }
 };
+
+export function parseEventDate(dateStr: string | undefined): Date {
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  if (!dateStr) return new Date(currentYear, 11, 31);
+
+  const normalized = dateStr.toLowerCase().trim();
+
+  // Special case: Eid festivals (which are recurring or ongoing)
+  if (normalized.includes("eid")) {
+    return new Date(currentYear, 4, 27); // May 27th representation
+  }
+
+  // Check for year in string
+  const yearMatch = normalized.match(/\b(20\d{2})\b/);
+  const year = yearMatch ? parseInt(yearMatch[1], 10) : currentYear;
+
+  const months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+  let monthIdx = -1;
+  for (let i = 0; i < months.length; i++) {
+    if (normalized.includes(months[i])) {
+      monthIdx = i;
+      break;
+    }
+  }
+
+  if (monthIdx !== -1) {
+    const numbers = normalized.match(/\b\d{1,2}\b/g);
+    let day = 1;
+    if (numbers) {
+      for (const numStr of numbers) {
+        const num = parseInt(numStr, 10);
+        if (num > 0 && num <= 31) {
+          day = num;
+          break;
+        }
+      }
+    }
+    return new Date(year, monthIdx, day);
+  }
+
+  return new Date(year, 11, 31);
+}
+
+export function determineEventStatus(dateStr: string | undefined): "Ongoing" | "Finished" | "Upcoming" {
+  if (!dateStr) return "Upcoming";
+  const normalized = dateStr.toLowerCase().trim();
+
+  if (normalized.includes("eid")) {
+    return "Ongoing";
+  }
+
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  const eventDate = parseEventDate(dateStr);
+  const eventDay = new Date(eventDate.getFullYear(), eventDate.getMonth(), eventDate.getDate());
+
+  const diffTime = eventDay.getTime() - today.getTime();
+  const diffDays = diffTime / (1000 * 60 * 60 * 24);
+
+  if (diffDays < -3) {
+    return "Finished";
+  } else if (diffDays >= -3 && diffDays <= 1) {
+    return "Ongoing";
+  } else {
+    return "Upcoming";
+  }
+}
 
 

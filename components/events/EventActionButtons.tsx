@@ -32,7 +32,7 @@ export default function EventActionButtons({
         {/* 2. View All Events */}
         <Link
           href={"/events"}
-          className="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition-colors flex items-center justify-center gap-2 text-center"
+          className="w-full bg-white/5 border border-white/10 hover:border-green-500/30 hover:bg-white/10 text-white font-bold py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 text-center"
         >
           View All Events <ArrowRight size={20} />
         </Link>
