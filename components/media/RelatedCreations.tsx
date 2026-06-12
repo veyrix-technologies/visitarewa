@@ -227,7 +227,7 @@ export default function RelatedCreations({ searchTerm, excludeId }: { searchTerm
                 </div>
 
                 <div className="prose prose-invert prose-lg max-w-none text-gray-300 leading-relaxed font-sans mb-10">
-                  {selectedCreation.fullText.split("\n\n").map((p, i) => (
+                  {selectedCreation.fullText.split("\n\n").map((p: string, i: number) => (
                     <p key={i} className="mb-4">{p}</p>
                   ))}
                 </div>
