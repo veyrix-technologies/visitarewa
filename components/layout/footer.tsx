@@ -105,14 +105,14 @@ export default function Footer() {
                   The Explorers
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   href="/portal"
                   className="hover:text-green-500 transition-colors block"
                 >
                   Ambassadors Portal
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 
