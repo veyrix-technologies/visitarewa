@@ -6,21 +6,34 @@ interface SafeRikafuTextProps {
 
 export default function SafeRikafuText({ text }: SafeRikafuTextProps) {
   if (!text) return null;
-  if (!text.includes("&")) {
+
+  // If the text does not contain any of the unsupported characters, return it directly
+  if (!text.includes("&") && !text.includes(",")) {
     return <>{text}</>;
   }
 
-  const parts = text.split("&");
+  // Split using regex capture group to keep the delimiters in the resulting tokens array
+  const parts = text.split(/([&,])/);
+
   return (
     <>
-      {parts.map((part, index) => (
-        <React.Fragment key={index}>
-          {part}
-          {index < parts.length - 1 && (
-            <span className="font-serif italic font-normal select-all">&</span>
-          )}
-        </React.Fragment>
-      ))}
+      {parts.map((part, index) => {
+        if (part === "&") {
+          return (
+            <span key={index} className="font-serif italic font-normal select-all">
+              &
+            </span>
+          );
+        }
+        if (part === ",") {
+          return (
+            <span key={index} className="font-sans font-normal">
+              ,
+            </span>
+          );
+        }
+        return <React.Fragment key={index}>{part}</React.Fragment>;
+      })}
     </>
   );
 }
