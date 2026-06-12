@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useAuth, getCanonicalSubmissions } from "@/lib/AuthContext";
 import Image from "next/image";
 import { ArrowUpRight, ArrowLeft } from "lucide-react";
+import Footer from "@/components/layout/footer";
 
 export default function CraftsPage() {
   const { submissions } = useAuth();
@@ -143,6 +144,7 @@ export default function CraftsPage() {
         </div>
       </section>
 
+      <Footer />
     </main>
   );
 }

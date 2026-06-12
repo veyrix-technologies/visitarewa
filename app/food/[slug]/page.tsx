@@ -16,19 +16,35 @@ import {
   Compass
 } from "lucide-react";
 import { useAuth } from "@/lib/AuthContext";
-import FoodActionButtons from "@/components/FoodActionButtons";
-import RelatedCreations from "@/components/RelatedCreations";
+import FoodActionButtons from "@/components/food/FoodActionButtons";
+import RelatedCreations from "@/components/media/RelatedCreations";
+import SafeRikafuText from "@/components/layout/SafeRikafuText";
+import Footer from "@/components/layout/footer";
 
 export default function FoodPage({ params }: any) {
   const resolvedParams = React.use(params as Promise<any>);
   const slug = resolvedParams.slug;
 
   const { submissions } = useAuth();
+
+  let item = submissions.find((e) => (e.slug === slug || e.id === slug) && e.type === "cuisine");
+  if (!item) {
+    item = submissions.find(
+      (e) => e.type === "cuisine" && e.title.toLowerCase().replace(/[^a-z0-9]+/g, "-") === slug
+    );
+  }
+
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (item) {
+      document.title = `${item.title} | Visit Arewa Cuisine`;
+    }
+  }, [item]);
 
   if (!mounted) {
     return (
@@ -38,13 +54,6 @@ export default function FoodPage({ params }: any) {
           <p className="text-gray-400 text-sm uppercase tracking-widest font-bold">Loading Data...</p>
         </div>
       </div>
-    );
-  }
-
-  let item = submissions.find((e) => (e.slug === slug || e.id === slug) && e.type === "cuisine");
-  if (!item) {
-    item = submissions.find(
-      (e) => e.type === "cuisine" && e.title.toLowerCase().replace(/[^a-z0-9]+/g, "-") === slug
     );
   }
 
@@ -119,7 +128,7 @@ export default function FoodPage({ params }: any) {
             </div>
 
             <h1 className="text-4xl md:text-7xl font-rikafu font-black tracking-tighter leading-none text-white drop-shadow-xl">
-              {item.title}
+              <SafeRikafuText text={item.title} />
             </h1>
             <p className="text-xl text-gray-300 max-w-2xl font-sans">
               {item.stats?.[0] || item.description}
@@ -246,6 +255,7 @@ export default function FoodPage({ params }: any) {
         
         <RelatedCreations searchTerm={item.title} excludeId={item.id} />
       </div>
+      <Footer />
     </main>
   );
 }

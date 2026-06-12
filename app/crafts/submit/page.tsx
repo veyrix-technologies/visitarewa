@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import CraftSubmissionForm from "@/components/CraftSubmissionForm";
+import CraftSubmissionForm from "@/components/crafts/CraftSubmissionForm";
 
 export const metadata = {
   title: "Share Your Craft | Visit Arewa",

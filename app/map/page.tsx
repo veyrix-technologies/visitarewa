@@ -9,7 +9,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Dynamically import the map component with SSR disabled
-const InteractiveMap = dynamic(() => import("@/components/MapComponent"), {
+const InteractiveMap = dynamic(() => import("@/components/destinations/MapComponent"), {
   ssr: false,
   loading: () => (
     <div className="w-full h-full flex items-center justify-center bg-[#020402]">

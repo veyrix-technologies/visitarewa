@@ -1,0 +1,11 @@
+Keys presence check:
+- "shortcode_media": index = -1
+- "edge_sidecar_to_children": index = -1
+- "display_uri": index = 515902
+  Snippet: display_uri":"https:\/\/scontent-los4-1.cdninstagram.com\/v\/t51.82787-15\/653235661_18262363285289053_5526422233057559595_n.heic?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=109&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=6JumxdlcooQQ7kNvwFmnRco&_nc_o
+
+- "display_url": index = -1
+- "carousel_media": index = 516562
+  Snippet: carousel_media_count":15,"id":"POLARIS_3854914026849588882"}},{"node":{"__typename":"XIGPolarisCarouselMedia","pk":"3848485544254922796","__isXIGPolarisMedia":"XIGPolarisCarouselMedia","accessibility_caption":"Photo by Dabelle on March 08, 2026.","caption":{"text":"Somewhere between Bauchi town and 
+
+- "GraphSidecar": index = -1

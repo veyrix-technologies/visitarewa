@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/lib/AuthContext";
-import DashboardNavbar from "@/components/DashboardNavbar";
+import DashboardNavbar from "@/components/layout/DashboardNavbar";
 import { motion } from "framer-motion";
 import {
   Compass,

@@ -91,3 +91,22 @@ body {
     border: 1px solid #e4e4e7 !important;
   }
 }
+
+/* Custom dark scrollbar */
+.scrollbar-dark {
+  scrollbar-width: thin;
+  scrollbar-color: #27272a transparent;
+}
+.scrollbar-dark::-webkit-scrollbar {
+  width: 4px;
+}
+.scrollbar-dark::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-dark::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 999px;
+}
+.scrollbar-dark::-webkit-scrollbar-thumb:hover {
+  background: #22c55e;
+}

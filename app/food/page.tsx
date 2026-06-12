@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Flame, Clock } from "lucide-react";
 import { useAuth, getCanonicalSubmissions } from "@/lib/AuthContext";
+import Footer from "@/components/layout/footer";
 
 // Group items by category (Main Dish, Snack, Drink, etc.)
 const groupByCategory = (list: any[]) => {
@@ -144,6 +145,7 @@ export default function FoodIndexPage() {
           </div>
         )}
       </div>
+      <Footer />
     </main>
   );
 }

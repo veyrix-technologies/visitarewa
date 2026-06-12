@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { notFound } from "next/navigation";
 import { useAuth } from "@/lib/AuthContext";
-import CraftEditorialContent from "@/components/CraftEditorialContent";
+import CraftEditorialContent from "@/components/crafts/CraftEditorialContent";
 import { Compass } from "lucide-react";
 
 export default function CraftDetailPage({ params }: any) {
@@ -13,9 +13,22 @@ export default function CraftDetailPage({ params }: any) {
   const { submissions } = useAuth();
   const [mounted, setMounted] = useState(false);
 
+  let sub = submissions.find((c) => (c.slug === slug || c.id === slug) && c.type === "craft");
+  if (!sub) {
+    sub = submissions.find(
+      (c) => c.type === "craft" && c.title.toLowerCase().replace(/[^a-z0-9]+/g, "-") === slug
+    );
+  }
+
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (sub) {
+      document.title = `${sub.title} | Visit Arewa Crafts`;
+    }
+  }, [sub]);
 
   if (!mounted) {
     return (
@@ -25,13 +38,6 @@ export default function CraftDetailPage({ params }: any) {
           <p className="text-gray-400 text-sm uppercase tracking-widest font-bold">Loading Data...</p>
         </div>
       </div>
-    );
-  }
-
-  let sub = submissions.find((c) => (c.slug === slug || c.id === slug) && c.type === "craft");
-  if (!sub) {
-    sub = submissions.find(
-      (c) => c.type === "craft" && c.title.toLowerCase().replace(/[^a-z0-9]+/g, "-") === slug
     );
   }
 
@@ -45,12 +51,22 @@ export default function CraftDetailPage({ params }: any) {
     image: sub.imageUrl || "/images/dye_pits.webp",
     shortDescription: sub.description,
     fullDescription: sub.fullText,
-    history: sub.description,
-    quote: sub.stats?.[1] || "A fading tradition we must protect.",
-    significance: sub.stats?.[0] || "Cultural preservation",
+    history: sub.history || sub.description,
+    quote: sub.quote || sub.stats?.[1] || "A fading tradition we must protect.",
+    significance: sub.significance || sub.stats?.[0] || "Cultural preservation",
     artisanName: sub.stats?.[2] || "Master Artisan",
     artisanLocation: sub.location || "Arewa",
-    status: sub.status === "published" ? "Active" : "Pending",
+    status: sub.heritageStatus || (sub.status === "published" ? "Active" : "Pending"),
+    region: sub.region || sub.location || "Arewa",
+    category: sub.category || "Weaving",
+    timeline: sub.timeline || "Varies by artisan",
+    tools: sub.tools || ["Traditional hand tools"],
+    contributor: sub.contributor || {
+      name: sub.userEmail?.split("@")[0] || "Anonymous Explorer",
+      region: sub.location || "Arewa",
+      story: "A proud contributor documenting this heritage."
+    },
+    submitted: sub.submitted || sub.submittedAt
   };
 
   // Define Craft/Heritage Article Schema JSON-LD

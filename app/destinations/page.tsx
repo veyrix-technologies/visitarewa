@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, MapPin, Star, ArrowUpRight } from "lucide-react";
 import { useAuth, getCanonicalSubmissions } from "@/lib/AuthContext";
+import Footer from "@/components/layout/footer";
 
 export default function DestinationsIndexPage() {
   const { submissions } = useAuth();
@@ -120,6 +121,7 @@ export default function DestinationsIndexPage() {
           )}
         </div>
       </div>
+      <Footer />
     </main>
   );
 }

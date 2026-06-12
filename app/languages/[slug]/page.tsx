@@ -4,7 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, Users, MapPin, BookOpen, MessageSquare, ArrowUpRight } from "lucide-react";
 import { languages } from "@/lib/data";
-import LanguageAudioButton from "@/components/LanguageAudioButton";
+import LanguageAudioButton from "@/components/languages/LanguageAudioButton";
+import SafeRikafuText from "@/components/layout/SafeRikafuText";
+import Footer from "@/components/layout/footer";
 
 // Generate static paths
 export function generateStaticParams() {
@@ -104,7 +106,7 @@ export default async function LanguageDetail({ params }: { params: Promise<{ slu
 
           <div className="space-y-4 max-w-4xl">
             <h1 className="text-4xl md:text-7xl font-black font-rikafu tracking-tighter leading-none">
-              {language.name}
+              <SafeRikafuText text={language.name} />
             </h1>
 
             <div className="flex flex-wrap items-center gap-4">
@@ -267,6 +269,7 @@ export default async function LanguageDetail({ params }: { params: Promise<{ slu
           </div>
         </div>
       </div>
+      <Footer />
     </main>
   );
 }

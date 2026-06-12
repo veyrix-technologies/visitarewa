@@ -12,6 +12,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { useAuth, getCanonicalSubmissions } from "@/lib/AuthContext";
+import Footer from "@/components/layout/footer";
 
 // --- LOGIC: Group by the text label directly ---
 const groupByDateLabel = (eventsList: any[]) => {
@@ -169,6 +170,7 @@ export default function EventsCalendarPage() {
           </a>
         </div>
       </div>
+      <Footer />
     </main>
   );
 }

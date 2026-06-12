@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Award } from "lucide-react";
 import { people } from "@/lib/data";
+import Footer from "@/components/layout/footer";
 
 export const metadata = {
   title: "Arewa Excellence | Visit Arewa",
@@ -105,6 +106,7 @@ export default function PeoplePage() {
           </div>
         ))}
       </div>
+      <Footer />
     </main>
   );
 }

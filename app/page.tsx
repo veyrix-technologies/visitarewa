@@ -4,18 +4,19 @@ import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { Send, Ticket, CreditCard, Users, TrendingUp, Sparkles } from "lucide-react";
-import ArewaEvents from "@/components/events";
-import ArewaCuisine from "@/components/food";
-import Footer from "@/components/footer";
-import Manifesto from "@/components/manifestor";
-import ArewaExcellence from "@/components/people";
-import Preloader from "@/components/preloader";
-import HeroSection from "@/components/hero";
-import ArewaLanguages from "@/components/languages";
-import CraftsShowcase from "@/components/crafts";
-import CustomCursor from "@/components/CustomCursor";
-import MapSection from "@/components/map-section";
-import ArewaExplorers from "@/components/explorers";
+import ArewaEvents from "@/components/events/events";
+import ArewaCuisine from "@/components/food/food";
+import Footer from "@/components/layout/footer";
+import Manifesto from "@/components/home/manifestor";
+import ArewaExcellence from "@/components/home/people";
+import Preloader from "@/components/layout/preloader";
+import HeroSection from "@/components/home/hero";
+import ArewaLanguages from "@/components/languages/languages";
+import CraftsShowcase from "@/components/crafts/crafts";
+import CustomCursor from "@/components/layout/CustomCursor";
+import MapSection from "@/components/destinations/map-section";
+import ArewaExplorers from "@/components/explorers/explorers";
+import SafeRikafuText from "@/components/layout/SafeRikafuText";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -105,7 +106,7 @@ export default function App() {
                   </div>
 
                   <h3 className="text-3xl md:text-5xl font-rikafu font-bold leading-tight tracking-wide text-white">
-                    Host, Register & Sell Tickets
+                    <SafeRikafuText text="Host, Register & Sell Tickets" />
                   </h3>
 
                   <p className="text-gray-400 text-sm md:text-base leading-relaxed font-sans max-w-2xl">

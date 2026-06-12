@@ -7,7 +7,7 @@ import Image from "next/image";
 import { useAuth } from "@/lib/AuthContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { Compass, Mail, Lock, ArrowLeft, ShieldAlert, X } from "lucide-react";
-import JoinExplorersForm from "@/components/JoinExplorersForm";
+import JoinExplorersForm from "@/components/explorers/JoinExplorersForm";
 
 export default function PortalPage() {
   const { user, login, loading } = useAuth();

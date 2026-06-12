@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight, ArrowUpRight, MessageCircle } from "lucide-react";
 import { languages } from "@/lib/data";
+import Footer from "@/components/layout/footer";
 
 export const metadata = {
   title: "Languages of Arewa | Visit Arewa",
@@ -89,6 +90,7 @@ export default function LanguagesPage() {
           ))}
         </div>
       </div>
+      <Footer />
     </main>
   );
 }

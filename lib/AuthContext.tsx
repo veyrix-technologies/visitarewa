@@ -1,64 +1,10 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { destinations, dishes, events, crafts } from "./data";
+import { db } from "./data";
+import type { UserProfile, Submission, Registration } from "./data";
 
-export interface UserProfile {
-  uid: string;
-  username: string;
-  name: string;
-  email: string;
-  role: "photographer" | "vlogger" | "writer" | "adventurer" | "admin";
-  origin: string;
-  bio: string;
-  image: string;
-  socials?: {
-    twitter?: string;
-    instagram?: string;
-    linkedin?: string;
-    youtube?: string;
-    website?: string;
-  };
-}
-
-export interface Submission {
-  id: string;
-  slug?: string;
-  type: "destination" | "cuisine" | "event" | "craft";
-  title: string;
-  location: string;
-  description: string;
-  fullText: string;
-  imageUrl: string;
-  gallery: string[];
-  status: "pending" | "published";
-  submittedAt: string;
-  userEmail: string;
-  // Specific fields for different types
-  coordinates?: string;
-  category?: string;
-  date?: string;
-  calories?: string;
-  ingredients?: string[];
-  highlights?: string[];
-  stats?: string[];
-  registrationEnabled?: boolean;
-  ticketType?: "free" | "paid";
-  ticketPrice?: number;
-  ticketCapacity?: number;
-}
-
-export interface Registration {
-  id: string;
-  eventId: string;
-  name: string;
-  email: string;
-  phone?: string;
-  registeredAt: string;
-  ticketType?: "free" | "paid";
-  ticketPrice?: number;
-  ticketCode?: string;
-}
+export type { UserProfile, Submission, Registration };
 
 interface AuthContextType {
   user: UserProfile | null;
@@ -93,165 +39,6 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Initial mock data if localStorage is empty
-const MOCK_EXPLORERS: UserProfile[] = [
-  {
-    uid: "ahmad-bello",
-    username: "ahmad-bello",
-    name: "Ahmad Bello",
-    email: "ahmad@explore.com",
-    role: "photographer",
-    origin: "Kano, Nigeria",
-    image: "/images/ahmad_profile.png",
-    bio: "A visual storyteller capturing the soul of Northern Nigeria, from the ancient city walls of Kano to the misty hills of Taraba.",
-    socials: {
-      instagram: "https://instagram.com/ahmad_bello_explores",
-      youtube: "https://youtube.com/c/AhmadBelloExplores",
-      twitter: "https://twitter.com/ahmad_explores"
-    }
-  },
-  {
-    uid: "fatima-yusuf",
-    username: "fatima-yusuf",
-    name: "Fatima Yusuf",
-    email: "fatima@explore.com",
-    role: "writer",
-    origin: "Kaduna, Nigeria",
-    image: "/images/fatima_profile.png",
-    bio: "A writer documenting the oral histories, culinary arts, and endangered crafts of the diverse peoples of Arewa.",
-    socials: {
-      twitter: "https://twitter.com/fatima_y_writes",
-      instagram: "https://instagram.com/fatima_y_culturalist",
-      website: "https://fatimayusuf.com"
-    }
-  },
-  {
-    uid: "kabir-ibrahim",
-    username: "kabir-ibrahim",
-    name: "Kabir Ibrahim",
-    email: "kabir@explore.com",
-    role: "adventurer",
-    origin: "Bauchi, Nigeria",
-    image: "/images/kabir_profile.png",
-    bio: "A nature enthusiast and wildlife blogger dedicated to showcasing the natural reserves, mountains, and parks of Northern Nigeria.",
-    socials: {
-      twitter: "https://twitter.com/kabir_safaris",
-      instagram: "https://instagram.com/kabir_wildlife",
-      website: "https://savannah-explorer.com"
-    }
-  }
-];
-
-const legacyDestinations: Submission[] = destinations.map(d => ({
-  id: `legacy-dest-${d.id}`,
-  slug: d.slug,
-  type: "destination",
-  title: d.name,
-  location: d.location,
-  description: d.shortDescription,
-  fullText: d.fullDescription,
-  imageUrl: d.image,
-  gallery: d.gallery || [d.image],
-  status: "published",
-  submittedAt: "2026-01-01T00:00:00Z",
-  userEmail: "admin@explore.com",
-  coordinates: d.coordinates,
-  highlights: d.highlights
-}));
-
-const legacyCuisines: Submission[] = dishes.map(d => ({
-  id: `legacy-dish-${d.id}`,
-  slug: d.slug,
-  type: "cuisine",
-  title: d.name,
-  location: "Arewa",
-  description: d.description,
-  fullText: d.description,
-  imageUrl: d.image,
-  gallery: [d.image],
-  status: "published",
-  submittedAt: "2026-01-01T00:00:00Z",
-  userEmail: "admin@explore.com",
-  calories: d.calories,
-  stats: d.stats,
-  ingredients: d.ingredients
-}));
-
-const legacyEvents: Submission[] = events.map(e => ({
-  id: `legacy-event-${e.id}`,
-  slug: e.slug,
-  type: "event",
-  title: e.name,
-  location: e.location,
-  description: e.shortDescription,
-  fullText: e.fullDescription,
-  imageUrl: e.image,
-  gallery: e.gallery || [e.image],
-  status: "published",
-  submittedAt: "2026-01-01T00:00:00Z",
-  userEmail: "admin@explore.com",
-  coordinates: e.coordinates,
-  highlights: e.highlights,
-  date: e.date,
-  registrationEnabled: (e as any).registrationEnabled,
-  ticketType: (e as any).ticketType,
-  ticketPrice: (e as any).ticketPrice,
-  ticketCapacity: (e as any).ticketCapacity,
-  link: e.video || undefined
-}));
-
-const legacyCrafts: Submission[] = crafts.map(c => ({
-  id: `legacy-craft-${c.id}`,
-  slug: c.slug,
-  type: "craft",
-  title: c.name,
-  location: c.region,
-  description: c.shortDescription,
-  fullText: c.fullDescription,
-  imageUrl: c.image,
-  gallery: c.gallery || [c.image],
-  status: "published",
-  submittedAt: "2026-01-01T00:00:00Z",
-  userEmail: "admin@explore.com"
-}));
-
-const MOCK_SUBMISSIONS: Submission[] = [
-  ...legacyDestinations,
-  ...legacyCuisines,
-  ...legacyEvents,
-  ...legacyCrafts,
-  {
-    id: "sub-1",
-    type: "destination",
-    title: "Gashaka-Gumti National Park",
-    location: "Taraba, Nigeria",
-    description: "Nigeria's largest national park, featuring majestic mountains, deep valleys, and rare wildlife populations.",
-    fullText: "Gashaka-Gumti National Park is the largest national park in Nigeria. Located in the eastern provinces of Taraba and Adamawa, bordering Cameroon, it covers an area of about 6,731 sq km. The park is renowned for its rich biodiversity, holding unique ecosystems that range from dry savannahs to montane forests. It is home to chimpanzees, rare birds, and some of the highest peaks in West Africa.",
-    imageUrl: "/images/mambilla.jpg",
-    gallery: ["/images/mambilla.jpg"],
-    status: "published",
-    submittedAt: "2026-05-10T14:30:00Z",
-    userEmail: "ahmad@explore.com",
-    coordinates: "7.3000° N, 11.5000° E",
-    highlights: ["Chimpanzee Sanctuary", "Montane Forests", "Highest Peaks"]
-  },
-  {
-    id: "sub-2",
-    type: "cuisine",
-    title: "Miyan Yakuwa",
-    location: "Sokoto, Nigeria",
-    description: "A traditional Hausa sour soup made from sorrel leaves, groundnuts, and rich local meat assortments.",
-    fullText: "Miyan Yakuwa is a popular sour soup in Northern Nigeria. The main ingredient is Yakuwa (sorrel leaves), which gives the soup its characteristic tangy, slightly sour flavor. It is prepared with ground peanuts or melon seeds as a thickener, locust beans (dawadawa) for depth, and various meats or smoked fish. It pairs perfectly with Tuwo Shinkafa.",
-    imageUrl: "/images/tuwo.jpg",
-    gallery: ["/images/tuwo.jpg"],
-    status: "pending",
-    submittedAt: "2026-05-28T09:15:00Z",
-    userEmail: "ahmad@explore.com",
-    calories: "280 kcal",
-    ingredients: ["Yakuwa Leaves", "Groundnuts", "Locust Beans", "Beef", "Palm Oil"]
-  }
-];
-
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<UserProfile | null>(null);
   const [users, setUsers] = useState<UserProfile[]>([]);
@@ -259,128 +46,24 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [registrations, setRegistrations] = useState<Registration[]>([]);
 
-  // Load from localStorage on mount
+  // Load from database simulation on mount
   useEffect(() => {
     try {
-      const storedUsers = localStorage.getItem("arewa_users");
-      if (!storedUsers) {
-        localStorage.setItem("arewa_users", JSON.stringify(MOCK_EXPLORERS));
-        setUsers(MOCK_EXPLORERS);
-      } else {
-        let parsedUsers = JSON.parse(storedUsers) as UserProfile[];
-        let migrated = false;
+      const dbUsers = db.getUsers();
+      setUsers(dbUsers);
 
-        // Migrate uids and ensure username exists for all users
-        parsedUsers = parsedUsers.map(u => {
-          let updated = { ...u };
-          
-          if (updated.uid === "mock-1") {
-            updated.uid = "ahmad-bello";
-            migrated = true;
-          }
-          
-          // Map default usernames for mock explorers
-          if (updated.uid === "ahmad-bello" && updated.username !== "ahmad-bello") {
-            updated.username = "ahmad-bello";
-            migrated = true;
-          }
-          if (updated.uid === "fatima-yusuf" && updated.username !== "fatima-yusuf") {
-            updated.username = "fatima-yusuf";
-            migrated = true;
-          }
-          if (updated.uid === "kabir-ibrahim" && updated.username !== "kabir-ibrahim") {
-            updated.username = "kabir-ibrahim";
-            migrated = true;
-          }
+      const dbSubs = db.getSubmissions();
+      setSubmissions(dbSubs);
 
-          // If any other user lacks a username, generate one
-          if (!updated.username) {
-            const baseUsername = updated.name.toLowerCase().trim().replace(/[^a-z0-9-_]+/g, "-");
-            let uniqueUser = baseUsername;
-            let counter = 1;
-            while (parsedUsers.some(existing => existing.uid !== updated.uid && existing.username === uniqueUser)) {
-              uniqueUser = `${baseUsername}-${counter}`;
-              counter++;
-            }
-            updated.username = uniqueUser;
-            migrated = true;
-          }
-
-          return updated;
-        });
-
-        // Check if any mock explorers are missing entirely and add them
-        const missingExplorers = MOCK_EXPLORERS.filter(me => !parsedUsers.some(pu => pu.uid === me.uid));
-        if (missingExplorers.length > 0) {
-          parsedUsers = [...parsedUsers, ...missingExplorers];
-          migrated = true;
-        }
-
-        if (migrated) {
-          localStorage.setItem("arewa_users", JSON.stringify(parsedUsers));
-        }
-        setUsers(parsedUsers);
-      }
-
-      const storedSubs = localStorage.getItem("arewa_submissions");
-      if (!storedSubs) {
-        localStorage.setItem("arewa_submissions", JSON.stringify(MOCK_SUBMISSIONS));
-        setSubmissions(MOCK_SUBMISSIONS);
-      } else {
-        const parsedSubs = JSON.parse(storedSubs);
-        // Migration to inject legacy data into existing state
-        if (!parsedSubs.some((s: any) => s.id === 'legacy-dest-1')) {
-          const missingMocks = MOCK_SUBMISSIONS.filter(ms => !parsedSubs.some((ps: any) => ps.id === ms.id));
-          const merged = [...parsedSubs, ...missingMocks];
-          localStorage.setItem("arewa_submissions", JSON.stringify(merged));
-          setSubmissions(merged);
-        } else {
-          setSubmissions(parsedSubs);
-        }
-      }
-
-      const storedRegs = localStorage.getItem("arewa_registrations");
-      if (storedRegs) {
-        setRegistrations(JSON.parse(storedRegs));
-      } else {
-        localStorage.setItem("arewa_registrations", JSON.stringify([]));
-      }
+      const dbRegs = db.getRegistrations();
+      setRegistrations(dbRegs);
 
       const activeUser = localStorage.getItem("arewa_active_user");
       if (activeUser) {
-        let parsedActive = JSON.parse(activeUser) as UserProfile;
-        let activeMigrated = false;
-
-        if (parsedActive.uid === "mock-1") {
-          parsedActive.uid = "ahmad-bello";
-          activeMigrated = true;
-        }
-
-        if (parsedActive.uid === "ahmad-bello" && parsedActive.username !== "ahmad-bello") {
-          parsedActive.username = "ahmad-bello";
-          activeMigrated = true;
-        }
-        if (parsedActive.uid === "fatima-yusuf" && parsedActive.username !== "fatima-yusuf") {
-          parsedActive.username = "fatima-yusuf";
-          activeMigrated = true;
-        }
-        if (parsedActive.uid === "kabir-ibrahim" && parsedActive.username !== "kabir-ibrahim") {
-          parsedActive.username = "kabir-ibrahim";
-          activeMigrated = true;
-        }
-
-        if (!parsedActive.username) {
-          parsedActive.username = parsedActive.name.toLowerCase().trim().replace(/[^a-z0-9-_]+/g, "-");
-          activeMigrated = true;
-        }
-
-        if (activeMigrated) {
-          localStorage.setItem("arewa_active_user", JSON.stringify(parsedActive));
-        }
-        setUser(parsedActive);
+        setUser(JSON.parse(activeUser));
       }
     } catch (e) {
-      console.error("Error reading localStorage", e);
+      console.error("Error loading mock database state", e);
     } finally {
       setLoading(false);
     }
@@ -396,9 +79,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   ): Promise<UserProfile> => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        const storedUsersStr = localStorage.getItem("arewa_users") || "[]";
-        const usersList: UserProfile[] = JSON.parse(storedUsersStr);
-
+        const usersList = db.getUsers();
         const emailExists = usersList.some((u) => u.email.toLowerCase() === email.toLowerCase());
         if (emailExists) {
           reject(new Error("Email address already registered."));
@@ -429,10 +110,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           socials: { twitter: "", instagram: "", linkedin: "" }
         };
 
-        const updatedUsersList = [...usersList, newUser];
-        localStorage.setItem("arewa_users", JSON.stringify(updatedUsersList));
+        db.createUser(newUser);
         localStorage.setItem("arewa_active_user", JSON.stringify(newUser));
         setUser(newUser);
+        setUsers(db.getUsers());
         resolve(newUser);
       }, 800);
     });
@@ -441,16 +122,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = async (email: string, passwordHash: string): Promise<UserProfile> => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        const storedUsersStr = localStorage.getItem("arewa_users") || "[]";
-        const usersList: UserProfile[] = JSON.parse(storedUsersStr);
-
+        const usersList = db.getUsers();
         const foundUser = usersList.find((u) => u.email.toLowerCase() === email.toLowerCase());
         if (!foundUser) {
           reject(new Error("Invalid email or password."));
           return;
         }
 
-        // Simulating password check (in mock, any password is fine if email matches)
         localStorage.setItem("arewa_active_user", JSON.stringify(foundUser));
         setUser(foundUser);
         resolve(foundUser);
@@ -475,16 +153,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         return;
       }
 
-      const updatedUser = { ...user, ...updates };
-
-      const storedUsersStr = localStorage.getItem("arewa_users") || "[]";
-      const usersList: UserProfile[] = JSON.parse(storedUsersStr);
-      const updatedUsersList = usersList.map((u) => (u.uid === user.uid ? updatedUser : u));
-
-      localStorage.setItem("arewa_users", JSON.stringify(updatedUsersList));
-      localStorage.setItem("arewa_active_user", JSON.stringify(updatedUser));
-      setUser(updatedUser);
-      resolve(updatedUser);
+      try {
+        const updatedUser = db.updateUser(user.uid, updates);
+        localStorage.setItem("arewa_active_user", JSON.stringify(updatedUser));
+        setUser(updatedUser);
+        setUsers(db.getUsers());
+        resolve(updatedUser);
+      } catch (e: any) {
+        reject(e);
+      }
     });
   };
 
@@ -498,8 +175,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
 
       setTimeout(() => {
-        const storedSubs = localStorage.getItem("arewa_submissions") || "[]";
-        const subsList: Submission[] = JSON.parse(storedSubs);
+        const subsList = db.getSubmissions();
 
         const exactMatchExists = subsList.some(
           (s) => s.type === submissionData.type && s.title.toLowerCase().trim() === submissionData.title.toLowerCase().trim()
@@ -531,9 +207,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           status: "published"
         };
 
-        const updatedSubs = [newSubmission, ...subsList];
-        localStorage.setItem("arewa_submissions", JSON.stringify(updatedSubs));
-        setSubmissions(updatedSubs);
+        db.createSubmission(newSubmission);
+        setSubmissions(db.getSubmissions());
         resolve(newSubmission);
       }, 1000);
     });
@@ -545,22 +220,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   ): Promise<Submission> => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        const storedSubs = localStorage.getItem("arewa_submissions") || "[]";
-        const subsList: Submission[] = JSON.parse(storedSubs);
-        const subIndex = subsList.findIndex((s) => s.id === id);
-        
-        if (subIndex === -1) {
-          reject(new Error("Submission not found."));
-          return;
+        try {
+          const updatedSub = db.updateSubmission(id, updates);
+          setSubmissions(db.getSubmissions());
+          resolve(updatedSub);
+        } catch (e: any) {
+          reject(e);
         }
-
-        const updatedSub = { ...subsList[subIndex], ...updates };
-        const updatedSubs = [...subsList];
-        updatedSubs[subIndex] = updatedSub;
-
-        localStorage.setItem("arewa_submissions", JSON.stringify(updatedSubs));
-        setSubmissions(updatedSubs);
-        resolve(updatedSub);
       }, 800);
     });
   };
@@ -568,19 +234,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const deleteSubmission = async (id: string): Promise<void> => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        const storedSubs = localStorage.getItem("arewa_submissions") || "[]";
-        const subsList: Submission[] = JSON.parse(storedSubs);
-        const exists = subsList.some((s) => s.id === id);
-
-        if (!exists) {
-          reject(new Error("Submission not found."));
-          return;
+        try {
+          db.deleteSubmission(id);
+          setSubmissions(db.getSubmissions());
+          resolve();
+        } catch (e: any) {
+          reject(e);
         }
-
-        const updatedSubs = subsList.filter((s) => s.id !== id);
-        localStorage.setItem("arewa_submissions", JSON.stringify(updatedSubs));
-        setSubmissions(updatedSubs);
-        resolve();
       }, 500);
     });
   };
@@ -608,12 +268,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           ticketCode
         };
 
-        const currentRegsStr = localStorage.getItem("arewa_registrations") || "[]";
-        const currentRegs: Registration[] = JSON.parse(currentRegsStr);
-        const updatedRegs = [...currentRegs, newReg];
-
-        localStorage.setItem("arewa_registrations", JSON.stringify(updatedRegs));
-        setRegistrations(updatedRegs);
+        db.createRegistration(newReg);
+        setRegistrations(db.getRegistrations());
         resolve(newReg);
       }, 800);
     });
@@ -652,19 +308,19 @@ export function useAuth() {
 
 export function getCanonicalSubmissions(subs: Submission[]): Submission[] {
   const map = new Map<string, Submission>();
-  
+
   // Sort chronologically (oldest first) so that the first submission is stored
   const sorted = [...subs].sort(
     (a, b) => new Date(a.submittedAt).getTime() - new Date(b.submittedAt).getTime()
   );
-  
+
   for (const sub of sorted) {
     const key = `${sub.type}-${sub.title.toLowerCase().trim()}`;
     if (!map.has(key)) {
       map.set(key, sub);
     }
   }
-  
+
   // Preserve original list ordering, but filter only canonical ones
   const canonicalIds = new Set(map.values().map(s => s.id));
   return subs.filter(sub => canonicalIds.has(sub.id));

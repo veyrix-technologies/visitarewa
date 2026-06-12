@@ -17,7 +17,8 @@ import {
   Mail, // <--- Added
 } from "lucide-react";
 import { people } from "@/lib/data";
-import GalleryPreview from "@/components/GalleryPreview";
+import GalleryPreview from "@/components/media/GalleryPreview";
+import Footer from "@/components/layout/footer";
 
 // 1. Generate Metadata
 export async function generateMetadata({ params }: any) {
@@ -296,6 +297,7 @@ export default async function PersonPage({ params }: any) {
           </div>
         </div>
       </div>
+      <Footer />
     </main>
   );
 }

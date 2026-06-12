@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/AuthContext";
-import DashboardLayout from "@/components/DashboardLayout";
+import DashboardLayout from "@/components/layout/DashboardLayout";
 import {
   Compass,
   ArrowLeft,
@@ -30,8 +30,10 @@ import {
   Search
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import TicketStub from "@/components/TicketStub";
-import GalleryPreview from "@/components/GalleryPreview";
+import TicketStub from "@/components/events/TicketStub";
+import GalleryPreview from "@/components/media/GalleryPreview";
+import SafeRikafuText from "@/components/layout/SafeRikafuText";
+
 export default function CreationDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const { user, loading, submissions, registrations, deleteSubmission, users } = useAuth();
@@ -79,6 +81,13 @@ export default function CreationDetailPage({ params }: { params: Promise<{ id: s
       setShareUrl(`${window.location.origin}${publicPath}`);
     }
   }, [creation, publicPath]);
+
+  // Synchronize browser tab title
+  useEffect(() => {
+    if (creation) {
+      document.title = `${creation.title} | Creation Cockpit`;
+    }
+  }, [creation]);
 
   if (loading) {
     return (
@@ -181,7 +190,7 @@ export default function CreationDetailPage({ params }: { params: Promise<{ id: s
               </div>
 
               <h1 className="text-4xl md:text-7xl font-rikafu font-black tracking-tight leading-none text-white drop-shadow-2xl">
-                {creation.title}
+                <SafeRikafuText text={creation.title} />
               </h1>
             </div>
           </div>

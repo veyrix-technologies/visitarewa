@@ -14,9 +14,11 @@ import {
   Compass
 } from "lucide-react";
 import { useAuth } from "@/lib/AuthContext";
-import GalleryPreview from "@/components/GalleryPreview";
-import DestinationButtons from "@/components/DestinationButtons";
-import RelatedCreations from "@/components/RelatedCreations";
+import GalleryPreview from "@/components/media/GalleryPreview";
+import DestinationButtons from "@/components/destinations/DestinationButtons";
+import RelatedCreations from "@/components/media/RelatedCreations";
+import SafeRikafuText from "@/components/layout/SafeRikafuText";
+import Footer from "@/components/layout/footer";
 
 export default function DestinationPage({ params }: any) {
   // Unwrap params using React.use() if needed, but in standard client component we can just read it or use React.use(params)
@@ -24,11 +26,25 @@ export default function DestinationPage({ params }: any) {
   const slug = resolvedParams.slug;
 
   const { submissions } = useAuth();
+
+  let destination = submissions.find((d) => (d.slug === slug || d.id === slug) && d.type === "destination");
+  if (!destination) {
+    destination = submissions.find(
+      (d) => d.type === "destination" && d.title.toLowerCase().replace(/[^a-z0-9]+/g, "-") === slug
+    );
+  }
+
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (destination) {
+      document.title = `${destination.title} | Visit Arewa Destinations`;
+    }
+  }, [destination]);
 
   if (!mounted) {
     return (
@@ -38,13 +54,6 @@ export default function DestinationPage({ params }: any) {
           <p className="text-gray-400 text-sm uppercase tracking-widest font-bold">Loading Data...</p>
         </div>
       </div>
-    );
-  }
-
-  let destination = submissions.find((d) => (d.slug === slug || d.id === slug) && d.type === "destination");
-  if (!destination) {
-    destination = submissions.find(
-      (d) => d.type === "destination" && d.title.toLowerCase().replace(/[^a-z0-9]+/g, "-") === slug
     );
   }
 
@@ -129,7 +138,7 @@ export default function DestinationPage({ params }: any) {
             </div>
 
             <h1 className="text-5xl md:text-8xl font-rikafu font-black tracking-tighter leading-none text-white drop-shadow-xl">
-              {destination.title}
+              <SafeRikafuText text={destination.title} />
             </h1>
           </div>
         </div>
@@ -219,6 +228,7 @@ export default function DestinationPage({ params }: any) {
 
         <RelatedCreations searchTerm={destination.title} excludeId={destination.id} />
       </div>
+      <Footer />
     </main>
   );
 }

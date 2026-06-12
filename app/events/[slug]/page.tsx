@@ -22,10 +22,12 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/lib/AuthContext";
-import EventActionButtons from "@/components/EventActionButtons";
-import GalleryPreview from "@/components/GalleryPreview";
-import TicketStub from "@/components/TicketStub";
-import RelatedCreations from "@/components/RelatedCreations";
+import EventActionButtons from "@/components/events/EventActionButtons";
+import GalleryPreview from "@/components/media/GalleryPreview";
+import TicketStub from "@/components/events/TicketStub";
+import RelatedCreations from "@/components/media/RelatedCreations";
+import SafeRikafuText from "@/components/layout/SafeRikafuText";
+import Footer from "@/components/layout/footer";
 
 // Main Page Component
 export default function EventPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -49,25 +51,6 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
   const [processingMessage, setProcessingMessage] = useState("");
   const [generatedTicketCode, setGeneratedTicketCode] = useState("");
   const [showTicketModal, setShowTicketModal] = useState(false);
-
-  // Auto-fill logged-in user details
-  useEffect(() => {
-    if (user) {
-      setName(user.name);
-      setEmail(user.email);
-    }
-  }, [user]);
-
-  if (loading) {
-    return (
-      <div className="bg-[#020402] min-h-screen text-white flex items-center justify-center font-sans">
-        <div className="flex flex-col items-center gap-4">
-          <Loader2 className="animate-spin text-green-500 w-12 h-12" />
-          <p className="text-gray-400 text-sm uppercase tracking-widest font-bold">Verifying Event Details...</p>
-        </div>
-      </div>
-    );
-  }
 
   // Find event in user submissions
   let event: any = undefined;
@@ -107,6 +90,32 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
       ticketPrice: sub.ticketPrice || 0,
       ticketCapacity: sub.ticketCapacity || undefined,
     };
+  }
+
+  // Auto-fill logged-in user details
+  useEffect(() => {
+    if (user) {
+      setName(user.name);
+      setEmail(user.email);
+    }
+  }, [user]);
+
+  // Synchronize browser tab title
+  useEffect(() => {
+    if (event) {
+      document.title = `${event.title} | Visit Arewa Events`;
+    }
+  }, [event]);
+
+  if (loading) {
+    return (
+      <div className="bg-[#020402] min-h-screen text-white flex items-center justify-center font-sans">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="animate-spin text-green-500 w-12 h-12" />
+          <p className="text-gray-400 text-sm uppercase tracking-widest font-bold">Verifying Event Details...</p>
+        </div>
+      </div>
+    );
   }
 
   if (!event) {
@@ -266,7 +275,7 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
             </div>
 
             <h1 className="text-4xl font-rikafu md:text-7xl font-black tracking-tighter leading-none text-white drop-shadow-xl">
-              {event.name}
+              <SafeRikafuText text={event.name} />
             </h1>
           </div>
         </div>
@@ -938,6 +947,7 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
           </motion.div>
         )}
       </AnimatePresence>
+      <Footer />
     </main>
   );
 }

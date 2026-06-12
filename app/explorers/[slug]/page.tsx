@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -17,21 +16,38 @@ import {
   Globe,
   Youtube
 } from "lucide-react";
-import { useAuth } from "@/lib/AuthContext";
-import ExplorerContentFeed from "@/components/ExplorerContentFeed";
-import RelatedCreations from "@/components/RelatedCreations";
+import ExplorerContentFeed from "@/components/explorers/ExplorerContentFeed";
+import RelatedCreations from "@/components/media/RelatedCreations";
 import { explorers } from "@/lib/data";
+import InstagramImage from "@/components/media/InstagramImage";
+
+import SafeRikafuText from "@/components/layout/SafeRikafuText";
+import Footer from "@/components/layout/footer";
 
 export default function ExplorerPage({ params }: any) {
   const resolvedParams = React.use(params as Promise<any>);
   const slug = resolvedParams.slug;
 
-  const { users, submissions } = useAuth();
+  // Find the static explorer data
+  const explorerData = explorers.find((e) => e.slug === slug);
+
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (explorerData) {
+      let username = explorerData.slug;
+      if (explorerData.socials?.instagram) {
+        const parts = explorerData.socials.instagram.split("/");
+        const handle = parts.filter(Boolean).pop();
+        if (handle) username = handle;
+      }
+      document.title = `${username} | Visit Arewa Explorers`;
+    }
+  }, [explorerData]);
 
   if (!mounted) {
     return (
@@ -44,71 +60,36 @@ export default function ExplorerPage({ params }: any) {
     );
   }
 
-  const user = users.find((u) => u.username === slug || u.uid === slug);
-  if (!user) {
+  // If not found, 404
+  if (!explorerData) {
     notFound();
   }
 
-  const staticExplorer = explorers.find(
-    (e) => e.slug === slug || e.name.toLowerCase() === user.name.toLowerCase()
-  );
+  const staticContent = explorerData.createdContent || [];
 
-  const userSubmissions = submissions.filter((s) => s.userEmail === user.email && s.status === "published");
-
-  const dynamicContent = userSubmissions.map((sub) => {
-    let link = "/";
-    if (sub.type === "destination") link = `/destinations/${sub.slug || sub.id}`;
-    if (sub.type === "cuisine") link = `/food/${sub.slug || sub.id}`;
-    if (sub.type === "event") link = `/events/${sub.slug || sub.id}`;
-    if (sub.type === "craft") link = `/crafts/${sub.slug || sub.id}`;
-
-    return {
-      id: sub.id,
-      type: "article",
-      thumbnail: sub.imageUrl || "/images/zuma.webp",
-      title: sub.title,
-      description: sub.description,
-      date: new Date(sub.submittedAt).toLocaleDateString(),
-      locationFeatured: sub.location || "Arewa",
-      link: link
-    };
-  });
-
-  const staticContent = staticExplorer ? staticExplorer.createdContent : [];
-  
-  // Combine and de-duplicate content items by title
-  const combinedContent = [...dynamicContent];
-  for (const sc of staticContent) {
-    if (!combinedContent.some(dc => dc.title.toLowerCase().trim() === sc.title.toLowerCase().trim())) {
-      combinedContent.push({
-        id: sc.id.toString(),
-        type: sc.type,
-        thumbnail: sc.thumbnail,
-        title: sc.title,
-        description: sc.description,
-        date: sc.date,
-        locationFeatured: sc.locationFeatured || "Arewa",
-        link: sc.link
-      });
-    }
-  }
+  const combinedContent = staticContent.map((sc) => ({
+    id: sc.id.toString(),
+    type: sc.type,
+    thumbnail: sc.thumbnail,
+    title: sc.title,
+    description: sc.description,
+    date: sc.date,
+    locationFeatured: sc.locationFeatured || "Arewa",
+    link: sc.link,
+    credits: sc.credits
+  }));
 
   const explorer = {
-    name: user.name,
-    role: staticExplorer ? staticExplorer.role : user.role,
-    image: user.image || (staticExplorer ? staticExplorer.image : "/images/users/default.webp"),
-    origin: staticExplorer ? staticExplorer.origin : "Arewa",
-    shortDescription: staticExplorer ? staticExplorer.shortDescription : "Community Member sharing the beauty of Arewa.",
-    fullDescription: staticExplorer
-      ? `${staticExplorer.fullDescription}${
-          userSubmissions.length > 0
-            ? `\n\nThey have also contributed ${userSubmissions.length} additional stories to the platform.`
-            : ""
-        }`
-      : `A valued member of the Visit Arewa community, dedicated to showcasing the region's rich culture and heritage.\n\nThey have contributed ${userSubmissions.length} stories to the platform.`,
-    quote: staticExplorer?.quote || "Arewa is a tapestry of stories waiting to be told.",
+    name: explorerData.name,
+    role: explorerData.role,
+    image: explorerData.image,
+    origin: explorerData.origin,
+    shortDescription: explorerData.shortDescription,
+    fullDescription: explorerData.fullDescription,
+    quote: explorerData.quote || "Arewa is a tapestry of stories waiting to be told.",
     createdContent: combinedContent,
-    socials: user.socials || staticExplorer?.socials || {}
+    socials: explorerData.socials || {},
+    collaborator: explorerData.collaborator || null
   };
 
   const socialIcons: any = {
@@ -144,16 +125,15 @@ export default function ExplorerPage({ params }: any) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      
+
       {/* --- HERO SECTION --- */}
       <div className="relative h-[55vh] w-full overflow-hidden">
         <div className="relative w-full h-full">
-          <Image
+          <InstagramImage
             src={explorer.image}
             alt={explorer.name}
-            fill
-            className="object-cover object-center brightness-75"
-            priority
+            isLocal={explorer.isLocalImage}
+            className="absolute inset-0 w-full h-full object-cover object-center brightness-75"
           />
           {/* Dark Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-[#020402] z-10"></div>
@@ -183,10 +163,12 @@ export default function ExplorerPage({ params }: any) {
             </div>
 
             <h1 className="text-4xl md:text-7xl font-black tracking-tighter leading-none text-white font-rikafu drop-shadow-xl">
-              {explorer.name}
+              <SafeRikafuText text={explorer.collaborator ? `${explorer.name} & ${explorer.collaborator.name}` : explorer.name} />
             </h1>
 
-            <p className="text-xl text-gray-300 max-w-2xl">{explorer.role}</p>
+            <p className="text-xl text-gray-300 max-w-2xl">
+              {explorer.collaborator ? `${explorer.role.split(" & ")[0]} & ${explorer.collaborator.role} Duo` : explorer.role}
+            </p>
           </div>
         </div>
       </div>
@@ -196,7 +178,7 @@ export default function ExplorerPage({ params }: any) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Left Column: Description & Created Content Feed */}
           <div className="lg:col-span-8 space-y-12">
-            
+
             {/* Bio */}
             <div className="prose prose-lg prose-invert text-gray-300 leading-relaxed max-w-none">
               <h3 className="text-2xl text-white font-bold mb-4 font-rikafu tracking-wide">
@@ -226,7 +208,7 @@ export default function ExplorerPage({ params }: any) {
             {/* Created Content Feed */}
             <div className="space-y-6">
               <h3 className="text-2xl text-white font-bold font-rikafu tracking-wide">
-                Arewa Creations & Logs
+                <SafeRikafuText text="Arewa Creations & Stories" />
               </h3>
               <p className="text-gray-400 text-sm font-sans mb-6">
                 Explore the travel documentaries, written guides, and photography collections produced by {explorer.name}.
@@ -274,11 +256,45 @@ export default function ExplorerPage({ params }: any) {
                   <div>
                     <p className="text-gray-400 text-xs font-sans">Focus</p>
                     <p className="text-white font-bold text-base mt-0.5">
-                      Arewa Storytelling
+                      Travel Content
                     </p>
                   </div>
                 </div>
               </div>
+
+              {/* Collaborator / Partner */}
+              {explorer.collaborator && (
+                <>
+                  <div className="h-[1px] bg-white/10 my-4"></div>
+                  <div className="space-y-3">
+                    <p className="text-gray-400 text-xs uppercase tracking-wider font-bold font-sans">
+                      Creative Partner
+                    </p>
+                    <div className="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-green-500/20 transition-all duration-300">
+                      {explorer.collaborator.slug ? (
+                        <Link href={`/explorers/${explorer.collaborator.slug}`} className="hover:opacity-80 transition-opacity">
+                          <p className="text-white font-bold text-sm leading-tight hover:text-green-400 transition-colors">{explorer.collaborator.name}</p>
+                          <p className="text-zinc-500 text-[10px] uppercase font-bold tracking-wider mt-0.5">{explorer.collaborator.role}</p>
+                        </Link>
+                      ) : (
+                        <div>
+                          <p className="text-white font-bold text-sm leading-tight">{explorer.collaborator.name}</p>
+                          <p className="text-zinc-500 text-[10px] uppercase font-bold tracking-wider mt-0.5">{explorer.collaborator.role}</p>
+                        </div>
+                      )}
+                      <a
+                        href={explorer.collaborator.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 text-[10px] font-bold text-green-500 hover:text-black uppercase tracking-widest transition-all duration-200 border border-green-500/20 hover:border-green-500 hover:bg-green-500 bg-green-500/10 px-3 py-2 rounded-full cursor-pointer"
+                      >
+                        <Instagram size={10} />
+                        <span>Follow</span>
+                      </a>
+                    </div>
+                  </div>
+                </>
+              )}
 
               <div className="h-[1px] bg-white/10 my-4"></div>
 
@@ -333,6 +349,7 @@ export default function ExplorerPage({ params }: any) {
 
         <RelatedCreations searchTerm={explorer.name} />
       </div>
+      <Footer />
     </main>
   );
 }
