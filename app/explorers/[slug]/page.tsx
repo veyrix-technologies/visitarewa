@@ -68,7 +68,7 @@ export default function ExplorerPage({ params }: any) {
   const staticContent = explorerData.createdContent || [];
 
   const combinedContent = staticContent.map((sc) => ({
-    id: sc.id.toString(),
+    id: sc.id,
     type: sc.type,
     thumbnail: sc.thumbnail,
     title: sc.title,
@@ -84,6 +84,7 @@ export default function ExplorerPage({ params }: any) {
     role: explorerData.role,
     image: explorerData.image,
     origin: explorerData.origin,
+    isLocalImage: explorerData.isLocalImage || false,
     shortDescription: explorerData.shortDescription,
     fullDescription: explorerData.fullDescription,
     quote: explorerData.quote || "Arewa is a tapestry of stories waiting to be told.",
