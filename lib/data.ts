@@ -157,7 +157,7 @@ export const events = [
     gallery: ["/images/city-fiesta-0.webp", "/images/city-fiesta-2.jpeg", "/images/city-fiesta-3.jpeg", "/images/city-fiesta-4.jpeg", "/images/city-fiesta-5.jpeg", "/images/city-fiesta-6.jpeg", "/images/city-fiesta-7.jpeg", "/images/city-fiesta-8.jpg", "/images/city-fiesta-9.jpg", "/images/city-fiesta-10.jpg", "/images/city-fiesta-11.jpg", "/images/city-fiesta-12.jpg", "/images/city-fiesta-13.jpg", "/images/city-fiesta-14.jpg", "/images/city-fiesta-15.jpg", "/images/city-fiesta-16.jpg", "/images/city-fiesta-01.webp"],
     highlights: ["Live Musical Performances", "Food & Vendor Exhibitions", "Cultural Showcases", "Networking & Lifestyle"],
     coordinates: "10.2833° N, 11.1667° E",
-    registrationEnabled: true,
+    registrationEnabled: false,
     ticketType: "paid",
     ticketPrice: 5000,
     ticketCapacity: 100
@@ -179,7 +179,7 @@ export const events = [
     gallery: ["/images/kabafest-1.jpg", "/images/kabafest-2.jpg", "/images/kabafest-3.jpg"],
     highlights: ["Booklogues", "Art Exhibitions", "Poetry Nights", "Film Screenings"],
     coordinates: "10.5105° N, 7.4165° E",
-    registrationEnabled: true,
+    registrationEnabled: false,
     ticketType: "free",
     ticketCapacity: 500
   },
