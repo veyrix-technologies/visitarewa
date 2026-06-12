@@ -37,13 +37,14 @@ export default function RelatedCreations({ searchTerm, excludeId }: { searchTerm
       submittedAt: content.date || "",
       userEmail: explorer.name,
       link: content.link,
-      credits: content.credits
+      credits: content.credits,
+      slug: undefined
     }))
   );
 
   const allSubmissions = [...submissions, ...explorerContents];
 
-  const related = allSubmissions.filter((sub) => {
+  const related = allSubmissions.filter((sub: any) => {
     if (sub.status !== "published") return false;
     if (excludeId && sub.id === excludeId) return false;
 
