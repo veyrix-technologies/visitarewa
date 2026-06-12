@@ -18,6 +18,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const language = languages.find((l) => l.slug === slug);
   if (!language) return { title: "Not Found" };
 
+  const imgUrl = language.image;
+  const absoluteImg = imgUrl.startsWith("http") ? imgUrl : `https://visitarewa.com${imgUrl.startsWith("/") ? "" : "/"}${imgUrl}`;
+
   return {
     title: `${language.name} | Languages of Arewa`,
     description: language.description,
@@ -27,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       url: `https://visitarewa.com/languages/${language.slug}`,
       images: [
         {
-          url: language.image,
+          url: absoluteImg,
           width: 1200,
           height: 630,
           alt: language.name,
@@ -39,7 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       card: "summary_large_image",
       title: `${language.name} | Languages of Arewa`,
       description: language.description,
-      images: [language.image],
+      images: [absoluteImg],
     },
   };
 }

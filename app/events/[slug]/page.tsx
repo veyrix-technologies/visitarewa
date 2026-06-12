@@ -29,7 +29,7 @@ import TicketStub from "@/components/events/TicketStub";
 import RelatedCreations from "@/components/media/RelatedCreations";
 import SafeRikafuText from "@/components/layout/SafeRikafuText";
 import Footer from "@/components/layout/footer";
-import { determineEventStatus } from "@/lib/data";
+import { events, determineEventStatus } from "@/lib/data";
 
 // Main Page Component
 export default function EventPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -54,47 +54,79 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
   const [generatedTicketCode, setGeneratedTicketCode] = useState("");
   const [showTicketModal, setShowTicketModal] = useState(false);
 
-  // Find event in user submissions
+  // Find event in static data first, then fall back to submissions context
   let event: any = undefined;
   let isCustom = false;
 
-  // Prioritize exact slug or id match first
-  let sub = submissions.find(
-    (s) => s.type === "event" && (s.id === slug || s.slug === slug)
-  );
-
-  // Fallback to slugified title matching only if no match was found
-  if (!sub) {
-    sub = submissions.find(
-      (s) => s.type === "event" && s.title.toLowerCase().replace(/[^a-z0-9]+/g, "-") === slug
+  const staticEvent = events.find((e) => e.slug === slug || String(e.id) === slug);
+  if (staticEvent) {
+    event = { ...staticEvent, id: `legacy-event-${staticEvent.id}` };
+  } else {
+    // Prioritize exact slug or id match first
+    let sub = submissions.find(
+      (s) => s.type === "event" && (s.id === slug || s.slug === slug)
     );
+
+    // Fallback to slugified title matching only if no match was found
+    if (!sub) {
+      sub = submissions.find(
+        (s) => s.type === "event" && s.title.toLowerCase().replace(/[^a-z0-9]+/g, "-") === slug
+      );
+    }
+    if (sub) {
+      isCustom = true;
+      const eventDateStr = sub.date || new Date(sub.submittedAt).toLocaleDateString();
+      event = {
+        id: sub.id as any,
+        status: determineEventStatus(eventDateStr),
+        slug: sub.slug || sub.id,
+        name: sub.title,
+        title: sub.title,
+        date: eventDateStr,
+        location: sub.location,
+        category: sub.category || "Cultural",
+        shortDescription: sub.description,
+        fullDescription: sub.fullText,
+        image: sub.imageUrl || "/images/argungu.webp",
+        video: sub.link || undefined,
+        gallery: sub.gallery || [],
+        highlights: sub.highlights || [],
+        videoCreator: undefined,
+        registrationEnabled: sub.registrationEnabled ?? false,
+        ticketType: sub.ticketType || "free",
+        ticketPrice: sub.ticketPrice || 0,
+        ticketCapacity: sub.ticketCapacity || undefined,
+        theme: sub.theme,
+      };
+    }
   }
-  if (sub) {
-    isCustom = true;
-    const eventDateStr = sub.date || new Date(sub.submittedAt).toLocaleDateString();
-    event = {
-      id: sub.id as any,
-      status: determineEventStatus(eventDateStr),
-      slug: sub.slug || sub.id,
-      name: sub.title,
-      title: sub.title,
-      date: eventDateStr,
-      location: sub.location,
-      category: sub.category || "Cultural",
-      shortDescription: sub.description,
-      fullDescription: sub.fullText,
-      image: sub.imageUrl || "/images/argungu.webp",
-      video: sub.link || undefined,
-      gallery: sub.gallery || [],
-      highlights: sub.highlights || [],
-      videoCreator: undefined,
-      registrationEnabled: sub.registrationEnabled ?? false,
-      ticketType: sub.ticketType || "free",
-      ticketPrice: sub.ticketPrice || 0,
-      ticketCapacity: sub.ticketCapacity || undefined,
-      theme: sub.theme,
-    };
-  }
+
+  // Define Event Schema JSON-LD
+  const jsonLd = event ? {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": event.name,
+    "description": event.shortDescription,
+    "image": [event.image.startsWith("http") ? event.image : `https://visitarewa.com${event.image.startsWith("/") ? "" : "/"}${event.image}`],
+    "startDate": "2026-11-20T09:00:00+01:00",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": {
+      "@type": "Place",
+      "name": event.location,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": event.location,
+        "addressRegion": "Arewa",
+        "addressCountry": "NG"
+      }
+    },
+    "organizer": {
+      "@type": "Organization",
+      "name": "Visit Arewa",
+      "url": "https://visitarewa.com"
+    }
+  } : null;
 
   // Auto-fill logged-in user details
   useEffect(() => {
@@ -111,7 +143,7 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
     }
   }, [event]);
 
-  if (loading) {
+  if (loading && !event) {
     return (
       <div className="bg-[#020402] min-h-screen text-white flex items-center justify-center font-sans">
         <div className="flex flex-col items-center gap-4">
@@ -215,40 +247,15 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
     setGeneratedTicketCode("");
   };
 
-  // Define Event Schema JSON-LD
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Event",
-    "name": event.name,
-    "description": event.shortDescription,
-    "image": [event.image.startsWith("http") ? event.image : `https://visitarewa.com${event.image.startsWith("/") ? "" : "/"}${event.image}`],
-    "startDate": "2026-11-20T09:00:00+01:00",
-    "eventStatus": "https://schema.org/EventScheduled",
-    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-    "location": {
-      "@type": "Place",
-      "name": event.location,
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": event.location,
-        "addressRegion": "Arewa",
-        "addressCountry": "NG"
-      }
-    },
-    "organizer": {
-      "@type": "Organization",
-      "name": "Visit Arewa",
-      "url": "https://visitarewa.com"
-    }
-  };
-
   return (
     <main className="bg-[#020402] min-h-screen text-white font-sans selection:bg-green-500 selection:text-black relative">
       {/* Schema.org Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      {jsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      )}
       {/* --- HERO SECTION --- */}
       <div className="relative h-[60vh] w-full overflow-hidden">
         <div className="relative w-full h-full">

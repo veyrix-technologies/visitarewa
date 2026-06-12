@@ -26,9 +26,32 @@ export async function generateMetadata({ params }: any) {
   const person = people.find((p) => p.slug === slug);
   if (!person) return { title: "Person Not Found" };
 
+  const imgUrl = person.image;
+  const absoluteImg = imgUrl.startsWith("http") ? imgUrl : `https://visitarewa.com${imgUrl.startsWith("/") ? "" : "/"}${imgUrl}`;
+
   return {
     title: `${person.name} | Visit Arewa Excellence`,
     description: person.shortDescription,
+    openGraph: {
+      title: `${person.name} | Visit Arewa Excellence`,
+      description: person.shortDescription,
+      url: `https://visitarewa.com/people/${person.slug}`,
+      images: [
+        {
+          url: absoluteImg,
+          width: 1200,
+          height: 630,
+          alt: person.name,
+        },
+      ],
+      type: "profile",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: person.name,
+      description: person.shortDescription,
+      images: [absoluteImg],
+    },
   };
 }
 

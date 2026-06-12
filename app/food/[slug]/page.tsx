@@ -16,6 +16,7 @@ import {
   Compass
 } from "lucide-react";
 import { useAuth } from "@/lib/AuthContext";
+import { dishes } from "@/lib/data";
 import FoodActionButtons from "@/components/food/FoodActionButtons";
 import RelatedCreations from "@/components/media/RelatedCreations";
 import SafeRikafuText from "@/components/layout/SafeRikafuText";
@@ -34,36 +35,33 @@ export default function FoodPage({ params }: any) {
     );
   }
 
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (item) {
-      document.title = `${item.title} | Visit Arewa Cuisine`;
-    }
-  }, [item]);
-
-  if (!mounted) {
-    return (
-      <div className="bg-[#020402] min-h-screen text-white flex items-center justify-center font-sans">
-        <div className="flex flex-col items-center gap-4">
-          <Compass className="animate-spin text-green-500 w-12 h-12" />
-          <p className="text-gray-400 text-sm uppercase tracking-widest font-bold">Loading Data...</p>
-        </div>
-      </div>
-    );
-  }
-
+  // Fallback to static dishes on initial render / server render
   if (!item) {
-    notFound();
+    const staticDish = dishes.find((d) => d.slug === slug || String(d.id) === slug);
+    if (staticDish) {
+      item = {
+        id: `legacy-dish-${staticDish.id}`,
+        slug: staticDish.slug,
+        type: "cuisine",
+        title: staticDish.name,
+        location: "Arewa",
+        description: staticDish.description,
+        fullText: staticDish.description,
+        imageUrl: staticDish.image,
+        gallery: [staticDish.image],
+        status: "published",
+        submittedAt: "2026-01-01T00:00:00Z",
+        userEmail: "admin@explore.com",
+        calories: staticDish.calories,
+        stats: staticDish.stats,
+        ingredients: staticDish.ingredients
+      };
+    }
   }
 
   // Define Recipe Schema JSON-LD
-  const recipeImg = item.imageUrl || "/images/fura.png";
-  const jsonLd = {
+  const recipeImg = item?.imageUrl || "/images/fura.png";
+  const jsonLd = item ? {
     "@context": "https://schema.org",
     "@type": "Recipe",
     "name": item.title,
@@ -81,15 +79,50 @@ export default function FoodPage({ params }: any) {
     "recipeCategory": item.category || "General",
     "recipeCuisine": "Arewa",
     "recipeIngredient": item.ingredients || []
-  };
+  } : null;
+
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (item) {
+      document.title = `${item.title} | Visit Arewa Cuisine`;
+    }
+  }, [item]);
+
+  if (!mounted) {
+    return (
+      <div className="bg-[#020402] min-h-screen text-white flex items-center justify-center font-sans">
+        {jsonLd && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
+        )}
+        <div className="flex flex-col items-center gap-4">
+          <Compass className="animate-spin text-green-500 w-12 h-12" />
+          <p className="text-gray-400 text-sm uppercase tracking-widest font-bold">Loading Data...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!item) {
+    notFound();
+  }
 
   return (
     <main className="bg-[#020402] min-h-screen text-white font-sans selection:bg-green-500 selection:text-black">
       {/* Schema.org Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      {jsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      )}
       {/* --- HERO SECTION --- */}
       <div className="relative h-[60vh] w-full overflow-hidden">
         <div className="relative w-full h-full">

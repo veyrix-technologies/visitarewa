@@ -31,36 +31,6 @@ export default function ExplorerPage({ params }: any) {
   // Find the static explorer data
   const explorerData = explorers.find((e) => e.slug === slug);
 
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (explorerData) {
-      let username = explorerData.slug;
-      if (explorerData.socials?.instagram) {
-        const parts = explorerData.socials.instagram.split("/");
-        const handle = parts.filter(Boolean).pop();
-        if (handle) username = handle;
-      }
-      document.title = `${username} | Visit Arewa Explorers`;
-    }
-  }, [explorerData]);
-
-  if (!mounted) {
-    return (
-      <div className="bg-[#020402] min-h-screen text-white flex items-center justify-center font-sans">
-        <div className="flex flex-col items-center gap-4">
-          <Compass className="animate-spin text-green-500 w-12 h-12" />
-          <p className="text-gray-400 text-sm uppercase tracking-widest font-bold">Loading Data...</p>
-        </div>
-      </div>
-    );
-  }
-
-  // If not found, 404
   if (!explorerData) {
     notFound();
   }
@@ -119,13 +89,50 @@ export default function ExplorerPage({ params }: any) {
     }
   };
 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (explorerData) {
+      let username = explorerData.slug;
+      if (explorerData.socials?.instagram) {
+        const parts = explorerData.socials.instagram.split("/");
+        const handle = parts.filter(Boolean).pop();
+        if (handle) username = handle;
+      }
+      document.title = `${username} | Visit Arewa Explorers`;
+    }
+  }, [explorerData]);
+
+  if (!mounted) {
+    return (
+      <div className="bg-[#020402] min-h-screen text-white flex items-center justify-center font-sans">
+        {jsonLd && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
+        )}
+        <div className="flex flex-col items-center gap-4">
+          <Compass className="animate-spin text-green-500 w-12 h-12" />
+          <p className="text-gray-400 text-sm uppercase tracking-widest font-bold">Loading Data...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <main className="bg-[#020402] min-h-screen text-white font-sans selection:bg-green-500 selection:text-black">
       {/* Schema.org Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      {jsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      )}
 
       {/* --- HERO SECTION --- */}
       <div className="relative h-[55vh] w-full overflow-hidden">
