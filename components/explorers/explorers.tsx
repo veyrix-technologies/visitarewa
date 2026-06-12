@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Play, BookOpen, Image as ImageIcon, ArrowRight, MapPin, Compass } from "lucide-react";
+import { Play, BookOpen, Image as ImageIcon, ArrowRight, MapPin, Compass, ArrowUpRight } from "lucide-react";
 import { explorers } from "@/lib/data";
 import MediaModal from "@/components/media/MediaModal";
 import InstagramImage from "@/components/media/InstagramImage";
@@ -36,9 +36,9 @@ export default function ArewaExplorers() {
           </div>
           <Link
             href="/explorers"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 hover:border-green-500 bg-white/5 hover:bg-green-500/10 text-white hover:text-green-400 transition-all font-bold font-sans text-sm tracking-wider w-fit"
+            className="flex items-center gap-2 border-b border-green-500 pb-1 hover:text-green-500 transition-colors mt-6 md:mt-0"
           >
-            Explore All Profiles <ArrowRight size={16} />
+            View All Explorers <ArrowUpRight size={18} />
           </Link>
         </div>
 
@@ -51,8 +51,8 @@ export default function ArewaExplorers() {
                 key={explorer.id}
                 onClick={() => setActiveExplorer(explorer)}
                 className={`group cursor-pointer p-6 rounded-2xl transition-all font-sans duration-300 border flex gap-4 items-center ${activeExplorer.id === explorer.id
-                    ? "bg-white/5 border-green-500/50 shadow-2xl shadow-green-500/5"
-                    : "bg-transparent border-white/5 hover:bg-white/5 hover:border-white/10"
+                  ? "bg-white/5 border-green-500/50 shadow-2xl shadow-green-500/5"
+                  : "bg-transparent border-white/5 hover:bg-white/5 hover:border-white/10"
                   }`}
               >
                 {/* Profile Pic */}

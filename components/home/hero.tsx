@@ -184,7 +184,7 @@ export default function HeroSection() {
             People & Icons
           </a>
           <a href="#explorers" className="hover:text-green-400 transition">
-            Explorers
+            The Explorers
           </a>
         </div>
 

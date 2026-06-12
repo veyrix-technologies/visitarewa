@@ -3,10 +3,10 @@
 import React, { useState, useMemo, Suspense } from "react";
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
-import { destinations, events, crafts } from "@/lib/data";
+import { useAuth, getCanonicalSubmissions } from "@/lib/AuthContext";
 import { ArrowLeft, Map as MapIcon, Calendar, Compass, Hammer } from "lucide-react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 // Dynamically import the map component with SSR disabled
 const InteractiveMap = dynamic(() => import("@/components/destinations/MapComponent"), {
@@ -18,18 +18,43 @@ const InteractiveMap = dynamic(() => import("@/components/destinations/MapCompon
   ),
 });
 
-// Utility to parse coordinate strings like "10.3160° N, 7.6750° E" to [number, number]
+// Robust utility to parse coordinate strings like "10.3160° N, 7.6750° E" or decimal "10.3160, 7.6750" to [number, number]
 function parseCoordinates(coordString: string): [number, number] | null {
   if (!coordString) return null;
-  const regex = /([\d.]+).*?([NS]).*?([\d.]+).*?([EW])/i;
-  const match = coordString.match(regex);
-  if (match) {
-    let lat = parseFloat(match[1]);
-    let lng = parseFloat(match[3]);
-    if (match[2].toUpperCase() === "S") lat = -lat;
-    if (match[4].toUpperCase() === "W") lng = -lng;
+  
+  // 1. Try clean decimal, e.g., "10.5105, 7.4165" or "10.5105 -7.4165"
+  const cleanDecimalRegex = /^\s*(-?[\d.]+)\s*[,;\s]\s*(-?[\d.]+)\s*$/;
+  const decimalMatch = coordString.match(cleanDecimalRegex);
+  if (decimalMatch) {
+    const lat = parseFloat(decimalMatch[1]);
+    const lng = parseFloat(decimalMatch[2]);
+    if (!isNaN(lat) && !isNaN(lng)) {
+      return [lat, lng];
+    }
+  }
+
+  // 2. Fallback to degrees format with N/S and E/W letters, e.g., "10.3160° N, 7.6750° E"
+  const cardinalRegex = /^\s*([\d.]+)\s*°?\s*([NS])\s*[,;\s]\s*([\d.]+)\s*°?\s*([EW])/i;
+  const cardinalMatch = coordString.match(cardinalRegex);
+  if (cardinalMatch) {
+    let lat = parseFloat(cardinalMatch[1]);
+    let lng = parseFloat(cardinalMatch[3]);
+    if (cardinalMatch[2].toUpperCase() === "S") lat = -lat;
+    if (cardinalMatch[4].toUpperCase() === "W") lng = -lng;
     return [lat, lng];
   }
+
+  // 3. Broad search regex as final fallback
+  const broadRegex = /([\d.]+).*?([NS]).*?([\d.]+).*?([EW])/i;
+  const broadMatch = coordString.match(broadRegex);
+  if (broadMatch) {
+    let lat = parseFloat(broadMatch[1]);
+    let lng = parseFloat(broadMatch[3]);
+    if (broadMatch[2].toUpperCase() === "S") lat = -lat;
+    if (broadMatch[4].toUpperCase() === "W") lng = -lng;
+    return [lat, lng];
+  }
+
   return null;
 }
 
@@ -44,6 +69,7 @@ export default function MapPage() {
 function MapPageContent() {
   const searchParams = useSearchParams();
   const idFromQuery = searchParams.get("id");
+  const { submissions } = useAuth();
 
   const [activeFilters, setActiveFilters] = useState<string[]>([
     "destination",
@@ -59,66 +85,35 @@ function MapPageContent() {
     );
   };
 
+  const publishedSubmissions = useMemo(() => {
+    return getCanonicalSubmissions(
+      submissions.filter((s) => s.status === "published")
+    );
+  }, [submissions]);
+
   const allItems = useMemo(() => {
     const items: any[] = [];
     
-    if (activeFilters.includes("destination")) {
-      destinations.forEach((d) => {
-        const coords = parseCoordinates(d.coordinates);
-        if (coords) {
-          items.push({
-            id: `destination-${d.slug}`,
-            type: "destination",
-            title: d.name,
-            image: d.image,
-            slug: d.slug,
-            coordinates: coords,
-            shortDesc: d.shortDescription,
-          });
-        }
-      });
-    }
+    publishedSubmissions.forEach((sub) => {
+      if (!activeFilters.includes(sub.type)) return;
+      if (!sub.coordinates) return;
 
-    if (activeFilters.includes("event")) {
-      events.forEach((e) => {
-        if (e.coordinates) {
-          const coords = parseCoordinates(e.coordinates);
-          if (coords) {
-            items.push({
-              id: `event-${e.slug}`,
-              type: "event",
-              title: e.name,
-              image: e.image,
-              slug: e.slug,
-              coordinates: coords,
-              shortDesc: e.shortDescription,
-            });
-          }
-        }
-      });
-    }
-
-    if (activeFilters.includes("craft")) {
-      crafts.forEach((c) => {
-        if (c.coordinates) {
-          const coords = parseCoordinates(c.coordinates);
-          if (coords) {
-            items.push({
-              id: `craft-${c.slug}`,
-              type: "craft",
-              title: c.name,
-              image: c.image,
-              slug: c.slug,
-              coordinates: coords,
-              shortDesc: c.shortDescription,
-            });
-          }
-        }
-      });
-    }
+      const coords = parseCoordinates(sub.coordinates);
+      if (coords) {
+        items.push({
+          id: `${sub.type}-${sub.slug || sub.id}`,
+          type: sub.type,
+          title: sub.title,
+          image: sub.imageUrl,
+          slug: sub.slug || sub.id,
+          coordinates: coords,
+          shortDesc: sub.description,
+        });
+      }
+    });
 
     return items;
-  }, [activeFilters]);
+  }, [activeFilters, publishedSubmissions]);
 
   // If we have an ID from the query, try to find it to center on it
   let centerOnId = null;

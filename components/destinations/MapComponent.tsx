@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -54,6 +54,29 @@ export default function MapComponent({ items, centerOnId }: MapComponentProps) {
     setMounted(true);
   }, []);
 
+  // Jitter coordinates of overlapping markers slightly to make them all distinct and clickable
+  const processedItems = useMemo(() => {
+    const coordCounts: Record<string, number> = {};
+    return items.map((item) => {
+      const key = `${item.coordinates[0].toFixed(5)},${item.coordinates[1].toFixed(5)}`;
+      const count = coordCounts[key] || 0;
+      coordCounts[key] = count + 1;
+
+      if (count > 0) {
+        // Spiral offsets based on angle and count
+        const angle = (count * 2 * Math.PI) / 6; // Spread in 6 directions
+        const radius = 0.005 * Math.ceil(count / 6); // Offset radius in degrees (approx 500 meters)
+        const offsetLat = radius * Math.cos(angle);
+        const offsetLng = radius * Math.sin(angle);
+        return {
+          ...item,
+          coordinates: [item.coordinates[0] + offsetLat, item.coordinates[1] + offsetLng] as [number, number],
+        };
+      }
+      return item;
+    });
+  }, [items]);
+
   if (!mounted) return null;
 
   return (
@@ -73,7 +96,7 @@ export default function MapComponent({ items, centerOnId }: MapComponentProps) {
 
         <MapController items={items} centerOnId={centerOnId} />
 
-        {items.map((item) => (
+        {processedItems.map((item) => (
           <Marker key={item.id} position={item.coordinates} icon={customMarkerIcon}>
             <Popup className="custom-popup">
               <div className="w-64 bg-[#0a0f0a] border border-green-500/20 rounded-2xl overflow-hidden p-0 shadow-2xl">
@@ -91,9 +114,9 @@ export default function MapComponent({ items, centerOnId }: MapComponentProps) {
                 <div className="p-4 flex flex-col gap-2">
                   <h3 className="text-white font-bold text-lg leading-tight">{item.title}</h3>
                   <p className="text-gray-400 text-xs line-clamp-2">{item.shortDesc}</p>
-                  
+
                   <div className="mt-2 flex items-center gap-2">
-                    <Link 
+                    <Link
                       href={`/${item.type}s/${item.slug}`}
                       className="inline-flex items-center gap-2 px-4 py-2 bg-green-500 !text-black text-[10px] font-bold uppercase tracking-widest rounded-full hover:bg-green-400 transition-colors w-max"
                     >

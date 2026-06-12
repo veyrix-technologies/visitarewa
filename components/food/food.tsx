@@ -31,15 +31,15 @@ export default function ArewaCuisine() {
                 key={dish.id}
                 onClick={() => setActiveDish(dish)}
                 className={`group cursor-pointer p-6 rounded-xl transition-all font-sans duration-300 border ${activeDish.id === dish.id
-                    ? "bg-white/5 border-green-500"
-                    : "bg-transparent border-transparent hover:bg-white/5"
+                  ? "bg-white/5 border-green-500"
+                  : "bg-transparent border-transparent hover:bg-white/5"
                   }`}
               >
                 <div className="flex justify-between items-center mb-2">
                   <h3
                     className={`text-xl font-bold ${activeDish.id === dish.id
-                        ? "text-green-400"
-                        : "text-white group-hover:text-gray-200"
+                      ? "text-green-400"
+                      : "text-white group-hover:text-gray-200"
                       }`}
                   >
                     {dish.name}
@@ -79,7 +79,7 @@ export default function ArewaCuisine() {
           <div>
             <Link
               href="/food"
-              className="inline-flex text-sm items-center gap-2 px-8 py-3 rounded-full hover:bg-white/5 hover:text-green-500 border border-gray-500 bg-green-500 text-black transition-all font-bold font-sans tracking-wider"
+              className="inline-flex text-sm items-center gap-2 px-8 py-3 rounded-full hover:bg-white/5 hover:border-green-500 border border-gray-800  text-green-500 transition-all font-bold font-sans tracking-wider"
             >
               Explore Full Menu <ArrowRight size={16} />
             </Link>

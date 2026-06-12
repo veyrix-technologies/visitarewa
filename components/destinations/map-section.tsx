@@ -2,7 +2,7 @@
 
 import React, { useMemo } from "react";
 import dynamic from "next/dynamic";
-import { destinations, events, crafts } from "@/lib/data";
+import { useAuth, getCanonicalSubmissions } from "@/lib/AuthContext";
 import { ArrowUpRight, Map as MapIcon } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -17,76 +17,79 @@ const InteractiveMap = dynamic(() => import("@/components/destinations/MapCompon
   ),
 });
 
-// Utility to parse coordinate strings like "10.3160° N, 7.6750° E" to [number, number]
+// Robust utility to parse coordinate strings like "10.3160° N, 7.6750° E" or decimal "10.3160, 7.6750" to [number, number]
 function parseCoordinates(coordString: string): [number, number] | null {
   if (!coordString) return null;
-  const regex = /([\d.]+).*?([NS]).*?([\d.]+).*?([EW])/i;
-  const match = coordString.match(regex);
-  if (match) {
-    let lat = parseFloat(match[1]);
-    let lng = parseFloat(match[3]);
-    if (match[2].toUpperCase() === "S") lat = -lat;
-    if (match[4].toUpperCase() === "W") lng = -lng;
+  
+  // 1. Try clean decimal, e.g., "10.5105, 7.4165" or "10.5105 -7.4165"
+  const cleanDecimalRegex = /^\s*(-?[\d.]+)\s*[,;\s]\s*(-?[\d.]+)\s*$/;
+  const decimalMatch = coordString.match(cleanDecimalRegex);
+  if (decimalMatch) {
+    const lat = parseFloat(decimalMatch[1]);
+    const lng = parseFloat(decimalMatch[2]);
+    if (!isNaN(lat) && !isNaN(lng)) {
+      return [lat, lng];
+    }
+  }
+
+  // 2. Fallback to degrees format with N/S and E/W letters, e.g., "10.3160° N, 7.6750° E"
+  const cardinalRegex = /^\s*([\d.]+)\s*°?\s*([NS])\s*[,;\s]\s*([\d.]+)\s*°?\s*([EW])/i;
+  const cardinalMatch = coordString.match(cardinalRegex);
+  if (cardinalMatch) {
+    let lat = parseFloat(cardinalMatch[1]);
+    let lng = parseFloat(cardinalMatch[3]);
+    if (cardinalMatch[2].toUpperCase() === "S") lat = -lat;
+    if (cardinalMatch[4].toUpperCase() === "W") lng = -lng;
     return [lat, lng];
   }
+
+  // 3. Broad search regex as final fallback
+  const broadRegex = /([\d.]+).*?([NS]).*?([\d.]+).*?([EW])/i;
+  const broadMatch = coordString.match(broadRegex);
+  if (broadMatch) {
+    let lat = parseFloat(broadMatch[1]);
+    let lng = parseFloat(broadMatch[3]);
+    if (broadMatch[2].toUpperCase() === "S") lat = -lat;
+    if (broadMatch[4].toUpperCase() === "W") lng = -lng;
+    return [lat, lng];
+  }
+
   return null;
 }
 
 export default function MapSection() {
+  const { submissions } = useAuth();
+
+  const publishedSubmissions = useMemo(() => {
+    return getCanonicalSubmissions(
+      submissions.filter((s) => s.status === "published")
+    );
+  }, [submissions]);
+
   const allItems = useMemo(() => {
     const items: any[] = [];
 
-    destinations.forEach((d) => {
-      const coords = parseCoordinates(d.coordinates);
+    publishedSubmissions.forEach((sub) => {
+      // Cuisine type has no coordinates on the map
+      if (sub.type === "cuisine") return;
+      if (!sub.coordinates) return;
+
+      const coords = parseCoordinates(sub.coordinates);
       if (coords) {
         items.push({
-          id: `destination-${d.slug}`,
-          type: "destination",
-          title: d.name,
-          image: d.image,
-          slug: d.slug,
+          id: `${sub.type}-${sub.slug || sub.id}`,
+          type: sub.type,
+          title: sub.title,
+          image: sub.imageUrl,
+          slug: sub.slug || sub.id,
           coordinates: coords,
-          shortDesc: d.shortDescription,
+          shortDesc: sub.description,
         });
       }
     });
 
-    events.forEach((e) => {
-      if (e.coordinates) {
-        const coords = parseCoordinates(e.coordinates);
-        if (coords) {
-          items.push({
-            id: `event-${e.slug}`,
-            type: "event",
-            title: e.name,
-            image: e.image,
-            slug: e.slug,
-            coordinates: coords,
-            shortDesc: e.shortDescription,
-          });
-        }
-      }
-    });
-
-    crafts.forEach((c) => {
-      if (c.coordinates) {
-        const coords = parseCoordinates(c.coordinates);
-        if (coords) {
-          items.push({
-            id: `craft-${c.slug}`,
-            type: "craft",
-            title: c.name,
-            image: c.image,
-            slug: c.slug,
-            coordinates: coords,
-            shortDesc: c.shortDescription,
-          });
-        }
-      }
-    });
-
     return items;
-  }, []);
+  }, [publishedSubmissions]);
 
   return (
     <section className="bg-[#020402] text-white py-24 border-t border-white/5" id="map-section">

@@ -90,15 +90,15 @@ export default function App() {
             <CraftsShowcase />
           </section>
 
-          {/* Ticketing & Registration Feature Promo Showcase Banner */}
+          {/* Ticketing & Registration Feature Promo Showcase Banner
           <div className="container mx-auto px-6 md:px-20 py-12">
             <div className="relative overflow-hidden rounded-3xl border border-green-500/20 bg-gradient-to-br from-zinc-950 via-zinc-900 to-black p-8 md:p-12 shadow-[0_0_50px_rgba(34,197,94,0.05)]">
-              {/* Blurred Decorative Circles */}
+              Blurred Decorative Circles
               <div className="absolute -left-12 -top-12 h-40 w-40 rounded-full bg-green-500/10 blur-3xl"></div>
               <div className="absolute -right-20 -bottom-20 h-60 w-60 rounded-full bg-green-500/5 blur-3xl"></div>
 
               <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center font-sans">
-                {/* Text Side */}
+                Text Side
                 <div className="lg:col-span-7 space-y-6">
                   <div className="inline-flex items-center gap-2 rounded-full border border-green-500/30 bg-green-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-green-400 w-fit">
                     <Sparkles size={12} className="animate-pulse" />
@@ -124,9 +124,9 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* Features Highlights Side */}
+                Features Highlights Side
                 <div className="lg:col-span-5 grid grid-cols-1 gap-4 font-sans">
-                  {/* Feature 1 */}
+                  Feature 1
                   <div className="flex gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-green-500/20 transition-all group">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-green-500/10 text-green-400 group-hover:scale-105 transition-transform">
                       <Ticket size={20} />
@@ -137,7 +137,7 @@ export default function App() {
                     </div>
                   </div>
 
-                  {/* Feature 2 */}
+                  Feature 2
                   <div className="flex gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-green-500/20 transition-all group">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-green-500/10 text-green-400 group-hover:scale-105 transition-transform">
                       <CreditCard size={20} />
@@ -148,7 +148,7 @@ export default function App() {
                     </div>
                   </div>
 
-                  {/* Feature 3 */}
+                  Feature 3
                   <div className="flex gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-green-500/20 transition-all group">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-green-500/10 text-green-400 group-hover:scale-105 transition-transform">
                       <Users size={20} />
@@ -162,8 +162,9 @@ export default function App() {
               </div>
             </div>
           </div>
+          */}
 
-          {/* MAKE SURE THIS ID MATCHES THE LINK (#events) */}
+{/* MAKE SURE THIS ID MATCHES THE LINK (#events) */ }
           <section id="events">
             <ArewaEvents />
           </section>
@@ -181,8 +182,8 @@ export default function App() {
           </section>
 
           <Footer />
-        </motion.div>
+        </motion.div >
       )}
-    </main>
+    </main >
   );
 }

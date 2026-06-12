@@ -1,11 +1,14 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Flame, Clock } from "lucide-react";
-import { useAuth, getCanonicalSubmissions } from "@/lib/AuthContext";
-import Footer from "@/components/layout/footer";
+import { dishes } from "@/lib/data";
+
+export const metadata = {
+  title: "Culinary Heritage | Visit Arewa",
+  description:
+    "Explore the authentic flavors, traditional recipes, and rich culinary history of Northern Nigeria.",
+};
 
 // Group items by category (Main Dish, Snack, Drink, etc.)
 const groupByCategory = (list: any[]) => {
@@ -23,25 +26,7 @@ const groupByCategory = (list: any[]) => {
 };
 
 export default function FoodIndexPage() {
-  const { submissions } = useAuth();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const foodSubmissions = getCanonicalSubmissions(
-    submissions.filter(
-      (sub) => sub.type === "cuisine" && sub.status === "published"
-    )
-  );
-
-  const groupedCuisine = groupByCategory(
-    foodSubmissions.map((sub) => ({
-      ...sub,
-      category: sub.category || "General",
-    }))
-  );
+  const groupedCuisine = groupByCategory(dishes);
   const categories = Object.keys(groupedCuisine).sort();
 
   return (
@@ -62,7 +47,7 @@ export default function FoodIndexPage() {
           </h1>
           <p className="text-xl text-gray-300">
             From the spicy kick of Kilishi to the comforting warmth of Tuwo.
-            Discover the recipes and stories behind Arewa's most beloved
+            Discover the recipes and stories behind the North's most beloved
             dishes.
           </p>
         </div>
@@ -75,19 +60,19 @@ export default function FoodIndexPage() {
             {/* Category Header */}
             <div className="flex items-center gap-4 mb-12">
               <div className="h-[2px] w-12 bg-green-500"></div>
-              <h2 className="text-3xl font-sans md:text-4xl font-bold">{category}</h2>
+              <h2 className="text-3xl font-rikafu md:text-4xl font-bold">{category}</h2>
             </div>
 
             {/* Food Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {mounted && groupedCuisine[category].map((item) => (
-                <Link key={item.id} href={`/food/${item.slug || item.id}`}>
+              {groupedCuisine[category].map((item) => (
+                <Link key={item.slug} href={`/food/${item.slug}`}>
                   <div className="group cursor-pointer">
                     {/* Image Card */}
                     <div className="relative h-[400px] rounded-2xl overflow-hidden mb-4  group-hover:transition-all duration-300 border border-white/5">
                       <Image
-                        src={item.imageUrl || "/images/fura.png"}
-                        alt={item.title}
+                        src={item.image}
+                        alt={item.name}
                         fill
                         className="object-cover group-hover:scale-110 transition-transform duration-500"
                       />
@@ -96,11 +81,11 @@ export default function FoodIndexPage() {
                       {/* Overlay Info */}
                       <div className="absolute bottom-0 inset-x-0 p-6">
                         <h3 className="text-2xl font-bold text-green-400 mb-2 group-hover:transition-colors">
-                          {item.title}
+                          {item.name}
                         </h3>
-                        {item.stats && item.stats.length > 0 && (
+                        {item.tagline && (
                           <p className="text-gray-300 text-sm italic">
-                            "{item.stats[0]}"
+                            "{item.tagline}"
                           </p>
                         )}
                       </div>
@@ -138,14 +123,7 @@ export default function FoodIndexPage() {
             <div className="h-[1px] bg-white/10 mt-20"></div>
           </div>
         ))}
-        
-        {mounted && foodSubmissions.length === 0 && (
-          <div className="col-span-full py-20 text-center text-gray-500 font-sans">
-            No cuisines or recipes have been published by the community yet.
-          </div>
-        )}
       </div>
-      <Footer />
     </main>
   );
 }
