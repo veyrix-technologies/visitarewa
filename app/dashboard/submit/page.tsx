@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/lib/AuthContext";
@@ -67,7 +67,7 @@ const labelClass = "block text-[10px] font-black uppercase tracking-widest text-
 const inputClass =
   "w-full bg-zinc-900/40 border border-white/5 rounded-xl px-4 py-3.5 text-sm text-white placeholder-zinc-700 focus:outline-none focus:border-green-500/50 focus:bg-zinc-950/80 transition-all duration-300 hover:border-white/10 font-sans";
 
-export default function SubmitContentPage() {
+function SubmitContentPageInner() {
   const { user, loading, submitContent, submissions, updateSubmission } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -860,5 +860,20 @@ export default function SubmitContentPage() {
         </div>
       </div>
     </DashboardLayout>
+  );
+}
+
+export default function SubmitContentPage() {
+  return (
+    <Suspense fallback={
+      <div className="bg-[#020402] min-h-screen text-white flex items-center justify-center font-sans">
+        <div className="flex flex-col items-center gap-4">
+          <Compass className="animate-spin text-green-500 w-12 h-12" />
+          <p className="text-gray-400 text-sm uppercase tracking-widest font-bold">Loading Submission Form...</p>
+        </div>
+      </div>
+    }>
+      <SubmitContentPageInner />
+    </Suspense>
   );
 }
