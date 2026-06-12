@@ -6,6 +6,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import Link from "next/link";
 import Image from "next/image";
+import InstagramImage from "@/components/media/InstagramImage";
 import { ArrowUpRight, MapPin } from "lucide-react";
 
 // Custom green SVG marker
@@ -18,7 +19,7 @@ const customMarkerIcon = L.divIcon({
 
 interface MapItem {
   id: string;
-  type: "destination" | "event" | "craft";
+  type: "destination" | "event" | "craft" | "explorer";
   title: string;
   image: string;
   slug: string;
@@ -65,7 +66,7 @@ export default function MapComponent({ items, centerOnId }: MapComponentProps) {
       if (count > 0) {
         // Spiral offsets based on angle and count
         const angle = (count * 2 * Math.PI) / 6; // Spread in 6 directions
-        const radius = 0.005 * Math.ceil(count / 6); // Offset radius in degrees (approx 500 meters)
+        const radius = 0.08 * Math.ceil(count / 6); // Offset radius in degrees (approx 8 kilometers) to be visible at zoom level 6/7
         const offsetLat = radius * Math.cos(angle);
         const offsetLng = radius * Math.sin(angle);
         return {
@@ -101,11 +102,10 @@ export default function MapComponent({ items, centerOnId }: MapComponentProps) {
             <Popup className="custom-popup">
               <div className="w-64 bg-[#0a0f0a] border border-green-500/20 rounded-2xl overflow-hidden p-0 shadow-2xl">
                 <div className="w-full h-32 relative">
-                  <Image
+                  <InstagramImage
                     src={item.image}
                     alt={item.title}
-                    fill
-                    className="object-cover"
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
                   <div className="absolute top-2 left-2 px-2 py-1 bg-black/60 backdrop-blur-md rounded-full text-[10px] text-green-400 font-bold uppercase tracking-widest border border-white/10">
                     {item.type}

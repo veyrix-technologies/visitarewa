@@ -62,11 +62,12 @@ export default function FoodPage({ params }: any) {
   }
 
   // Define Recipe Schema JSON-LD
+  const recipeImg = item.imageUrl || "/images/fura.png";
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Recipe",
     "name": item.title,
-    "image": [item.imageUrl || "/images/fura.png"],
+    "image": [recipeImg.startsWith("http") ? recipeImg : `https://visitarewa.com${recipeImg.startsWith("/") ? "" : "/"}${recipeImg}`],
     "author": {
       "@type": "Organization",
       "name": "Visit Arewa",

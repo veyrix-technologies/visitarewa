@@ -3,6 +3,7 @@
 import React, { useMemo } from "react";
 import dynamic from "next/dynamic";
 import { useAuth, getCanonicalSubmissions } from "@/lib/AuthContext";
+import { explorers } from "@/lib/data";
 import { ArrowUpRight, Map as MapIcon } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -57,6 +58,36 @@ function parseCoordinates(coordString: string): [number, number] | null {
   return null;
 }
 
+// Utility helper to match explorer creation locations to coordinates on the map
+function getCreationCoordinates(location: string, id: number): [number, number] | null {
+  const loc = location.toLowerCase();
+  if (loc.includes("kuje") || loc.includes("almat")) {
+    return [8.8790, 7.2275]; // Kuje, Abuja
+  }
+  if (loc.includes("arewa house") || (loc.includes("kaduna") && id === 202)) {
+    return [10.5361, 7.4478]; // Arewa House, Kaduna
+  }
+  if (loc.includes("bauchi") && (id === 203 || id === 845)) {
+    return [10.3158, 9.8442]; // Bauchi City
+  }
+  if (loc.includes("jos") || loc.includes("plateau")) {
+    return [9.8922, 8.8632]; // Jos Wildlife Park
+  }
+  if (loc.includes("yankari") || loc.includes("wikki")) {
+    return [9.7500, 10.5000]; // Yankari
+  }
+  if (loc.includes("zaria") || loc.includes("kano") || loc.includes("dutse")) {
+    return [11.9964, 8.5167]; // Kano
+  }
+  if (loc.includes("yusufari") || loc.includes("yobe")) {
+    return [13.0632, 10.5824]; // Yusufari Desert, Yobe
+  }
+  if (loc.includes("multi-location") || loc.includes("nigeria")) {
+    return [9.0765, 7.3986]; // Abuja Center
+  }
+  return null;
+}
+
 export default function MapSection() {
   const { submissions } = useAuth();
 
@@ -86,6 +117,28 @@ export default function MapSection() {
           shortDesc: sub.description,
         });
       }
+    });
+
+    // Inject explorers' created content dynamically to the map
+    explorers.forEach((explorer) => {
+      explorer.createdContent.forEach((creation) => {
+        const coords = getCreationCoordinates(creation.locationFeatured || "", creation.id);
+        if (coords) {
+          const itemKey = `explorer-creation-${creation.id}`;
+          // Avoid duplicate keys if multiple explorers co-credited the same content
+          if (items.some((i) => i.id === itemKey)) return;
+
+          items.push({
+            id: itemKey,
+            type: "explorer",
+            title: creation.title,
+            image: creation.thumbnail,
+            slug: explorer.slug,
+            coordinates: coords,
+            shortDesc: creation.description,
+          });
+        }
+      });
     });
 
     return items;

@@ -109,7 +109,7 @@ export default function ExplorerPage({ params }: any) {
       "@type": "Person",
       "name": explorer.name,
       "jobTitle": explorer.role,
-      "image": explorer.image,
+      "image": explorer.image.startsWith("http") ? explorer.image : `https://visitarewa.com${explorer.image.startsWith("/") ? "" : "/"}${explorer.image}`,
       "description": explorer.shortDescription,
       "homeLocation": {
         "@type": "Place",

@@ -221,7 +221,7 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
     "@type": "Event",
     "name": event.name,
     "description": event.shortDescription,
-    "image": [event.image],
+    "image": [event.image.startsWith("http") ? event.image : `https://visitarewa.com${event.image.startsWith("/") ? "" : "/"}${event.image}`],
     "startDate": "2026-11-20T09:00:00+01:00",
     "eventStatus": "https://schema.org/EventScheduled",
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",

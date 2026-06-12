@@ -57,7 +57,7 @@ export default async function PersonPage({ params }: any) {
     "@type": "Person",
     "name": person.name,
     "jobTitle": person.role,
-    "image": person.image,
+    "image": person.image.startsWith("http") ? person.image : `https://visitarewa.com${person.image.startsWith("/") ? "" : "/"}${person.image}`,
     "description": person.shortDescription,
     "homeLocation": {
       "@type": "Place",

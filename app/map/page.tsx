@@ -4,7 +4,8 @@ import React, { useState, useMemo, Suspense } from "react";
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
 import { useAuth, getCanonicalSubmissions } from "@/lib/AuthContext";
-import { ArrowLeft, Map as MapIcon, Calendar, Compass, Hammer } from "lucide-react";
+import { explorers } from "@/lib/data";
+import { ArrowLeft, Map as MapIcon, Calendar, Compass, Hammer, Camera } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -58,6 +59,36 @@ function parseCoordinates(coordString: string): [number, number] | null {
   return null;
 }
 
+// Utility helper to match explorer creation locations to coordinates on the map
+function getCreationCoordinates(location: string, id: number): [number, number] | null {
+  const loc = location.toLowerCase();
+  if (loc.includes("kuje") || loc.includes("almat")) {
+    return [8.8790, 7.2275]; // Kuje, Abuja
+  }
+  if (loc.includes("arewa house") || (loc.includes("kaduna") && id === 202)) {
+    return [10.5361, 7.4478]; // Arewa House, Kaduna
+  }
+  if (loc.includes("bauchi") && (id === 203 || id === 845)) {
+    return [10.3158, 9.8442]; // Bauchi City
+  }
+  if (loc.includes("jos") || loc.includes("plateau")) {
+    return [9.8922, 8.8632]; // Jos Wildlife Park
+  }
+  if (loc.includes("yankari") || loc.includes("wikki")) {
+    return [9.7500, 10.5000]; // Yankari
+  }
+  if (loc.includes("zaria") || loc.includes("kano") || loc.includes("dutse")) {
+    return [11.9964, 8.5167]; // Kano
+  }
+  if (loc.includes("yusufari") || loc.includes("yobe")) {
+    return [13.0632, 10.5824]; // Yusufari Desert, Yobe
+  }
+  if (loc.includes("multi-location") || loc.includes("nigeria")) {
+    return [9.0765, 7.3986]; // Abuja Center
+  }
+  return null;
+}
+
 export default function MapPage() {
   return (
     <Suspense fallback={<div className="min-h-screen bg-[#020402]" />}>
@@ -75,6 +106,7 @@ function MapPageContent() {
     "destination",
     "event",
     "craft",
+    "explorer",
   ]);
 
   const toggleFilter = (filter: string) => {
@@ -112,6 +144,29 @@ function MapPageContent() {
       }
     });
 
+    // Inject explorers' created content dynamically to the map
+    explorers.forEach((explorer) => {
+      explorer.createdContent.forEach((creation) => {
+        if (!activeFilters.includes("explorer")) return;
+        const coords = getCreationCoordinates(creation.locationFeatured || "", creation.id);
+        if (coords) {
+          const itemKey = `explorer-creation-${creation.id}`;
+          // Avoid duplicate keys if multiple explorers co-credited the same content
+          if (items.some((i) => i.id === itemKey)) return;
+
+          items.push({
+            id: itemKey,
+            type: "explorer",
+            title: creation.title,
+            image: creation.thumbnail,
+            slug: explorer.slug,
+            coordinates: coords,
+            shortDesc: creation.description,
+          });
+        }
+      });
+    });
+
     return items;
   }, [activeFilters, publishedSubmissions]);
 
@@ -143,7 +198,7 @@ function MapPageContent() {
       {/* The Interactive Map */}
       <InteractiveMap items={allItems} centerOnId={centerOnId} />
 
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 w-full max-w-md px-4">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 w-full max-w-lg px-4">
         <div className="bg-black/80 backdrop-blur-xl border border-white/10 rounded-full p-2 flex items-center justify-between">
           <FilterButton
             active={activeFilters.includes("destination")}
@@ -162,6 +217,12 @@ function MapPageContent() {
             onClick={() => toggleFilter("craft")}
             icon={<Hammer size={16} />}
             label="Crafts"
+          />
+          <FilterButton
+            active={activeFilters.includes("explorer")}
+            onClick={() => toggleFilter("explorer")}
+            icon={<Camera size={16} />}
+            label="Explorers"
           />
         </div>
       </div>
@@ -184,12 +245,12 @@ function FilterButton({
     <button
       onClick={onClick}
       className={`relative flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 ${
-        active ? "text-black" : "text-gray-400 hover:text-white"
+        active ? "!text-black" : "!text-zinc-400 hover:!text-white"
       }`}
     >
       {active && (
         <motion.div
-          layoutId="activeFilterBg"
+          layoutId={`activeFilterBg-${label}`}
           className="absolute inset-0 bg-green-500 rounded-full -z-10"
           initial={false}
           transition={{ type: "spring", stiffness: 400, damping: 30 }}

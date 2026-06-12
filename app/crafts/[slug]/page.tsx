@@ -75,7 +75,7 @@ export default function CraftDetailPage({ params }: any) {
     "@type": "Article",
     "headline": `${craft.name} — Living Heritage of Arewa`,
     "description": craft.shortDescription,
-    "image": [craft.image],
+    "image": [craft.image.startsWith("http") ? craft.image : `https://visitarewa.com${craft.image.startsWith("/") ? "" : "/"}${craft.image}`],
     "author": {
       "@type": "Organization",
       "name": "Visit Arewa",

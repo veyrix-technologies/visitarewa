@@ -77,12 +77,13 @@ export default function DestinationPage({ params }: any) {
   );
 
   // Define TouristAttraction Schema JSON-LD
+  const destImg = destination.imageUrl || "/images/zuma.webp";
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "TouristAttraction",
     "name": destination.title,
     "description": destination.description,
-    "image": [destination.imageUrl || "/images/zuma.webp"],
+    "image": [destImg.startsWith("http") ? destImg : `https://visitarewa.com${destImg.startsWith("/") ? "" : "/"}${destImg}`],
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 10.5105,

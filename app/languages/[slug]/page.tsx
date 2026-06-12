@@ -56,7 +56,7 @@ export default async function LanguageDetail({ params }: { params: Promise<{ slu
     "@type": "Article",
     "headline": `${language.name} Language & Culture | Visit Arewa`,
     "description": language.description,
-    "image": [language.image],
+    "image": [language.image.startsWith("http") ? language.image : `https://visitarewa.com${language.image.startsWith("/") ? "" : "/"}${language.image}`],
     "author": {
       "@type": "Organization",
       "name": "Visit Arewa",
