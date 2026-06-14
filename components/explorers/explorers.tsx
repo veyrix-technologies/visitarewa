@@ -152,8 +152,8 @@ export default function ArewaExplorers() {
                       </div>
                     )}
                     <div>
-                      <h3 className="text-2xl font-bold font-rikafu tracking-wide text-white">
-                        <SafeRikafuText text={activeExplorer.collaborator ? `${activeExplorer.name} & ${activeExplorer.collaborator.name}` : activeExplorer.name} />
+                      <h3 className="text-2xl font-bold tracking-wide text-white">
+                        {activeExplorer.collaborator ? `${activeExplorer.name} & ${activeExplorer.collaborator.name}` : activeExplorer.name}
                       </h3>
                       <p className="text-green-400 text-sm font-sans font-medium">
                         {activeExplorer.collaborator ? `${activeExplorer.role.split(" & ")[0]} & ${activeExplorer.collaborator.role} Duo` : activeExplorer.role}

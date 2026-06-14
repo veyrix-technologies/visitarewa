@@ -407,7 +407,9 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
 
             {!event.registrationEnabled && (
               <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-6 text-center text-xs text-gray-500 font-sans leading-relaxed mt-10">
-                No registration required. This is a public showcase event open to all visitors.
+                {event.name === "SIP, PAINT & POETRY"
+                  ? "Registration is required. This is a free event open to all visitors."
+                  : "No registration required. This is a public showcase event open to all visitors."}
               </div>
             )}
           </div>
