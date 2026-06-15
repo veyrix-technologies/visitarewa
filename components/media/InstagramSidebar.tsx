@@ -18,7 +18,6 @@ interface InstagramSidebarProps {
   description?: string;
   creator?: string;
   creatorImage?: string;
-  isLocalCreatorImage?: boolean;
   location?: string;
   date?: string;
   credits?: {
@@ -38,7 +37,6 @@ export default function InstagramSidebar({
   description,
   creator,
   creatorImage,
-  isLocalCreatorImage,
   location,
   date,
   credits,
@@ -66,7 +64,6 @@ export default function InstagramSidebar({
                   <InstagramImage
                     src={credits[0].image!}
                     alt={credits[0].name}
-                    isLocal={credits[0].image!.startsWith("/images/")}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -84,7 +81,6 @@ export default function InstagramSidebar({
                   <InstagramImage
                     src={credits[1].image!}
                     alt={credits[1].name}
-                    isLocal={credits[1].image!.startsWith("/images/")}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -131,7 +127,6 @@ export default function InstagramSidebar({
                   <InstagramImage
                     src={creatorImage}
                     alt={creator || "Explorer"}
-                    isLocal={isLocalCreatorImage}
                     className="w-full h-full object-cover"
                   />
                 ) : (

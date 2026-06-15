@@ -56,7 +56,6 @@ export default function ExplorersPage() {
                     <InstagramImage
                       src={explorer.image || "/images/dye_pits.webp"}
                       alt={explorer.name}
-                      isLocal={explorer.isLocalImage}
                       className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent"></div>
@@ -76,7 +75,6 @@ export default function ExplorersPage() {
                             <InstagramImage
                               src={explorer.image}
                               alt={explorer.name}
-                              isLocal={explorer.isLocalImage}
                               className="w-full h-full object-cover"
                             />
                           </div>
@@ -92,9 +90,8 @@ export default function ExplorersPage() {
                         >
                           <div className="w-full h-full rounded-full overflow-hidden bg-zinc-950 border border-zinc-950">
                             <InstagramImage
-                              src={explorer.collaborator.image || "/images/explorers/dabelle_profile.jpg"}
+                              src={explorer.collaborator.image || "/images/explorers/shewandersfar/dabelle_profile.jpg"}
                               alt={explorer.collaborator.name}
-                              isLocal={true}
                               className="w-full h-full object-cover"
                             />
                           </div>

@@ -38,6 +38,7 @@ export default function RelatedCreations({ searchTerm, excludeId }: { searchTerm
       userEmail: explorer.name,
       link: content.link,
       credits: content.credits,
+      images: content.images,
       slug: undefined
     }))
   );
@@ -256,6 +257,7 @@ export default function RelatedCreations({ searchTerm, excludeId }: { searchTerm
         date={activeCreation?.submittedAt}
         credits={activeCreation?.credits}
         contentType={activeCreation?.type}
+        images={activeCreation?.images}
       />
     </div>
   );

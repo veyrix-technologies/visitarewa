@@ -1,12 +1,10 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 
-
-import { useInstagramMedia } from "@/hooks/useInstagramMedia";
 import { parseVideo } from "@/utils/parsers/video";
 import InstagramMediaViewer from "./InstagramMediaViewer";
 import InstagramSidebar from "./InstagramSidebar";
@@ -19,7 +17,6 @@ export interface MediaModalProps {
   title?: string;
   creator?: string;
   creatorImage?: string;
-  isLocalCreatorImage?: boolean;
   thumbnailUrl?: string;
   description?: string;
   location?: string;
@@ -31,6 +28,7 @@ export interface MediaModalProps {
     image?: string;
   }[];
   contentType?: "video" | "gallery" | "article";
+  images?: string[];
 }
 
 export default function MediaModal({
@@ -40,33 +38,21 @@ export default function MediaModal({
   title,
   creator,
   creatorImage,
-  isLocalCreatorImage,
   thumbnailUrl,
   description,
   location,
   date,
   credits,
   contentType,
+  images,
 }: MediaModalProps) {
   const [mounted, setMounted] = useState(false);
   const [btnHover, setBtnHover] = useState<boolean>(false);
-  const stripRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
     return () => setMounted(false);
   }, []);
-
-  const {
-    resolvedImages,
-    resolvedVideo,
-    playInline,
-    setPlayInline,
-    currentIdx,
-    setCurrentIdx,
-    loadingImages,
-    apiFailed,
-  } = useInstagramMedia(isOpen, videoUrl);
 
   // Prevent background scrolling when open
   useEffect(() => {
@@ -80,42 +66,27 @@ export default function MediaModal({
     };
   }, [isOpen]);
 
-  // Scroll thumbnail strip to keep active item visible
-  useEffect(() => {
-    if (stripRef.current && resolvedImages.length > 1) {
-      const strip = stripRef.current;
-      const thumb = strip.children[currentIdx] as HTMLElement;
-      if (thumb) {
-        thumb.scrollIntoView({ inline: "center", behavior: "smooth", block: "nearest" });
-      }
-    }
-  }, [currentIdx, resolvedImages.length]);
-
-  // Keyboard navigation
+  // Keyboard navigation for closing
   useEffect(() => {
     if (!isOpen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft" && resolvedImages.length > 1) {
-        setCurrentIdx((p) => (p === 0 ? resolvedImages.length - 1 : p - 1));
-      } else if (e.key === "ArrowRight" && resolvedImages.length > 1) {
-        setCurrentIdx((p) => (p === resolvedImages.length - 1 ? 0 : p + 1));
-      } else if (e.key === "Escape") {
+      if (e.key === "Escape") {
         onClose();
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, resolvedImages, onClose, setCurrentIdx]);
+  }, [isOpen, onClose]);
 
   const { type, embedUrl, isPortrait } = parseVideo(videoUrl);
   const isInstagram = videoUrl.includes("instagram.com");
-  const showInstagramCustom = isInstagram;
+  const showInstagramCustom = isInstagram || type === "direct";
 
   if (!mounted) return null;
 
   return createPortal(
     <AnimatePresence>
-      {isOpen && (videoUrl || resolvedImages.length > 0) && (
+      {isOpen && (videoUrl || thumbnailUrl) && (
         <>
           <style>{`
             .modal-sidebar-scroll::-webkit-scrollbar { width: 4px; }
@@ -162,19 +133,12 @@ export default function MediaModal({
                   style={{ height: "65dvh", flexShrink: 0 }}
                 >
                   <InstagramMediaViewer
-                    loadingImages={loadingImages}
                     contentType={contentType}
-                    resolvedVideo={resolvedVideo}
-                    resolvedImages={resolvedImages}
-                    currentIdx={currentIdx}
-                    setCurrentIdx={setCurrentIdx}
-                    playInline={playInline}
-                    setPlayInline={setPlayInline}
                     embedUrl={embedUrl}
                     videoUrl={videoUrl}
                     thumbnailUrl={thumbnailUrl}
                     title={title}
-                    stripRef={stripRef}
+                    images={images}
                   />
                 </div>
 
@@ -185,11 +149,10 @@ export default function MediaModal({
                   description={description}
                   creator={creator}
                   creatorImage={creatorImage}
-                  isLocalCreatorImage={isLocalCreatorImage}
                   location={location}
                   date={date}
                   credits={credits}
-                  resolvedImages={resolvedImages}
+                  resolvedImages={images || []}
                   btnHover={btnHover}
                   setBtnHover={setBtnHover}
                 />

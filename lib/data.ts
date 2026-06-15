@@ -642,11 +642,11 @@ export interface ExplorerContent {
   title: string;
   type: "video" | "article" | "gallery";
   thumbnail: string;
+  images?: string[];
   link: string;
   description: string;
   date?: string;
   locationFeatured?: string;
-  isLocal?: boolean;
   credits?: {
     role: string;
     name: string;
@@ -663,7 +663,6 @@ export interface Explorer {
   role: string;
   origin: string;
   image: string;
-  isLocalImage?: boolean;
   shortDescription: string;
   fullDescription: string;
   quote?: string;
@@ -692,8 +691,7 @@ export const explorers: Explorer[] = [
     title: "MARY USAH PETER",
     role: "Travel Storyteller & Explorer",
     origin: "Abuja, Nigeria",
-    image: "/images/explorers/shewanders_profile.jpg",
-    isLocalImage: true,
+    image: "/images/explorers/shewandersfar/shewanders_profile.jpg",
     shortDescription: "Discovering hidden places, exploring new cultures, and sharing unforgettable stories from every journey across the landscape.",
     fullDescription: "Mary Usah Peter, widely known as SheWanders, is an Abuja-based travel content creator, adventure lover, and dedicated cultural storyteller. Her work focuses on journeying off the beaten track to uncover the hidden gems, architectural wonders, and living traditions scattered across Nigeria. Through a mixture of cinematic vlogs and vivid photography series, Mary documents her expeditions to inspire a sense of wonder and curiosity about local history, capturing moments that connect people straight to the heart of regional cultures.",
     quote: "Adventure begins where comfort ends—every road leads to a new story worth sharing.",
@@ -706,7 +704,7 @@ export const explorers: Explorer[] = [
       name: "Solomon Onyeagoro",
       role: "Storytelling Photographer",
       instagram: "https://instagram.com/dabelle_2018",
-      image: "/images/explorers/dabelle_profile.jpg",
+      image: "/images/explorers/shewandersfar/dabelle_profile.jpg",
       slug: "dabelle"
     },
     createdContent: [
@@ -714,74 +712,146 @@ export const explorers: Explorer[] = [
         id: 201,
         title: "Almat Farms: Eco-Retreat in Kuje",
         type: "gallery",
-        thumbnail: "https://www.instagram.com/p/DXaX5H8ihya/media/?size=l",
+        thumbnail: "/images/explorers/shewandersfar/almat-abuja/almat-0.jpg",
+        images: [
+          "/images/explorers/shewandersfar/almat-abuja/almat-0.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-1.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-2.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-3.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-4.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-5.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-6.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-7.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-8.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-9.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-10.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-11.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-12.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-13.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-14.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-15.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-16.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-17.jpg"
+        ],
         link: "https://www.instagram.com/p/DXaX5H8ihya",
         description: "A rustic agro-tourism retreat featuring brick cabins and thatched roofs, located 45 minutes from the Abuja city center.",
         locationFeatured: "Kuje, Abuja",
-        isLocal: false,
         credits: [
-          { role: "Storytelling & Host", name: "Mary Usah Peter", instagram: "https://instagram.com/shewandersfar_", image: "/images/explorers/shewanders_profile.jpg" },
-          { role: "Photography", name: "Solomon Onyeagoro", instagram: "https://instagram.com/dabelle_2018", image: "/images/explorers/dabelle_profile.jpg" }
+          { role: "Storytelling & Host", name: "Mary Usah Peter", instagram: "https://instagram.com/shewandersfar_", image: "/images/explorers/shewandersfar/shewanders_profile.jpg" },
+          { role: "Photography", name: "Solomon Onyeagoro", instagram: "https://instagram.com/dabelle_2018", image: "/images/explorers/shewandersfar/dabelle_profile.jpg" }
         ]
       },
       {
         id: 202,
         title: "Exploring Kaduna Museum & Arewa House",
         type: "gallery",
-        thumbnail: "https://www.instagram.com/p/DTSZR5qipqK/media/?size=l",
+        thumbnail: "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-1.jpg",
+        images: [
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-1.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-2.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-3.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-4.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-5.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-6.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-7.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-8.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-9.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-10.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-11.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-12.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-13.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-14.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-15.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-16.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-17.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-18.jpg"
+        ],
         link: "https://www.instagram.com/p/DTSZR5qipqK",
         description: "A cultural journey exploring historical archives, ancient artifacts, and the rich political heritage preserved in Kaduna City.",
         date: "January 9, 2026",
         locationFeatured: "Kaduna, Nigeria",
-        isLocal: false,
         credits: [
-          { role: "Storytelling & Host", name: "Mary Usah Peter", instagram: "https://instagram.com/shewandersfar_", image: "/images/explorers/shewanders_profile.jpg" },
-          { role: "Photography", name: "Solomon Onyeagoro", instagram: "https://instagram.com/dabelle_2018", image: "/images/explorers/dabelle_profile.jpg" }
+          { role: "Storytelling & Host", name: "Mary Usah Peter", instagram: "https://instagram.com/shewandersfar_", image: "/images/explorers/shewandersfar/shewanders_profile.jpg" },
+          { role: "Photography", name: "Solomon Onyeagoro", instagram: "https://instagram.com/dabelle_2018", image: "/images/explorers/shewandersfar/dabelle_profile.jpg" }
         ]
       },
       {
         id: 203,
         title: "Vibrations of Bauchi: Life & Landmarks",
         type: "gallery",
-        thumbnail: "https://www.instagram.com/p/DV_Z-IaClaS/media/?size=l",
+        thumbnail: "/images/explorers/shewandersfar/bauchi-state/bauchi-1.jpg",
+        images: [
+          "/images/explorers/shewandersfar/bauchi-state/bauchi-1.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/bauchi-2.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/bauchi-3.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/bauchi-4.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/bauchi-5.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/bauchi-6.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/bauchi-7.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/bauchi-8.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/bauchi-9.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/bauchi-10.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/bauchi-11.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/bauchi-12.jpg"
+        ],
         link: "https://www.instagram.com/p/DV_Z-IaClaS",
         description: "A cinematic look at Bauchi's stunning golden-domed mosques, local transportation culture, and bustling everyday street scenes.",
         date: "March 17, 2026",
         locationFeatured: "Bauhci State",
-        isLocal: false,
         credits: [
-          { role: "Storytelling & Host", name: "Mary Usah Peter", instagram: "https://instagram.com/shewandersfar_", image: "/images/explorers/shewanders_profile.jpg" },
-          { role: "Photography", name: "Solomon Onyeagoro", instagram: "https://instagram.com/dabelle_2018", image: "/images/explorers/dabelle_profile.jpg" }
+          { role: "Storytelling & Host", name: "Mary Usah Peter", instagram: "https://instagram.com/shewandersfar_", image: "/images/explorers/shewandersfar/shewanders_profile.jpg" },
+          { role: "Photography", name: "Solomon Onyeagoro", instagram: "https://instagram.com/dabelle_2018", image: "/images/explorers/shewandersfar/dabelle_profile.jpg" }
         ]
       },
       {
         id: 204,
         title: "Fauna & Flora of Jos Wildlife Park",
         type: "gallery",
-        thumbnail: "https://www.instagram.com/p/DXKV3VhjrJ2/media/?size=l",
+        thumbnail: "/images/explorers/shewandersfar/jos-zoo/jos-zoo-1.jpg",
+        images: [
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-1.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-2.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-3.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-4.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-5.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-6.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-7.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-8.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-9.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-10.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-11.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-12.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-13.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-14.jpg"
+        ],
         link: "https://www.instagram.com/p/DXKV3VhjrJ2",
         description: "An educational trek through the pine forests and conservation reserves of Jos, documenting rare species and scenic highlands.",
         date: "April 15, 2026",
         locationFeatured: "Jos, Plateau State",
-        isLocal: false,
         credits: [
-          { role: "Storytelling & Host", name: "Mary Usah Peter", instagram: "https://instagram.com/shewandersfar_", image: "/images/explorers/shewanders_profile.jpg" },
-          { role: "Photography", name: "Solomon Onyeagoro", instagram: "https://instagram.com/dabelle_2018", image: "/images/explorers/dabelle_profile.jpg" }
+          { role: "Storytelling & Host", name: "Mary Usah Peter", instagram: "https://instagram.com/shewandersfar_", image: "/images/explorers/shewandersfar/shewanders_profile.jpg" },
+          { role: "Photography", name: "Solomon Onyeagoro", instagram: "https://instagram.com/dabelle_2018", image: "/images/explorers/shewandersfar/dabelle_profile.jpg" }
         ]
       },
       {
         id: 206,
         title: "Yankari & Wikki Warm Springs",
         type: "gallery",
-        thumbnail: "https://www.instagram.com/p/DXxIeoejoUp/media/?size=l",
+        thumbnail: "/images/explorers/shewandersfar/bauchi-state/yankari/yankari-1.jpg",
+        images: [
+          "/images/explorers/shewandersfar/bauchi-state/yankari/yankari-1.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/yankari/yankari-2.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/yankari/yankari-3.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/yankari/yankari-4.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/yankari/yankari-5.jpg"
+        ],
         link: "https://www.instagram.com/p/DXxIeoejoUp",
         description: "An exploratory dive into Nigeria's premier wildlife park, featuring safari trails and the crystal-clear waters of Wikki Warm Springs.",
         date: "April 30, 2026",
         locationFeatured: "Yankari, Bauchi State",
-        isLocal: false,
         credits: [
-          { role: "Storytelling & Host", name: "Mary Usah Peter", instagram: "https://instagram.com/shewandersfar_", image: "/images/explorers/shewanders_profile.jpg" },
-          { role: "Photography", name: "Solomon Onyeagoro", instagram: "https://instagram.com/dabelle_2018", image: "/images/explorers/dabelle_profile.jpg" }
+          { role: "Storytelling & Host", name: "Mary Usah Peter", instagram: "https://instagram.com/shewandersfar_", image: "/images/explorers/shewandersfar/shewanders_profile.jpg" },
+          { role: "Photography", name: "Solomon Onyeagoro", instagram: "https://instagram.com/dabelle_2018", image: "/images/explorers/shewandersfar/dabelle_profile.jpg" }
         ]
       }
     ]
@@ -793,8 +863,7 @@ export const explorers: Explorer[] = [
     title: "SOLOMON ONYEAGORO",
     role: "Storytelling Photographer",
     origin: "Abuja, Nigeria",
-    image: "/images/explorers/dabelle_profile.jpg",
-    isLocalImage: true,
+    image: "/images/explorers/shewandersfar/dabelle_profile.jpg",
     shortDescription: "Capturing moments, people, and places one frame at a time.",
     fullDescription: "Solomon Onyeagoro, professionally known as Dabelle, is an Abuja-based storytelling photographer, adventure lover, and travel enthusiast. He focuses on capturing moments, people, and places one frame at a time, documenting the visual essence of regional heritage and landscapes across Nigeria.",
     quote: "Every journey is worth taking, every memory worth preserving, and every story worth telling.",
@@ -807,7 +876,7 @@ export const explorers: Explorer[] = [
       name: "Mary Usah Peter",
       role: "Travel Storyteller & Explorer",
       instagram: "https://instagram.com/shewandersfar_",
-      image: "/images/explorers/shewanders_profile.jpg",
+      image: "/images/explorers/shewandersfar/shewanders_profile.jpg",
       slug: "shewandersfar"
     },
     createdContent: [
@@ -815,74 +884,146 @@ export const explorers: Explorer[] = [
         id: 201,
         title: "Almat Farms: Eco-Retreat in Kuje",
         type: "gallery",
-        thumbnail: "https://www.instagram.com/p/DXaX5H8ihya/media/?size=l",
+        thumbnail: "/images/explorers/shewandersfar/almat-abuja/almat-0.jpg",
+        images: [
+          "/images/explorers/shewandersfar/almat-abuja/almat-0.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-1.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-2.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-3.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-4.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-5.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-6.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-7.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-8.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-9.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-10.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-11.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-12.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-13.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-14.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-15.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-16.jpg",
+          "/images/explorers/shewandersfar/almat-abuja/almat-17.jpg"
+        ],
         link: "https://www.instagram.com/p/DXaX5H8ihya",
         description: "A rustic agro-tourism retreat featuring brick cabins and thatched roofs, located 45 minutes from the Abuja city center.",
         locationFeatured: "Kuje, Abuja",
-        isLocal: false,
         credits: [
-          { role: "Storytelling & Host", name: "Mary Usah Peter", instagram: "https://instagram.com/shewandersfar_", image: "/images/explorers/shewanders_profile.jpg" },
-          { role: "Photography", name: "Solomon Onyeagoro", instagram: "https://instagram.com/dabelle_2018", image: "/images/explorers/dabelle_profile.jpg" }
+          { role: "Storytelling & Host", name: "Mary Usah Peter", instagram: "https://instagram.com/shewandersfar_", image: "/images/explorers/shewandersfar/shewanders_profile.jpg" },
+          { role: "Photography", name: "Solomon Onyeagoro", instagram: "https://instagram.com/dabelle_2018", image: "/images/explorers/shewandersfar/dabelle_profile.jpg" }
         ]
       },
       {
         id: 202,
         title: "Exploring Kaduna Museum & Arewa House",
         type: "gallery",
-        thumbnail: "https://www.instagram.com/p/DTSZR5qipqK/media/?size=l",
+        thumbnail: "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-1.jpg",
+        images: [
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-1.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-2.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-3.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-4.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-5.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-6.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-7.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-8.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-9.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-10.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-11.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-12.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-13.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-14.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-15.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-16.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-17.jpg",
+          "/images/explorers/shewandersfar/kaduna-museum/kaduna-museum-18.jpg"
+        ],
         link: "https://www.instagram.com/p/DTSZR5qipqK",
         description: "A cultural journey exploring historical archives, ancient artifacts, and the rich political heritage preserved in Kaduna City.",
         date: "January 9, 2026",
         locationFeatured: "Kaduna, Nigeria",
-        isLocal: false,
         credits: [
-          { role: "Storytelling & Host", name: "Mary Usah Peter", instagram: "https://instagram.com/shewandersfar_", image: "/images/explorers/shewanders_profile.jpg" },
-          { role: "Photography", name: "Solomon Onyeagoro", instagram: "https://instagram.com/dabelle_2018", image: "/images/explorers/dabelle_profile.jpg" }
+          { role: "Storytelling & Host", name: "Mary Usah Peter", instagram: "https://instagram.com/shewandersfar_", image: "/images/explorers/shewandersfar/shewanders_profile.jpg" },
+          { role: "Photography", name: "Solomon Onyeagoro", instagram: "https://instagram.com/dabelle_2018", image: "/images/explorers/shewandersfar/dabelle_profile.jpg" }
         ]
       },
       {
         id: 203,
         title: "Vibrations of Bauchi: Life & Landmarks",
         type: "gallery",
-        thumbnail: "https://www.instagram.com/p/DV_Z-IaClaS/media/?size=l",
+        thumbnail: "/images/explorers/shewandersfar/bauchi-state/bauchi-1.jpg",
+        images: [
+          "/images/explorers/shewandersfar/bauchi-state/bauchi-1.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/bauchi-2.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/bauchi-3.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/bauchi-4.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/bauchi-5.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/bauchi-6.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/bauchi-7.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/bauchi-8.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/bauchi-9.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/bauchi-10.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/bauchi-11.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/bauchi-12.jpg"
+        ],
         link: "https://www.instagram.com/p/DV_Z-IaClaS",
         description: "A cinematic look at Bauchi's stunning golden-domed mosques, local transportation culture, and bustling everyday street scenes.",
         date: "March 17, 2026",
         locationFeatured: "Bauchi State",
-        isLocal: false,
         credits: [
-          { role: "Storytelling & Host", name: "Mary Usah Peter", instagram: "https://instagram.com/shewandersfar_", image: "/images/explorers/shewanders_profile.jpg" },
-          { role: "Photography", name: "Solomon Onyeagoro", instagram: "https://instagram.com/dabelle_2018", image: "/images/explorers/dabelle_profile.jpg" }
+          { role: "Storytelling & Host", name: "Mary Usah Peter", instagram: "https://instagram.com/shewandersfar_", image: "/images/explorers/shewandersfar/shewanders_profile.jpg" },
+          { role: "Photography", name: "Solomon Onyeagoro", instagram: "https://instagram.com/dabelle_2018", image: "/images/explorers/shewandersfar/dabelle_profile.jpg" }
         ]
       },
       {
         id: 204,
         title: "Fauna & Flora of Jos Wildlife Park",
         type: "gallery",
-        thumbnail: "https://www.instagram.com/p/DXKV3VhjrJ2/media/?size=l",
+        thumbnail: "/images/explorers/shewandersfar/jos-zoo/jos-zoo-1.jpg",
+        images: [
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-1.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-2.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-3.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-4.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-5.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-6.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-7.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-8.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-9.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-10.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-11.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-12.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-13.jpg",
+          "/images/explorers/shewandersfar/jos-zoo/jos-zoo-14.jpg"
+        ],
         link: "https://www.instagram.com/p/DXKV3VhjrJ2",
         description: "An educational trek through the pine forests and conservation reserves of Jos, documenting rare species and scenic highlands.",
         date: "April 15, 2026",
         locationFeatured: "Jos, Plateau State",
-        isLocal: false,
         credits: [
-          { role: "Storytelling & Host", name: "Mary Usah Peter", instagram: "https://instagram.com/shewandersfar_", image: "/images/explorers/shewanders_profile.jpg" },
-          { role: "Photography", name: "Solomon Onyeagoro", instagram: "https://instagram.com/dabelle_2018", image: "/images/explorers/dabelle_profile.jpg" }
+          { role: "Storytelling & Host", name: "Mary Usah Peter", instagram: "https://instagram.com/shewandersfar_", image: "/images/explorers/shewandersfar/shewanders_profile.jpg" },
+          { role: "Photography", name: "Solomon Onyeagoro", instagram: "https://instagram.com/dabelle_2018", image: "/images/explorers/shewandersfar/dabelle_profile.jpg" }
         ]
       },
       {
         id: 206,
         title: "Yankari & Wikki Warm Springs",
         type: "gallery",
-        thumbnail: "https://www.instagram.com/p/DXxIeoejoUp/media/?size=l",
+        thumbnail: "/images/explorers/shewandersfar/bauchi-state/yankari/yankari-1.jpg",
+        images: [
+          "/images/explorers/shewandersfar/bauchi-state/yankari/yankari-1.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/yankari/yankari-2.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/yankari/yankari-3.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/yankari/yankari-4.jpg",
+          "/images/explorers/shewandersfar/bauchi-state/yankari/yankari-5.jpg"
+        ],
         link: "https://www.instagram.com/p/DXxIeoejoUp",
         description: "An exploratory dive into Nigeria's premier wildlife park, featuring safari trails and the crystal-clear waters of Wikki Warm Springs.",
         date: "April 30, 2026",
         locationFeatured: "Yankari, Bauchi State",
-        isLocal: false,
         credits: [
-          { role: "Storytelling & Host", name: "Mary Usah Peter", instagram: "https://instagram.com/shewandersfar_", image: "/images/explorers/shewanders_profile.jpg" },
-          { role: "Photography", name: "Solomon Onyeagoro", instagram: "https://instagram.com/dabelle_2018", image: "/images/explorers/dabelle_profile.jpg" }
+          { role: "Storytelling & Host", name: "Mary Usah Peter", instagram: "https://instagram.com/shewandersfar_", image: "/images/explorers/shewandersfar/shewanders_profile.jpg" },
+          { role: "Photography", name: "Solomon Onyeagoro", instagram: "https://instagram.com/dabelle_2018", image: "/images/explorers/shewandersfar/dabelle_profile.jpg" }
         ]
       }
     ]
@@ -894,7 +1035,7 @@ export const explorers: Explorer[] = [
     title: "ABDURRAHMAN BABADIDDI",
     role: "Global Travel Content Creator",
     origin: "France / Nigeria", // Since he is Nigerian based in France
-    image: "/images/explorers/abdulwanders_profile.jpg",
+    image: "/images/explorers/abdulwanders/abdulwanders_profile.jpg",
     shortDescription: "A cinematic travel content creator highlighting cultures, landscapes, and immersive moments around the world.",
     fullDescription: "Abdurrahman Babadiddi, popularly known as Abdulwanders, is a Nigerian travel content creator based in France. He specializes in creating high-quality cinematic travel content with the core goal of helping a global audience experience unique destinations in an immersive way. His visual storytelling seamlessly captures everything that brings a place to life—including local architecture, vibrant culture, diverse landscapes, and those raw, everyday human moments that define the spirit of travel.",
     quote: "Every place has its own charm waiting to be discovered.",
@@ -908,8 +1049,8 @@ export const explorers: Explorer[] = [
         id: 301,
         title: "The Royal Courts of Hausa Culture",
         type: "video",
-        thumbnail: "https://www.instagram.com/p/DJyko1WNRaa/",
-        link: "https://www.instagram.com/p/DXMDJS_DZSO/",
+        thumbnail: "/images/explorers/abdulwanders/hausa-culture/thumbnail.jpg",
+        link: "/images/explorers/abdulwanders/hausa-culture/clip.mp4",
         description: "A grand visual journey inside the historic walls and majestic royal durbars of the Zazzau, Kano, and Dutse Emir palaces.",
         date: "April 16, 2026",
         locationFeatured: "Zaria / Kano / Dutse"
@@ -917,9 +1058,9 @@ export const explorers: Explorer[] = [
       {
         id: 302,
         title: "The Dunes of Yusufari Desert",
-        type: "video", // Based on the reel audio/mute indicators
-        thumbnail: "https://www.instagram.com/p/DNiH461t8Z9/",
-        link: "https://www.instagram.com/p/DNiH461t8Z9/",
+        type: "video",
+        thumbnail: "/images/explorers/abdulwanders/yusufari-desert-yola/thumbnail.jpg",
+        link: "/images/explorers/abdulwanders/yusufari-desert-yola/cllip.mp4",
         description: "A sweeping cinematic look at the massive golden sand dunes and vast Sahel landscapes hidden within Yobe State.",
         date: "August 19, 2025",
         locationFeatured: "Yobe State"
@@ -928,8 +1069,8 @@ export const explorers: Explorer[] = [
         id: 303,
         title: "The Ultimate Nigeria Travel Reel",
         type: "video",
-        thumbnail: "https://www.instagram.com/p/DSPaZ9yjalq/",
-        link: "https://www.instagram.com/p/DSPaZ9yjalq/",
+        thumbnail: "/images/explorers/abdulwanders/naija/thumbnail.jpg",
+        link: "/images/explorers/abdulwanders/naija/clip.mp4",
         description: "A fast-paced, cinematic anthology capturing the diverse cultures, breathtaking landscapes, and hidden gems across Nigeria.",
         date: "December 14, 2025",
         locationFeatured: "Nigeria (Multi-Location)"

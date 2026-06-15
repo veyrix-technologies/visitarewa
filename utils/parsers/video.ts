@@ -8,7 +8,8 @@ export const parseVideo = (url: string): ParsedVideo => {
   if (!url) return { type: "unknown", embedUrl: "", isPortrait: false };
 
   if (/\.(mp4|webm|ogg)($|\?)/i.test(url)) {
-    return { type: "direct", embedUrl: url, isPortrait: false };
+    const isPortrait = url.includes("abdulwanders") || url.includes("portrait") || url.includes("reel");
+    return { type: "direct", embedUrl: url, isPortrait };
   }
 
   const ytReg = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;

@@ -31,8 +31,9 @@ export default function ExplorerContentFeed({ createdContent, explorerName }: Ex
           }
 
           const isExternal = content.link && (content.link.startsWith("http://") || content.link.startsWith("https://"));
+          const shouldShowModal = isExternal || content.type === "video" || content.type === "gallery";
           const handleContentClick = (e: React.MouseEvent) => {
-            if (isExternal) {
+            if (shouldShowModal) {
               e.preventDefault();
               const explorer = explorers.find(el => el.name === explorerName);
               setActiveCreation({
@@ -40,13 +41,13 @@ export default function ExplorerContentFeed({ createdContent, explorerName }: Ex
                 title: content.title,
                 creatorName: explorer ? `@${explorer.slug}` : explorerName,
                 creatorImage: explorer?.image,
-                isLocalCreatorImage: explorer?.isLocalImage,
                 description: content.description,
                 location: content.locationFeatured,
                 date: content.date,
                 thumbnail: content.thumbnail,
                 credits: content.credits,
                 type: content.type,
+                images: content.images,
               });
             }
           };
@@ -63,7 +64,6 @@ export default function ExplorerContentFeed({ createdContent, explorerName }: Ex
                 <InstagramImage
                   src={content.thumbnail}
                   alt={content.title}
-                  isLocal={content.isLocal}
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors" />
@@ -117,13 +117,13 @@ export default function ExplorerContentFeed({ createdContent, explorerName }: Ex
         title={activeCreation?.title}
         creator={activeCreation?.creatorName}
         creatorImage={activeCreation?.creatorImage}
-        isLocalCreatorImage={activeCreation?.isLocalCreatorImage}
         description={activeCreation?.description}
         location={activeCreation?.location}
         date={activeCreation?.date}
         thumbnailUrl={activeCreation?.thumbnail}
         credits={activeCreation?.credits}
         contentType={activeCreation?.type}
+        images={activeCreation?.images}
       />
     </>
   );

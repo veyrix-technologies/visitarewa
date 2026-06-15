@@ -62,15 +62,13 @@ export default function ArewaExplorers() {
                       <InstagramImage
                         src={explorer.image}
                         alt={explorer.name}
-                        isLocal={explorer.isLocalImage}
                         className="w-full h-full object-cover"
                       />
                     </div>
                     <div className="absolute bottom-0 right-0 w-11 h-11 rounded-xl overflow-hidden border border-zinc-950 z-20 shadow-md">
                       <InstagramImage
-                        src={explorer.collaborator.image || "/images/explorers/dabelle_profile.jpg"}
+                        src={explorer.collaborator.image || "/images/explorers/shewandersfar/dabelle_profile.jpg"}
                         alt={explorer.collaborator.name}
-                        isLocal={true}
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -80,7 +78,6 @@ export default function ArewaExplorers() {
                     <InstagramImage
                       src={explorer.image}
                       alt={explorer.name}
-                      isLocal={explorer.isLocalImage}
                       className="absolute inset-0 w-full h-full object-cover"
                     />
                   </div>
@@ -128,15 +125,13 @@ export default function ArewaExplorers() {
                           <InstagramImage
                             src={activeExplorer.image}
                             alt={activeExplorer.name}
-                            isLocal={activeExplorer.isLocalImage}
                             className="w-full h-full object-cover"
                           />
                         </div>
                         <div className="absolute bottom-0 right-0 w-14 h-14 rounded-2xl overflow-hidden border border-zinc-950 z-20 shadow-lg">
                           <InstagramImage
-                            src={activeExplorer.collaborator.image || "/images/explorers/dabelle_profile.jpg"}
+                            src={activeExplorer.collaborator.image || "/images/explorers/shewandersfar/dabelle_profile.jpg"}
                             alt={activeExplorer.collaborator.name}
-                            isLocal={true}
                             className="w-full h-full object-cover"
                           />
                         </div>
@@ -146,7 +141,6 @@ export default function ArewaExplorers() {
                         <InstagramImage
                           src={activeExplorer.image}
                           alt={activeExplorer.name}
-                          isLocal={activeExplorer.isLocalImage}
                           className="absolute inset-0 w-full h-full object-cover"
                         />
                       </div>
@@ -198,13 +192,13 @@ export default function ArewaExplorers() {
                             title: content.title,
                             creatorName: activeExplorer.name,
                             creatorImage: activeExplorer.image,
-                            isLocalCreatorImage: activeExplorer.isLocalImage,
                             thumbnail: content.thumbnail,
                             description: content.description,
                             location: content.locationFeatured,
                             date: content.date,
                             credits: content.credits,
                             type: content.type,
+                            images: content.images,
                           });
                         }
                       };
@@ -221,7 +215,6 @@ export default function ArewaExplorers() {
                             <InstagramImage
                               src={content.thumbnail}
                               alt={content.title}
-                              isLocal={content.isLocal}
                               className="absolute inset-0 w-full h-full object-cover group-hover/item:scale-105 transition-transform duration-300"
                             />
                             {/* Type overlay badge on hover */}
@@ -280,13 +273,13 @@ export default function ArewaExplorers() {
         title={activeCreation?.title}
         creator={activeCreation?.creatorName}
         creatorImage={activeCreation?.creatorImage}
-        isLocalCreatorImage={activeCreation?.isLocalCreatorImage}
         thumbnailUrl={activeCreation?.thumbnail}
         description={activeCreation?.description}
         location={activeCreation?.location}
         date={activeCreation?.date}
         credits={activeCreation?.credits}
         contentType={activeCreation?.type}
+        images={activeCreation?.images}
       />
     </section>
   );

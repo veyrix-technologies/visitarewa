@@ -41,6 +41,7 @@ export default function ExplorerPage({ params }: any) {
     id: sc.id,
     type: sc.type,
     thumbnail: sc.thumbnail,
+    images: sc.images,
     title: sc.title,
     description: sc.description,
     date: sc.date,
@@ -54,7 +55,6 @@ export default function ExplorerPage({ params }: any) {
     role: explorerData.role,
     image: explorerData.image,
     origin: explorerData.origin,
-    isLocalImage: explorerData.isLocalImage || false,
     shortDescription: explorerData.shortDescription,
     fullDescription: explorerData.fullDescription,
     quote: explorerData.quote || "Arewa is a tapestry of stories waiting to be told.",
@@ -140,7 +140,6 @@ export default function ExplorerPage({ params }: any) {
           <InstagramImage
             src={explorer.image}
             alt={explorer.name}
-            isLocal={explorer.isLocalImage}
             className="absolute inset-0 w-full h-full object-cover object-center brightness-75"
           />
           {/* Dark Gradient Overlay */}
