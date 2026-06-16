@@ -693,7 +693,7 @@ export const explorers: Explorer[] = [
     origin: "Abuja, Nigeria",
     image: "/images/explorers/shewandersfar/shewanders_profile.jpg",
     shortDescription: "Discovering hidden places, exploring new cultures, and sharing unforgettable stories from every journey across the landscape.",
-    fullDescription: "Mary Usah Peter, widely known as SheWanders, is an Abuja-based travel content creator, adventure lover, and dedicated cultural storyteller. Her work focuses on journeying off the beaten track to uncover the hidden gems, architectural wonders, and living traditions scattered across Nigeria. Through a mixture of cinematic vlogs and vivid photography series, Mary documents her expeditions to inspire a sense of wonder and curiosity about local history, capturing moments that connect people straight to the heart of regional cultures.",
+    fullDescription: "Mary Usah Peter, widely known as SheWandersFar, is an Abuja-based travel content creator, adventure lover, and dedicated cultural storyteller. Her work focuses on journeying off the beaten track to uncover the hidden gems, architectural wonders, and living traditions scattered across Nigeria. Through a mixture of cinematic vlogs and vivid photography series, Mary documents her expeditions to inspire a sense of wonder and curiosity about local history, capturing moments that connect people straight to the heart of regional cultures.",
     quote: "Adventure begins where comfort ends—every road leads to a new story worth sharing.",
     socials: {
       instagram: "https://instagram.com/shewandersfar_",
