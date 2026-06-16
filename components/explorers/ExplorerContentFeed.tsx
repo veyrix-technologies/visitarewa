@@ -41,6 +41,7 @@ export default function ExplorerContentFeed({ createdContent, explorerName }: Ex
                 title: content.title,
                 creatorName: explorer ? `@${explorer.slug}` : explorerName,
                 creatorImage: explorer?.image,
+                creatorLink: explorer?.socials?.instagram || (content.credits && content.credits[0]?.instagram),
                 description: content.description,
                 location: content.locationFeatured,
                 date: content.date,
@@ -114,6 +115,7 @@ export default function ExplorerContentFeed({ createdContent, explorerName }: Ex
         isOpen={!!activeCreation}
         onClose={() => setActiveCreation(null)}
         videoUrl={activeCreation?.link || ""}
+        creatorLink={activeCreation?.creatorLink}
         title={activeCreation?.title}
         creator={activeCreation?.creatorName}
         creatorImage={activeCreation?.creatorImage}

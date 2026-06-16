@@ -3,6 +3,7 @@
 import React from "react";
 import { MapPin, Calendar, Images, Instagram } from "lucide-react";
 import InstagramImage from "./InstagramImage";
+import { explorers } from "@/lib/data";
 
 // Helper to extract username from Instagram URL
 const getIgUsername = (url?: string) => {
@@ -14,6 +15,7 @@ const getIgUsername = (url?: string) => {
 
 interface InstagramSidebarProps {
   videoUrl: string;
+  creatorLink?: string;
   title?: string;
   description?: string;
   creator?: string;
@@ -33,6 +35,7 @@ interface InstagramSidebarProps {
 
 export default function InstagramSidebar({
   videoUrl,
+  creatorLink,
   title,
   description,
   creator,
@@ -44,6 +47,49 @@ export default function InstagramSidebar({
   btnHover,
   setBtnHover,
 }: InstagramSidebarProps) {
+  const getFollowLink = () => {
+    if (creatorLink) return creatorLink;
+
+    // If creator starts with '@', e.g. '@abdulwanders'
+    if (creator && creator.startsWith("@")) {
+      const username = creator.substring(1);
+      return `https://instagram.com/${username}`;
+    }
+
+    // If credits exist, try to find one matching the creator name, or fall back to the first one
+    if (credits && credits.length > 0) {
+      if (creator) {
+        const matchingCredit = credits.find(
+          (c) => c.name.toLowerCase() === creator.toLowerCase() ||
+                 getIgUsername(c.instagram).toLowerCase() === creator.replace("@", "").toLowerCase()
+        );
+        if (matchingCredit?.instagram) {
+          return matchingCredit.instagram;
+        }
+      }
+      // Fallback to first credit
+      if (credits[0].instagram) {
+        return credits[0].instagram;
+      }
+    }
+
+    // Fallback to searching explorers in the data.ts
+    if (creator) {
+      const cleanCreator = creator.replace("@", "").toLowerCase();
+      const foundExplorer = explorers.find(
+        (e) => e.name.toLowerCase() === cleanCreator ||
+               e.slug.toLowerCase() === cleanCreator
+      );
+      if (foundExplorer?.socials?.instagram) {
+        return foundExplorer.socials.instagram;
+      }
+    }
+
+    return videoUrl; // final fallback
+  };
+
+  const followLink = getFollowLink();
+
   return (
     <div className="ig-modal-sidebar flex-1 w-full md:w-[320px] flex flex-col bg-zinc-950 border-t md:border-t-0 md:border-l border-white/5 overflow-y-auto md:overflow-visible">
       {/* Creator header */}
@@ -223,7 +269,7 @@ export default function InstagramSidebar({
       {/* Footer CTA */}
       <div className="p-6 md:p-8 border-t border-white/5 shrink-0">
         <a
-          href={videoUrl}
+          href={followLink}
           target="_blank"
           rel="noopener noreferrer"
           onClick={(e) => e.stopPropagation()}

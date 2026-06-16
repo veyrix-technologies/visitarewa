@@ -87,9 +87,11 @@ export default function RelatedCreations({ searchTerm, excludeId }: { searchTerm
               onClick={() => {
                 if (isExternal) {
                   const creator = users.find(u => u.email.toLowerCase() === sub.userEmail.toLowerCase() || u.name.toLowerCase() === sub.userEmail.toLowerCase());
+                  const explorer = explorers.find(el => el.name.toLowerCase() === sub.userEmail.toLowerCase());
                   setActiveCreation({
                     ...sub,
-                    creatorName: creator ? `@${creator.username}` : (sub.userEmail || "Creator"),
+                    creatorName: creator ? `@${creator.username}` : (explorer ? `@${explorer.slug}` : (sub.userEmail || "Creator")),
+                    creatorLink: creator?.socials?.instagram || explorer?.socials?.instagram || (sub.credits && sub.credits[0]?.instagram),
                   });
                 } else if (sub.link) {
                   window.location.href = sub.link;
@@ -249,6 +251,7 @@ export default function RelatedCreations({ searchTerm, excludeId }: { searchTerm
         isOpen={!!activeCreation}
         onClose={() => setActiveCreation(null)}
         videoUrl={activeCreation?.link || ""}
+        creatorLink={activeCreation?.creatorLink}
         title={activeCreation?.title}
         creator={activeCreation?.creatorName}
         thumbnailUrl={activeCreation?.imageUrl}

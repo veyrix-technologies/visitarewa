@@ -14,6 +14,7 @@ export interface MediaModalProps {
   isOpen: boolean;
   onClose: () => void;
   videoUrl: string;
+  creatorLink?: string;
   title?: string;
   creator?: string;
   creatorImage?: string;
@@ -35,6 +36,7 @@ export default function MediaModal({
   isOpen,
   onClose,
   videoUrl,
+  creatorLink,
   title,
   creator,
   creatorImage,
@@ -145,6 +147,7 @@ export default function MediaModal({
                 {/* ── SIDEBAR ── */}
                 <InstagramSidebar
                   videoUrl={videoUrl}
+                  creatorLink={creatorLink}
                   title={title}
                   description={description}
                   creator={creator}

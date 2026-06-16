@@ -146,7 +146,7 @@ export default function ArewaExplorers() {
                       </div>
                     )}
                     <div>
-                      <h3 className="text-2xl font-bold tracking-wide text-white">
+                      <h3 className="text-2xl font-bold tracking-wide text-white line-clamp-2">
                         {activeExplorer.collaborator ? `${activeExplorer.name} & ${activeExplorer.collaborator.name}` : activeExplorer.name}
                       </h3>
                       <p className="text-green-400 text-sm font-sans font-medium">
@@ -192,6 +192,7 @@ export default function ArewaExplorers() {
                             title: content.title,
                             creatorName: activeExplorer.name,
                             creatorImage: activeExplorer.image,
+                            creatorLink: activeExplorer.socials?.instagram || (content.credits && content.credits[0]?.instagram),
                             thumbnail: content.thumbnail,
                             description: content.description,
                             location: content.locationFeatured,
@@ -270,6 +271,7 @@ export default function ArewaExplorers() {
         isOpen={!!activeCreation}
         onClose={() => setActiveCreation(null)}
         videoUrl={activeCreation?.link || ""}
+        creatorLink={activeCreation?.creatorLink}
         title={activeCreation?.title}
         creator={activeCreation?.creatorName}
         creatorImage={activeCreation?.creatorImage}
