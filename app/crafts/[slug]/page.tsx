@@ -35,7 +35,7 @@ export default function CraftDetailPage({ params }: any) {
       <div className="bg-[#020402] min-h-screen text-white flex items-center justify-center font-sans">
         <div className="flex flex-col items-center gap-4">
           <Compass className="animate-spin text-green-500 w-12 h-12" />
-          <p className="text-gray-400 text-sm uppercase tracking-widest font-bold">Loading Data...</p>
+          <p className="text-gray-400 text-sm uppercase tracking-widest font-bold">Weaving the Heritage...</p>
         </div>
       </div>
     );

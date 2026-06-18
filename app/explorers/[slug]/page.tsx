@@ -119,7 +119,7 @@ export default function ExplorerPage({ params }: any) {
         )}
         <div className="flex flex-col items-center gap-4">
           <Compass className="animate-spin text-green-500 w-12 h-12" />
-          <p className="text-gray-400 text-sm uppercase tracking-widest font-bold">Loading Data...</p>
+          <p className="text-gray-400 text-sm uppercase tracking-widest font-bold">Consulting the Compass...</p>
         </div>
       </div>
     );
