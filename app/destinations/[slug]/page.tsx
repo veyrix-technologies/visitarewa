@@ -11,7 +11,8 @@ import {
   Calendar,
   CheckCircle,
   Star,
-  Compass
+  Compass,
+  Mail
 } from "lucide-react";
 import { useAuth } from "@/lib/AuthContext";
 import GalleryPreview from "@/components/media/GalleryPreview";
@@ -222,6 +223,23 @@ export default function DestinationPage({ params }: any) {
                 >
                   View All Destinations
                 </Link>
+
+                {/* --- NEW: Local Guide/Recommendation Section --- */}
+                <div className="pt-6 mt-2 border-t border-white/10">
+                  <p className="text-gray-400 text-sm mb-3">
+                    Are you a local guide or host? <br />
+                    <span className="text-white font-bold">
+                      Want to recommend a destination?
+                    </span>
+                  </p>
+
+                  <a
+                    href="mailto:hello@visitarewa.com?subject=Destination%20Recommendation"
+                    className="block w-full text-center bg-transparent border border-white/20 hover:border-green-500 text-gray-300 hover:text-green-400 font-bold py-3 rounded-lg transition-all flex items-center justify-center gap-2 text-sm"
+                  >
+                    <Mail size={16} /> Contact Us Here
+                  </a>
+                </div>
               </div>
             </div>
           </div>

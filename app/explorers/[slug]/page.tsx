@@ -14,7 +14,8 @@ import {
   Instagram,
   Twitter,
   Globe,
-  Youtube
+  Youtube,
+  Mail
 } from "lucide-react";
 import ExplorerContentFeed from "@/components/explorers/ExplorerContentFeed";
 import RelatedCreations from "@/components/media/RelatedCreations";
@@ -349,6 +350,23 @@ export default function ExplorerPage({ params }: any) {
                 >
                   Explore Other Profiles
                 </Link>
+
+                {/* --- NEW: Explorer Collaboration Section --- */}
+                <div className="pt-6 mt-2 border-t border-white/10">
+                  <p className="text-gray-400 text-sm mb-3">
+                    Are you a travel creator or storyteller? <br />
+                    <span className="text-white font-bold">
+                      Want to join our explorers?
+                    </span>
+                  </p>
+
+                  <a
+                    href="mailto:hello@visitarewa.com?subject=Explorer%20Collaboration"
+                    className="block w-full text-center bg-transparent border border-white/20 hover:border-green-500 text-gray-300 hover:text-green-400 font-bold py-3 rounded-lg transition-all flex items-center justify-center gap-2 text-sm"
+                  >
+                    <Mail size={16} /> Contact Us Here
+                  </a>
+                </div>
               </div>
             </div>
           </div>

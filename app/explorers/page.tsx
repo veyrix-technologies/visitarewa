@@ -151,9 +151,9 @@ export default function ExplorersPage() {
       </div>
 
       {/* Join the Tribe Section */}
-      <div className="container mx-auto px-6 md:px-20 pb-28 border-t border-white/5 pt-20">
+      {/* <div className="container mx-auto px-6 md:px-20 pb-28 border-t border-white/5 pt-20">
         <JoinExplorersForm />
-      </div>
+      </div> */}
       <Footer />
     </main>
   );

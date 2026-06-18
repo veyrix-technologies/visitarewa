@@ -13,7 +13,8 @@ import {
   CheckCircle,
   ChefHat,
   Quote,
-  Compass
+  Compass,
+  Mail
 } from "lucide-react";
 import { useAuth } from "@/lib/AuthContext";
 import { dishes } from "@/lib/data";
@@ -282,6 +283,23 @@ export default function FoodPage({ params }: any) {
                 >
                   <Utensils size={16} /> View Full Menu
                 </Link>
+
+                {/* --- NEW: Chef/Recipe Submission Section --- */}
+                <div className="pt-6 mt-2 border-t border-white/10">
+                  <p className="text-gray-400 text-sm mb-3">
+                    Are you a chef or home cook? <br />
+                    <span className="text-white font-bold">
+                      Want to share a recipe?
+                    </span>
+                  </p>
+
+                  <a
+                    href="mailto:hello@visitarewa.com?subject=Recipe%20Submission"
+                    className="block w-full text-center bg-transparent border border-white/20 hover:border-green-500 text-gray-300 hover:text-green-400 font-bold py-3 rounded-lg transition-all flex items-center justify-center gap-2 text-sm"
+                  >
+                    <Mail size={16} /> Contact Us Here
+                  </a>
+                </div>
               </div>
             </div>
           </div>

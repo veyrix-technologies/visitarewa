@@ -2,7 +2,7 @@ import React from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, Users, MapPin, BookOpen, MessageSquare, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, Users, MapPin, BookOpen, MessageSquare, ArrowUpRight, Mail } from "lucide-react";
 import { languages } from "@/lib/data";
 import LanguageAudioButton from "@/components/languages/LanguageAudioButton";
 import SafeRikafuText from "@/components/layout/SafeRikafuText";
@@ -266,6 +266,23 @@ export default async function LanguageDetail({ params }: { params: Promise<{ slu
                 >
                   View All Languages <ArrowUpRight size={16} />
                 </Link>
+
+                {/* --- NEW: Language Submission Section --- */}
+                <div className="pt-6 mt-2 border-t border-white/10 text-left">
+                  <p className="text-gray-400 text-sm mb-3">
+                    Are you a native speaker or linguist? <br />
+                    <span className="text-white font-bold">
+                      Want to add or correct a language?
+                    </span>
+                  </p>
+
+                  <a
+                    href="mailto:hello@visitarewa.com?subject=Language%20Contribution"
+                    className="block w-full text-center bg-transparent border border-white/20 hover:border-green-500 text-gray-300 hover:text-green-400 font-bold py-3 rounded-lg transition-all flex items-center justify-center gap-2 text-sm"
+                  >
+                    <Mail size={16} /> Contact Us Here
+                  </a>
+                </div>
               </div>
 
             </div>
