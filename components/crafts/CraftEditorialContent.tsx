@@ -17,6 +17,7 @@ import {
   Zap,
   Instagram,
   Linkedin,
+  Mail,
 } from "lucide-react";
 import Footer from "@/components/layout/footer";
 import GalleryPreview from "../media/GalleryPreview";
@@ -216,6 +217,33 @@ export default function CraftEditorialContent({ craft }: { craft: any }) {
                     </ul>
                   </div>
                 )}
+
+                {/* Explore All Link */}
+                <div className="pt-6 mt-4 border-t border-white/10">
+                  <Link
+                    href="/crafts"
+                    className="block w-full text-center bg-green-500 hover:bg-green-600 text-black font-bold py-3 rounded-xl text-sm transition-colors"
+                  >
+                    Explore All Crafts
+                  </Link>
+                </div>
+
+                {/* --- NEW: Heritage Craft Submission Section --- */}
+                <div className="pt-6 mt-2 border-t border-white/10 text-left">
+                  <p className="text-gray-400 text-sm mb-3">
+                    Are you an artisan or heritage advocate? <br />
+                    <span className="text-white font-bold">
+                      Want to preserve a traditional craft?
+                    </span>
+                  </p>
+
+                  <a
+                    href="mailto:hello@visitarewa.com?subject=Heritage%20Craft%20Submission"
+                    className="block w-full text-center bg-transparent border border-white/20 hover:border-green-500 text-gray-300 hover:text-green-400 font-bold py-3 rounded-lg transition-all flex items-center justify-center gap-2 text-sm"
+                  >
+                    <Mail size={16} /> Contact Us Here
+                  </a>
+                </div>
               </div>
 
               {/* Contributor Card */}
@@ -289,7 +317,7 @@ export default function CraftEditorialContent({ craft }: { craft: any }) {
       )}
 
       {/* Call-to-Action Section */}
-      <section className="px-6 md:px-20 py-24 bg-zinc-900/50 border-t border-white/5 mt-24">
+      {/* <section className="px-6 md:px-20 py-24 bg-zinc-900/50 border-t border-white/5 mt-24">
         <div className="container mx-auto max-w-4xl text-center">
           <div className="flex items-center justify-center gap-4 mb-6">
             <div className="h-[1px] w-8 bg-green-500"></div>
@@ -319,7 +347,7 @@ export default function CraftEditorialContent({ craft }: { craft: any }) {
             </Link>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <div className="container mx-auto px-6 md:px-20 mb-24">
         <RelatedCreations searchTerm={craft.name} excludeId={craft.id} />

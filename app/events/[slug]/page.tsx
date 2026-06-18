@@ -456,11 +456,30 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
               <div className="h-[1px] bg-white/10 my-4"></div>
 
               {/* INTERACTIVE ACTIONS */}
-              <EventActionButtons
-                videoUrl={event.video}
-                title={event.name}
-                creator={(event as any).videoCreator}
-              />
+              <div className="space-y-4">
+                <EventActionButtons
+                  videoUrl={event.video}
+                  title={event.name}
+                  creator={(event as any).videoCreator}
+                />
+
+                {/* --- NEW: Event Promotion Section --- */}
+                <div className="pt-6 mt-2 border-t border-white/10 text-left">
+                  <p className="text-gray-400 text-sm mb-3">
+                    Are you an event organizer or host? <br />
+                    <span className="text-white font-bold">
+                      Want to promote your showcase?
+                    </span>
+                  </p>
+
+                  <a
+                    href="mailto:hello@visitarewa.com?subject=Event%20Submission"
+                    className="block w-full text-center bg-transparent border border-white/20 hover:border-green-500 text-gray-300 hover:text-green-400 font-bold py-3 rounded-lg transition-all flex items-center justify-center gap-2 text-sm"
+                  >
+                    <Mail size={16} /> Contact Us Here
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
