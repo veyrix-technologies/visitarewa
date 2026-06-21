@@ -1034,7 +1034,7 @@ export const explorers: Explorer[] = [
     name: "Abdurrahman Babadiddi",
     title: "ABDURRAHMAN BABADIDDI",
     role: "Global Travel Content Creator",
-    origin: "France / Nigeria", // Since he is Nigerian based in France
+    origin: "Nigeria",
     image: "/images/explorers/abdulwanders/abdulwanders_profile.jpg",
     shortDescription: "A cinematic travel content creator highlighting cultures, landscapes, and immersive moments around the world.",
     fullDescription: "Abdurrahman Babadiddi, popularly known as Abdulwanders, is a Nigerian travel content creator based in France. He specializes in creating high-quality cinematic travel content with the core goal of helping a global audience experience unique destinations in an immersive way. His visual storytelling seamlessly captures everything that brings a place to life—including local architecture, vibrant culture, diverse landscapes, and those raw, everyday human moments that define the spirit of travel.",
